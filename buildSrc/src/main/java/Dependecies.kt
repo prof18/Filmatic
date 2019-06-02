@@ -1,9 +1,6 @@
-object ApplicationId {
-    val id = "com.prof18.filmatic"
-}
-
 object Modules {
     val app = ":app"
+    val core = ":core"
 }
 
 object Releases {
@@ -23,7 +20,14 @@ object Versions {
     val cardview = "1.0.0"
     val recyclerview = "1.0.0"
 
-    val ktx = "1.0.0-alpha1"
+    val androidxArch = "2.0.0"
+    val constraintLayout = "1.1.3"
+
+    val ktx = "1.0.1"
+
+    val coroutines = "1.1.1"
+    val dagger = "2.16"
+    val room = "2.1.0-rc01"
 
     val kotlin = "1.3.31"
     val timber = "4.7.1"
@@ -49,6 +53,7 @@ object Deps {
     val design = "com.google.android.material:material:${Versions.design}"
     val cardview = "androidx.cardview:cardview:${Versions.cardview}"
     val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
+    val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
     val ktx = "androidx.core:core-ktx:${Versions.ktx}"
 
