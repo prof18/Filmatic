@@ -1,3 +1,5 @@
+import org.gradle.api.JavaVersion
+
 object Modules {
     val app = ":app"
     val core = ":core"
@@ -6,6 +8,14 @@ object Modules {
 object Releases {
     val versionCode = 1
     val versionName = "1.0"
+}
+
+object Config {
+    val minSdk = 23
+    val compileSdk = 28
+    val targetSdk = 28
+    val javaVersion = JavaVersion.VERSION_1_8
+    val buildTools = "28.0.3"
 }
 
 object Versions {
@@ -29,7 +39,7 @@ object Versions {
     val dagger = "2.16"
     val room = "2.1.0-rc01"
 
-    val kotlin = "1.3.31"
+    val kotlin = "1.3.40"
     val timber = "4.7.1"
     val retrofit = "2.5.0"
     val loggingInterceptor = "3.12.1"
