@@ -13,7 +13,6 @@ dependencies {
 
     implementation Deps.appcompat
     implementation Deps.retrofit
-    implementation Deps.moshiConverter
     implementation Deps.gson
     implementation Deps.gsonRetrofitConverter
 
