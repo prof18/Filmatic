@@ -11,5 +11,4 @@ object CoreInjectHelper {
             throw IllegalStateException("The application context you have passed does not implement CoreComponentProvider")
         }
     }
-
 }

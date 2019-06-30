@@ -6,7 +6,6 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import javax.inject.Singleton
 
 @Module
 class CoreModule {
@@ -31,27 +30,4 @@ class CoreModule {
                 HttpLoggingInterceptor.Level.NONE
             }
         }
-
-
 }
-
-
-/*
-
-    private val tmdbClient = OkHttpClient().newBuilder()
-                                .addInterceptor(authInterceptor)
-.build()
-
-
-
- if (BuildConfig.DEBUG) {
-            val loggingInterceptor = HttpLoggingInterceptor {
-                Timber.tag("API").d(it)
-            }
-            loggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
-            httpClientBuilder.addInterceptor(loggingInterceptor)
-            httpClientBuilder.addNetworkInterceptor(StethoInterceptor())
-        }
-
-
- */

@@ -1,10 +1,9 @@
 package com.prof18.filmatic
 
 import android.app.Application
-import android.content.Context
-import com.prof18.filmatic.core.dagger.ApplicationModule
 import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.DaggerCoreComponent
+import com.prof18.filmatic.core.dagger.DataModule
 import com.prof18.filmatic.core.dagger.helper.CoreComponentProvider
 
 class FilmaticApp: Application(), CoreComponentProvider {
@@ -15,12 +14,10 @@ class FilmaticApp: Application(), CoreComponentProvider {
         if (!this::coreComponent.isInitialized) {
             coreComponent = DaggerCoreComponent
                 .builder()
-                .applicationModule(ApplicationModule(this))
+                .dataModule(DataModule(this))
                 .build()
         }
         return coreComponent
     }
-
-
 }
 

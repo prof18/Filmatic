@@ -15,4 +15,7 @@ dependencies {
     implementation Deps.coroutinesCore
     implementation Deps.coroutinesAndroid
 
+    implementation Deps.ktx
+
+    implementation Deps.constraintLayout
 }

@@ -1,7 +1,7 @@
 package com.prof18.filmatic.features.home.dagger
 
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.prof18.filmatic.core.UserPreferenceManager
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
 import com.prof18.filmatic.features.home.BuildConfig
 import com.prof18.filmatic.features.home.data.api.HomeService
@@ -15,7 +15,6 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 class HomeModule(private val activity: HomeActivity) {
@@ -50,7 +49,7 @@ class HomeModule(private val activity: HomeActivity) {
 
     @Provides
     @FeatureScope
-    fun providePopularRemoteDataSource(service: HomeService): PopularRemoteDataSource =
-        PopularRemoteDataSource(service)
+    fun providePopularRemoteDataSource(service: HomeService, userPreferenceManager: UserPreferenceManager): PopularRemoteDataSource =
+        PopularRemoteDataSource(service, userPreferenceManager)
 
 }
