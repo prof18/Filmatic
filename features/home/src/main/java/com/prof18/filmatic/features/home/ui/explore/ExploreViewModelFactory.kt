@@ -1,18 +1,19 @@
-package com.prof18.filmatic.features.home.ui
+package com.prof18.filmatic.features.home.ui.explore
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.prof18.filmatic.features.home.data.popular.PopularRepository
+import javax.inject.Inject
 
-class HomeViewModelFactory(
+class ExploreViewModelFactory @Inject constructor(
     private val popularRepository: PopularRepository
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass != HomeViewModel::class.java) {
+        if (modelClass != ExploreViewModel::class.java) {
             throw IllegalArgumentException("Unknown View Model Class")
         }
-        return HomeViewModel(popularRepository) as T
+        return ExploreViewModel(popularRepository) as T
     }
 }

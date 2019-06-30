@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottom_home_navigation"
+        app:startDestination="@id/exploreFragment">
+
+    <fragment
+            android:id="@+id/exploreFragment"
+            android:name="com.prof18.filmatic.features.home.ui.explore.ExploreFragment"
+            android:label="ExploreFragment" />
+    <fragment
+            android:id="@+id/discoverFragment"
+            android:name="com.prof18.filmatic.features.home.ui.discover.DiscoverFragment"
+            android:label="DiscoverFragment" />
+    <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.prof18.filmatic.features.home.ui.profile.ProfileFragment"
+            android:label="ProfileFragment" />
+</navigation>

@@ -18,4 +18,10 @@ dependencies {
     implementation Deps.ktx
 
     implementation Deps.constraintLayout
+
+    implementation Deps.design
+    implementation Deps.navigation
+    implementation Deps.navigationKtx
+    implementation Deps.navigationFragment
+    implementation Deps.navigationFragmentKtx
 }

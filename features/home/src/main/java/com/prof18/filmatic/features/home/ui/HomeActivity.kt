@@ -2,32 +2,27 @@ package com.prof18.filmatic.features.home.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.prof18.filmatic.core.UserPreferenceManager
-import com.prof18.filmatic.core.dagger.helper.CoreInjectHelper
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.setupWithNavController
 import com.prof18.filmatic.features.home.R
-import com.prof18.filmatic.features.home.dagger.DaggerHomeComponent
-import com.prof18.filmatic.features.home.dagger.HomeModule
-import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModel: HomeViewModel
 
-    @Inject
-    lateinit var preferenceManager: UserPreferenceManager
+    private lateinit var navController: NavController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        DaggerHomeComponent
-            .builder()
-            .coreComponent(CoreInjectHelper.provideCoreComponent(applicationContext))
-            .homeModule(HomeModule(this@HomeActivity))
-            .build()
-            .inject(this)
+        // Get the navigation controller
+        navController = Navigation.findNavController(this, R.id.HOME_nav_host)
 
-        viewModel.getPopularMovies()
+        // Set the navigation controller to the nav bar
+        HOME_bottom_nav.setupWithNavController(navController)
+
     }
 }
