@@ -1,23 +1,4 @@
 @file:Suppress("MayBeConstant")
-import org.gradle.api.JavaVersion
-
-object Modules {
-    val app = ":app"
-    val core = ":core"
-}
-
-object Releases {
-    val versionCode = 1
-    val versionName = "1.0"
-}
-
-object Config {
-    val minSdk = 21
-    val compileSdk = 28
-    val targetSdk = 28
-    val javaVersion = JavaVersion.VERSION_1_8
-    val buildTools = "28.0.3"
-}
 
 object Versions {
     val gradle = "3.4.0"
@@ -56,6 +37,8 @@ object Versions {
     val assertjCore = "3.12.2"
     val mockitoKotlin = "2.1.0"
     val mockitoInline = "2.27.0"
+
+    val navigation = "2.0.0"
 }
 
 object Deps {
@@ -101,6 +84,12 @@ object Deps {
     // Coroutines
     val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+
+    // Navigation
+    val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
+    val navigation = "androidx.navigation:navigation-ui:${Versions.navigation}"
+    val navigationKtx =  "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
 
 }
