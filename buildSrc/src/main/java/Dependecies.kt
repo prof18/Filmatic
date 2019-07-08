@@ -39,6 +39,8 @@ object Versions {
     val mockitoInline = "2.27.0"
 
     val navigation = "2.0.0"
+
+    val lottie = "3.0.7"
 }
 
 object Deps {
@@ -90,6 +92,8 @@ object Deps {
     val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
     val navigation = "androidx.navigation:navigation-ui:${Versions.navigation}"
     val navigationKtx =  "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+
+    val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
 
 }

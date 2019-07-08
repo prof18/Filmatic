@@ -5,6 +5,7 @@ import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.DaggerCoreComponent
 import com.prof18.filmatic.core.dagger.DataModule
 import com.prof18.filmatic.core.dagger.helper.CoreComponentProvider
+import timber.log.Timber
 
 class FilmaticApp: Application(), CoreComponentProvider {
 
@@ -18,6 +19,14 @@ class FilmaticApp: Application(), CoreComponentProvider {
                 .build()
         }
         return coreComponent
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 }
 

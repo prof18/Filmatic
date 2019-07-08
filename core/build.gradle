@@ -24,4 +24,6 @@ dependencies {
     implementation Deps.navigationKtx
     implementation Deps.navigationFragment
     implementation Deps.navigationFragmentKtx
+
+    implementation Deps.gson
 }

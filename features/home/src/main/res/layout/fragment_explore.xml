@@ -6,14 +6,30 @@
         android:layout_height="match_parent"
         tools:context=".ui.discover.DiscoverFragment">
 
-    <TextView
-            android:layout_width="0dp"
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/EXPLORE_animation"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+           />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/EXPLORE_popular_list"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center"
-            android:text="Explore Page"
+            android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_margin="@dimen/margin_small"
+            tools:listitem="@layout/item_movie_bottom_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

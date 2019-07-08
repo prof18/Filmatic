@@ -27,6 +27,12 @@ dependencies {
     implementation Deps.navigationFragment
     implementation Deps.navigationFragmentKtx
 
+    implementation Deps.glide
+    kapt Deps.glideCompiler
+
+    implementation Deps.lottie
+
+    implementation Deps.timber
 
     implementation Deps.ktx
     implementation Deps.kotlin

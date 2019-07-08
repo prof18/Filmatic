@@ -33,6 +33,7 @@ dependencies {
     implementation Deps.appcompat
     implementation Deps.constraintLayout
 
+    implementation Deps.timber
 
     implementation Deps.dagger
     kapt Deps.daggerCompiler
