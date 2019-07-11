@@ -5,26 +5,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/HOME_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/toolbar_bkg"
+            android:contentInsetStart="@dimen/card_margin"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentInsetStart="@dimen/card_margin"
+            app:layout_constraintBottom_toTopOf="@id/HOME_nav_host"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/app_name" />
+
+
     <fragment
             android:id="@+id/HOME_nav_host"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:navGraph="@navigation/bottom_home_navigation"
             app:defaultNavHost="true"
-            android:name="androidx.navigation.fragment.NavHostFragment"
             app:layout_constraintBottom_toTopOf="@id/HOME_bottom_nav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toBottomOf="@id/HOME_toolbar"
+            app:navGraph="@navigation/bottom_home_navigation" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/HOME_bottom_nav"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
             android:background="?android:attr/windowBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

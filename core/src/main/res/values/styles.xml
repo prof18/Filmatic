@@ -1,0 +1,86 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
+<!-- H1, very big title 96 -->
+<!-- H2, very big title 60 -->
+<!-- H3, very big title 48 -->
+<!-- H4, very big title 34 -->
+<!-- H5, very big title 24 -->
+<!-- H6, very big title 20 -->
+
+
+
+    <style name="TextAppearance.Filmatic.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/opensans_bold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/opensans_bold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">@font/opensans_bold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/opensans_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.005625</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/opensans_semibold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/opensans_semibold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/opensans_light</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="TextAppearance.Filmatic.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/opensans_regular</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/opensans_regular</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/opensans_light</item>
+    </style>
+
+<!--
+
+  <style name="UWTileTitleFont">
+        <item name="fontFamily">@font/geomanist_bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+
+  -->
+
+</resources>
