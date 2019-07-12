@@ -8,34 +8,47 @@
         android:layout_marginLeft="@dimen/card_margin"
         android:layout_marginTop="@dimen/card_margin"
         android:layout_marginRight="@dimen/card_margin"
-        android:minHeight="200dp">
+        android:minHeight="200dp"
+        app:cardCornerRadius="@dimen/card_margin"
+        app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ImageView
-                android:id="@+id/movie_image"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:alpha="0.8"
-                android:scaleType="centerCrop"
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic" />
+                app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                    android:id="@+id/movie_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="@drawable/tile_black_gradient" />
+
+        </FrameLayout>
 
         <TextView
                 android:id="@+id/movie_title"
-                android:layout_width="wrap_content"
+                style="@style/TextAppearance.Filmatic.Headline5"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/text_card_padding"
-                android:text="text"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

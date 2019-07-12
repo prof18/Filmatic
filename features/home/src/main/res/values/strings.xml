@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Home</string>
+    <string name="EXPLORE_popular_title">Trending</string>
+    <string name="EXPLORE_next_movie_title">Your next movie</string>
 </resources>

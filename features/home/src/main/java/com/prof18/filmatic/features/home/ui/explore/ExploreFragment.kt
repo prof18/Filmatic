@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
+import com.bumptech.glide.Glide
 import com.prof18.filmatic.core.dagger.helper.CoreInjectHelper
+import com.prof18.filmatic.core.utils.getFullImageUrl
 import com.prof18.filmatic.core.utils.gone
 import com.prof18.filmatic.core.utils.visibile
 import com.prof18.filmatic.features.home.R
@@ -43,6 +48,9 @@ class ExploreFragment : Fragment() {
 
         showLoader(view, true)
 
+        val nextMovieImage = view.findViewById<ImageView>(R.id.movie_image)
+        val nextMovieTitle = view.findViewById<TextView>(R.id.movie_title)
+
         viewModel =
             ViewModelProviders.of(this@ExploreFragment, factory).get(ExploreViewModel::class.java)
         viewModel.getPopularMovies()
@@ -50,8 +58,32 @@ class ExploreFragment : Fragment() {
         viewModel.popularMovie.observe(this@ExploreFragment, Observer {
             it?.let { popularMovies ->
                 showLoader(view, false)
+                view.EXPLORE_popular_title.visibile()
                 val popularAdapter = PopularAdapter(popularMovies)
                 view.EXPLORE_popular_list.adapter = popularAdapter
+
+                // TODO: use a better logic
+                if (popularMovies.isNotEmpty()) {
+                    val movie = popularMovies.random()
+                    view.EXPLORE_next_movie_title.visibile()
+                    view.EXPLORE_next_movie_tile.visibile()
+                    nextMovieTitle.text = movie.title
+
+                    val lottieDrawable = LottieDrawable()
+                    LottieCompositionFactory.fromRawRes(requireContext(), R.raw.imageloader)
+                        .addListener { lottieComposition ->
+                            lottieDrawable.composition = lottieComposition
+                            lottieDrawable.repeatCount = LottieDrawable.INFINITE
+                            lottieDrawable.playAnimation()
+                        }
+
+                    Glide.with(this@ExploreFragment)
+                        .load(movie.backdropPath.getFullImageUrl())
+                        .placeholder(lottieDrawable)
+                        .fitCenter()
+                        .into(nextMovieImage)
+
+                }
             }
         })
 

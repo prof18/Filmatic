@@ -1,11 +1,15 @@
 package com.prof18.filmatic
 
 import android.app.Application
+import com.bumptech.glide.annotation.GlideModule
 import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.DaggerCoreComponent
 import com.prof18.filmatic.core.dagger.DataModule
 import com.prof18.filmatic.core.dagger.helper.CoreComponentProvider
 import timber.log.Timber
+import com.bumptech.glide.module.AppGlideModule
+
+
 
 class FilmaticApp: Application(), CoreComponentProvider {
 
@@ -28,5 +32,7 @@ class FilmaticApp: Application(), CoreComponentProvider {
             Timber.plant(Timber.DebugTree())
         }
     }
+
+
 }
 

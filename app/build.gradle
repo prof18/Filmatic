@@ -35,6 +35,9 @@ dependencies {
 
     implementation Deps.timber
 
+    implementation Deps.glide
+    kapt Deps.glideCompiler
+
     implementation Deps.dagger
     kapt Deps.daggerCompiler
 

@@ -6,13 +6,12 @@
         style="@style/Widget.MaterialComponents.CardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/card_margin"
-        android:layout_marginTop="@dimen/card_margin"
-        android:layout_marginRight="@dimen/card_margin"
+        android:layout_margin="@dimen/card_margin"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:minHeight="200dp"
+        app:cardCornerRadius="@dimen/card_margin"
         app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

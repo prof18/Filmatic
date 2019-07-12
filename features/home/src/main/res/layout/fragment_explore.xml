@@ -15,18 +15,65 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+            android:id="@+id/EXPLORE_popular_title"
+            style="@style/TextAppearance.Filmatic.Headline5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/EXPLORE_popular_title"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/EXPLORE_popular_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible"
+
+            />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/EXPLORE_popular_list"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/EXPLORE_next_movie_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EXPLORE_popular_title"
             tools:listitem="@layout/item_movie_bottom_title" />
+
+
+    <TextView
+            android:id="@+id/EXPLORE_next_movie_title"
+            style="@style/TextAppearance.Filmatic.Headline5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/EXPLORE_next_movie_title"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/EXPLORE_next_movie_tile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EXPLORE_popular_list"
+            tools:visibility="visible"
+
+            />
+
+
+    <include
+            android:id="@+id/EXPLORE_next_movie_tile"
+            layout="@layout/item_movie_big"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/card_margin"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EXPLORE_next_movie_title"
+            tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

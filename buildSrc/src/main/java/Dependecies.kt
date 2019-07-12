@@ -96,6 +96,7 @@ object Deps {
     val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
 
+
 }
 
 object TestLibraries {
