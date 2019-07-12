@@ -1,11 +1,8 @@
 package com.prof18.filmatic.features.home.dagger
 
-import com.prof18.filmatic.core.UserPreferenceManager
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
 import com.prof18.filmatic.features.home.BuildConfig
 import com.prof18.filmatic.features.home.data.api.HomeService
-import com.prof18.filmatic.features.home.data.popular.PopularRemoteDataSource
-import com.prof18.filmatic.features.home.data.popular.PopularRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -27,19 +24,4 @@ class HomeModule {
             .build()
             .create(HomeService::class.java)
     }
-
-    @Provides
-    @FeatureScope
-    fun providePopularRepository(popularRemoteDataSource: PopularRemoteDataSource): PopularRepository =
-        PopularRepository(popularRemoteDataSource)
-
-    @Provides
-    @FeatureScope
-    fun providePopularRemoteDataSource(
-        service: HomeService,
-        userPreferenceManager: UserPreferenceManager
-    ): PopularRemoteDataSource =
-        PopularRemoteDataSource(service, userPreferenceManager)
-
-
 }

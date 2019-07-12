@@ -41,6 +41,9 @@ object Versions {
     val navigation = "2.0.0"
 
     val lottie = "3.0.7"
+
+    val anko = "0.10.8"
+
 }
 
 object Deps {
@@ -95,6 +98,7 @@ object Deps {
 
     val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
+    val anko = "org.jetbrains.anko:anko-common:${Versions.anko}"
 
 
 }

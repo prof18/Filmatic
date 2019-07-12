@@ -1,8 +1,9 @@
 package com.prof18.filmatic.features.home.data.popular
 
 import com.prof18.filmatic.features.home.data.popular.model.Movie
+import javax.inject.Inject
 
-class PopularRepository(private val dataSource: PopularRemoteDataSource) {
+class PopularRepository @Inject constructor(private val dataSource: PopularRemoteDataSource) {
 
     suspend fun getPopularMovies(): List<Movie> {
         try {

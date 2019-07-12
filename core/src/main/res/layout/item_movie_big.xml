@@ -43,6 +43,8 @@
                 style="@style/TextAppearance.Filmatic.Headline5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:padding="@dimen/text_card_padding"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"

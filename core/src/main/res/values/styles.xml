@@ -1,8 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
@@ -15,16 +13,6 @@
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
-
-
-<!-- H1, very big title 96 -->
-<!-- H2, very big title 60 -->
-<!-- H3, very big title 48 -->
-<!-- H4, very big title 34 -->
-<!-- H5, very big title 24 -->
-<!-- H6, very big title 20 -->
-
-
 
     <style name="TextAppearance.Filmatic.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="fontFamily">@font/opensans_bold</item>
@@ -70,17 +58,10 @@
         <item name="fontFamily">@font/opensans_light</item>
     </style>
 
-<!--
-
-  <style name="UWTileTitleFont">
-        <item name="fontFamily">@font/geomanist_bold</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
+    <style name="TextAppearance.Filmatic.Genre" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/opensans_bold</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/grey</item>
     </style>
-
-
-  -->
 
 </resources>
