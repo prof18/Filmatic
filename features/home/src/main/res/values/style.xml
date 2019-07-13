@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="SearchViewTheme" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="colorControlActivated">?android:colorAccent</item>
+        <item name="android:searchViewStyle">@style/Widget.Filmatic.SearchView</item>
+    </style>
+
+    <style name="Widget.Filmatic.SearchView" parent="android:style/Widget.Material.SearchView">
+        <item name="android:searchIcon">@android:color/transparent</item>
+        <item name="android:searchHintIcon" tools:targetApi="lollipop_mr1">@android:color/transparent</item>
+        <item name="queryBackground">@color/grey</item>
+        <item name="android:submitBackground">@android:color/transparent</item>
+    </style>
+
+
+</resources>

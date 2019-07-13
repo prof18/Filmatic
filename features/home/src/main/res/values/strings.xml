@@ -1,4 +1,5 @@
 <resources>
     <string name="EXPLORE_popular_title">Trending</string>
     <string name="EXPLORE_next_movie_title">Your next movie</string>
+    <string name="DISCOVER_search_hint">Search a movie</string>
 </resources>

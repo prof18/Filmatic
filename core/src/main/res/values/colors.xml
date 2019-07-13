@@ -6,4 +6,6 @@
 
     <color name="grey">#7E7E7E</color>
     <color name="white">#FFFFFF</color>
+    <color name="scrim">#99323232</color>
+
 </resources>

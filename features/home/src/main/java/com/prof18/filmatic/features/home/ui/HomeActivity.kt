@@ -24,7 +24,5 @@ class HomeActivity : AppCompatActivity() {
         // Set the navigation controller to the nav bar
         HOME_bottom_nav.setupWithNavController(navController)
 
-        HOME_toolbar.setTitleTextAppearance(this, R.style.TextAppearance_Filmatic_Headline4)
-
     }
 }

@@ -18,7 +18,9 @@ import com.prof18.filmatic.core.utils.gone
 import com.prof18.filmatic.core.utils.visibile
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.dagger.DaggerHomeComponent
+import com.prof18.filmatic.features.home.ui.HomeActivity
 import com.prof18.filmatic.features.home.ui.explore.adapter.PopularAdapter
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_explore.view.*
 import javax.inject.Inject
 
@@ -39,6 +41,8 @@ class ExploreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.EXPLORE_toolbar.setTitleTextAppearance(requireContext(), R.style.TextAppearance_Filmatic_Headline4)
 
         DaggerHomeComponent
             .builder()

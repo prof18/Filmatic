@@ -6,6 +6,21 @@
         android:layout_height="match_parent"
         tools:context=".ui.discover.DiscoverFragment">
 
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/EXPLORE_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/toolbar_bkg"
+            android:contentInsetStart="@dimen/card_margin"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentInsetStart="@dimen/card_margin"
+            app:layout_constraintBottom_toTopOf="@id/EXPLORE_popular_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/app_name" />
+
     <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/EXPLORE_animation"
             android:layout_width="150dp"
@@ -27,7 +42,7 @@
             app:layout_constraintBottom_toTopOf="@+id/EXPLORE_popular_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EXPLORE_toolbar"
             tools:visibility="visible"
 
             />
