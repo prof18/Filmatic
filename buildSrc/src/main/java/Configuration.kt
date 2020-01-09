@@ -20,8 +20,8 @@ import org.gradle.api.JavaVersion
 
 object Config {
     val minSdk = 21
-    val compileSdk = 28
-    val targetSdk = 28
+    val compileSdk = 29
+    val targetSdk = 29
     val javaVersion = JavaVersion.VERSION_1_8
-    val buildTools = "28.0.3"
+    val buildTools = "29.0.2"
 }

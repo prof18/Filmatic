@@ -17,53 +17,60 @@
 @file:Suppress("MayBeConstant")
 
 object Versions {
-    val gradle = "3.4.0"
 
-    val compileSdk = 28
-    val minSdk = 21
-    val targetSdk = 28
+    val gradle = "4.0.0-alpha08"
+    val kotlin = "1.3.61"
+
 
     val appcompat = "1.0.2"
-    val design = "1.0.0"
+    val design = "1.2.0-alpha03"
     val cardview = "1.0.0"
     val recyclerview = "1.0.0"
-    val gson = "2.8.5"
+    val gson = "2.8.6"
 
 
     val androidxArch = "2.0.0"
-    val constraintLayout = "1.1.3"
+    val constraintLayout = "2.0.0-beta4"
 
-    val ktx = "1.0.1"
+    val ktx = "1.2.0-rc01"
 
-    val coroutines = "1.1.1"
-    val dagger = "2.16"
+    val coroutines = "1.3.3"
+    val dagger = "2.25.4"
     val room = "2.1.0-rc01"
 
-    val kotlin = "1.3.40"
     val timber = "4.7.1"
-    val retrofit = "2.6.0"
-    val loggingInterceptor = "3.12.1"
-    val glide = "4.9.0"
-    val moshi = "1.8.0"
-    val lifecycle = "2.1.0-beta01"
+    val retrofit = "2.7.1"
+    val loggingInterceptor = "4.3.0"
+    val glide = "4.10.0"
+    val moshi = "1.9.2"
+    val lifecycle = "2.2.0-rc03"
     val leakCanary = "2.0-alpha-1"
     val crashlytics = "2.9.9"
 
-    val junit = "4.12"
+    val junit = "4.13"
     val assertjCore = "3.12.2"
     val mockitoKotlin = "2.1.0"
     val mockitoInline = "2.27.0"
 
-    val navigation = "2.0.0"
+    val navigation = "2.2.0-rc04"
 
-    val lottie = "3.0.7"
+    val lottie = "3.3.1"
 
-    val anko = "0.10.8"
+
+    val gradleVersion = "0.27.0"
+
 
 }
 
 object Deps {
+
+    // Gradle
+    val gradleTools = "com.android.tools.build:gradle:${Versions.gradle}"
+
+    // Kotlin
     val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+    val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    val kotlinAndroid = "org.jetbrains.kotlin:kotlin-android-extensions:${Versions.kotlin}"
 
     // Support libs
     val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
@@ -77,7 +84,6 @@ object Deps {
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    val rxjavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
     val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
 
@@ -114,7 +120,7 @@ object Deps {
 
     val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
-    val anko = "org.jetbrains.anko:anko-common:${Versions.anko}"
+    val gradleVersion = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersion}"
 
 
 }

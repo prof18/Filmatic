@@ -33,8 +33,6 @@ dependencies {
     implementation Deps.gson
     implementation Deps.gsonRetrofitConverter
 
-    implementation Deps.anko
-
     implementation Deps.lifecycleExtensions
 
     implementation Deps.constraintLayout
@@ -54,7 +52,7 @@ dependencies {
 
     implementation Deps.ktx
     implementation Deps.kotlin
-    implementation group: 'androidx.lifecycle', name: 'lifecycle-viewmodel-ktx', version: '2.1.0-beta01'
+    implementation group: 'androidx.lifecycle', name: 'lifecycle-viewmodel-ktx', version: '2.2.0-rc03'
 
     kapt Deps.lifecycleCompiler
 }

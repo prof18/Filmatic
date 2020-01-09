@@ -21,7 +21,7 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    compileSdkVersion Versions.compileSdk
+    compileSdkVersion Config.compileSdk
     defaultConfig {
         applicationId "com.prof18.filmatic"
         versionCode Releases.versionCode
