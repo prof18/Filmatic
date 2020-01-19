@@ -20,11 +20,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.prof18.filmatic.core.utils.toast
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.data.discovery.model.Genre
 import kotlinx.android.synthetic.main.item_genre.view.*
-import org.jetbrains.anko.toast
-
 
 class GenreAdapter(val items: List<Genre>) :
     RecyclerView.Adapter<GenreAdapter.ViewHolder>() {

@@ -66,6 +66,10 @@ subprojects {
                     targetCompatibility Config.javaVersion
                 }
 
+                kotlinOptions {
+                    jvmTarget = Config.javaVersion
+                }
+
                 buildTypes {
 
                     debug {

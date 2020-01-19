@@ -28,7 +28,7 @@ class AuthInterceptor : Interceptor {
     lateinit var userPrefManager: UserPreferenceManager
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val newUrl = chain.request().url()
+        val newUrl = chain.request().url
             .newBuilder()
             .addQueryParameter("api_key", BuildConfig.TMDB_KEY)
             .build()
