@@ -18,12 +18,12 @@
 
 object Versions {
 
-    val gradle = "4.0.0-alpha08"
-    val kotlin = "1.3.61"
+    val gradle = "4.1.0-alpha03"
+    val kotlin = "1.3.70"
 
 
-    val appcompat = "1.0.2"
-    val design = "1.2.0-alpha03"
+    val appcompat = "1.2.0-alpha03"
+    val design = "1.2.0-alpha05"
     val cardview = "1.0.0"
     val recyclerview = "1.0.0"
     val gson = "2.8.6"
@@ -32,18 +32,19 @@ object Versions {
     val androidxArch = "2.0.0"
     val constraintLayout = "2.0.0-beta4"
 
-    val ktx = "1.2.0-rc01"
+    val ktx = "1.3.0-alpha02"
 
-    val coroutines = "1.3.3"
-    val dagger = "2.25.4"
+    val coroutines = "1.3.5"
+    val dagger = "2.27"
     val room = "2.1.0-rc01"
 
     val timber = "4.7.1"
-    val retrofit = "2.7.1"
-    val loggingInterceptor = "4.3.0"
-    val glide = "4.10.0"
+    val retrofit = "2.7.2"
+    val loggingInterceptor = "4.4.1"
+    val glide = "4.11.0"
     val moshi = "1.9.2"
-    val lifecycle = "2.2.0-rc03"
+    val lifecycle = "2.3.0-alpha01"
+    val lifecylceExtensions = "2.2.0"
     val leakCanary = "2.0-alpha-1"
     val crashlytics = "2.9.9"
 
@@ -52,12 +53,12 @@ object Versions {
     val mockitoKotlin = "2.1.0"
     val mockitoInline = "2.27.0"
 
-    val navigation = "2.2.0-rc04"
+    val navigation = "2.3.0-alpha04"
 
-    val lottie = "3.3.1"
+    val lottie = "3.4.0"
 
 
-    val gradleVersion = "0.27.0"
+    val gradleVersion = "0.28.0"
 
 
 }
@@ -92,7 +93,7 @@ object Deps {
 
     val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
 
-    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecylceExtensions}"
     val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
     val lifecycleKtx =  "androidx.lifecycle.lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 

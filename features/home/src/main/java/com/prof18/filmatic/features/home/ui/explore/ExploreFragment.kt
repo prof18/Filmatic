@@ -73,9 +73,9 @@ class ExploreFragment : Fragment() {
 
         viewModel =
             ViewModelProviders.of(this@ExploreFragment, factory).get(ExploreViewModel::class.java)
-        viewModel.getPopularMovies()
 
-        viewModel.popularMovie.observe(this@ExploreFragment, Observer {
+
+        viewModel.popularMovie.observe(viewLifecycleOwner, Observer {
             it?.let { popularMovies ->
                 showLoader(view, false)
                 view.EXPLORE_popular_title.visibile()
@@ -112,6 +112,8 @@ class ExploreFragment : Fragment() {
                 showError(view, showError)
             }
         })
+
+        viewModel.getPopularMovies()
     }
 
     private fun showLoader(view: View, showLoader: Boolean) {

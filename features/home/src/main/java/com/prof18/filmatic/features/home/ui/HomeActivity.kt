@@ -24,21 +24,56 @@ import androidx.navigation.ui.setupWithNavController
 import com.prof18.filmatic.features.home.R
 import kotlinx.android.synthetic.main.activity_home.*
 
+//class HomeActivity : AppCompatActivity() {
+//
+//
+//    private lateinit var navController: NavController
+//
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_home)
+//
+//        // Get the navigation controller
+//        navController = Navigation.findNavController(this, R.id.HOME_nav_host)
+//
+//        // Set the navigation controller to the nav bar
+//        HOME_bottom_nav.setupWithNavController(navController)
+//
+//    }
+//}
+
 class HomeActivity : AppCompatActivity() {
-
-
-    private lateinit var navController: NavController
-
+    private val navSectionsStateKeeper by lazy {
+        NavigationBottomBarSectionsStateKeeperWorkaround(
+            activity = this,
+            navHostContainerID = R.id.nav_host_fragment,
+            navGraphIds = listOf(
+                R.navigation.nav_explore,
+                R.navigation.nav_discover,
+                R.navigation.nav_profile
+            ),
+            bottomNavigationViewID = R.id.bottom_navigation
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Get the navigation controller
-        navController = Navigation.findNavController(this, R.id.HOME_nav_host)
+        navSectionsStateKeeper.onCreate(savedInstanceState)
+    }
 
-        // Set the navigation controller to the nav bar
-        HOME_bottom_nav.setupWithNavController(navController)
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        navSectionsStateKeeper.onRestoreInstanceState(savedInstanceState)
+    }
 
+    override fun onSupportNavigateUp() =
+        navSectionsStateKeeper.onSupportNavigateUp()
+
+    override fun onBackPressed() {
+        if (!navSectionsStateKeeper.onSupportNavigateUp())
+            super.onBackPressed()
     }
 }
