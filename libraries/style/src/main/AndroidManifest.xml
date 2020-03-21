@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright 2019 Marco Gomiero
+  ~ Copyright 2020 Marco Gomiero
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -15,4 +15,6 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.prof18.filmatic.features.moviedetail"/>
+        package="com.prof18.filmatic.libraries.style">
+
+</manifest>

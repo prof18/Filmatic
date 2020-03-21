@@ -16,9 +16,10 @@
 
 <resources>
     <string name="app_name">core</string>
-
     <string name="BOTTOM_BAR_explore">Explore</string>
     <string name="BOTTOM_BAR_discover">Discover</string>
     <string name="BOTTOM_BAR_profile">Profile</string>
-
+    <string name="EXPLORE_popular_title">Trending</string>
+    <string name="EXPLORE_next_movie_title">Your next movie</string>
+    <string name="DISCOVER_search_hint">Search a movie</string>
 </resources>

@@ -23,6 +23,8 @@ apply plugin: 'kotlin-kapt'
 dependencies {
 
     implementation project(":core")
+    implementation project(':libraries:style')
+
 
     implementation Deps.dagger
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
