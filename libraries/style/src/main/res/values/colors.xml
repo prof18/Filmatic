@@ -16,12 +16,29 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#0336ff</color>
-    <color name="colorPrimaryDark">#E0E0E0</color>
-    <color name="colorAccent">#FFDE03</color>
+
+    <!-- TODO: setup the colors properly -->
+    <!-- TODO: https://material.io/resources/color/#!/?view.left=0&view.right=0 -->
+
+    <color name="color_primary">#212121</color>
+    <color name="color_primary_variant">#000000</color>
+    <color name="color_on_primary">#FFFFFF</color>
+    <color name="color_secondary">#2962FF</color>
+    <color name="color_secondary_variant">#0039CB</color>
+    <color name="color_on_secondary">#FFFFFF</color>
+    <color name="color_error">#F44336</color>
+    <color name="color_on_error">#FFFFFF</color>
+    <color name="color_surface">#FFFFFF</color>
+    <color name="color_on_surface">#000000</color>
+    <color name="color_background">#FAFAFA</color>
+    <color name="color_on_background">#000000</color>
+    <color name="color_status_bar">#000000</color>
+
 
     <color name="grey">#7E7E7E</color>
-    <color name="white">#FFFFFF</color>
     <color name="scrim">#99323232</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorPrimaryDark">#E0E0E0</color>
+
 
 </resources>
