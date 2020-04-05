@@ -18,7 +18,7 @@
 
 object Versions {
 
-    val gradle = "4.1.0-alpha03"
+    val gradle = "4.1.0-alpha04"
     val kotlin = "1.3.70"
 
 

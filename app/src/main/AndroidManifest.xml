@@ -42,7 +42,7 @@
 
 
         <activity
-                android:name="com.prof18.filmatic.features.home.ui.HomeActivity"
+                android:name="com.prof18.filmatic.features.home.old.ui.HomeActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.prof18.filmatic.features.home" />
