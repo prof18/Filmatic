@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2019 Marco Gomiero
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,20 +21,20 @@
         android:layout_height="match_parent"
         tools:context=".ui.discover.DiscoverFragment">
 
-    <androidx.appcompat.widget.Toolbar
+    <!--  TODO: Replace with a simple text view  -->
+    <TextView
             android:id="@+id/EXPLORE_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/toolbar_bkg"
-            android:contentInsetStart="@dimen/card_margin"
-            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:contentInsetStart="@dimen/card_margin"
+            style="@style/TextAppearance.Filmatic.Headline3"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/colorOnBackground"
             app:layout_constraintBottom_toTopOf="@id/EXPLORE_popular_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/app_name" />
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/EXPLORE_animation"

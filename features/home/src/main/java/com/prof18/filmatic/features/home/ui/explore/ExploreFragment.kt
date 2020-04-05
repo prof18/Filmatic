@@ -58,8 +58,6 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.EXPLORE_toolbar.setTitleTextAppearance(requireContext(), R.style.TextAppearance_Filmatic_Headline4)
-
         DaggerHomeComponent
             .builder()
             .coreComponent(CoreInjectHelper.provideCoreComponent(requireActivity().applicationContext))

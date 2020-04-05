@@ -18,19 +18,19 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
 
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
-        <item name="colorOnPrimary">@color/color_on_primary</item>
-        <item name="colorSecondary">@color/color_secondary</item>
-        <item name="colorSecondaryVariant">@color/color_secondary_variant</item>
-        <item name="colorOnSecondary">@color/color_on_secondary</item>
-        <item name="colorError">@color/color_error</item>
-        <item name="colorOnError">@color/color_on_error</item>
-        <item name="colorSurface">@color/color_surface</item>
-        <item name="colorOnSurface">@color/color_on_surface</item>
-        <item name="android:colorBackground">@color/color_background</item>
-        <item name="colorOnBackground">@color/color_on_background</item>
-        <item name="android:statusBarColor">@color/color_status_bar</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
 
         <!-- Global shape attributes -->
         <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2019 Marco Gomiero
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,10 +16,49 @@
 
 <resources>
 
-    <!-- TODO: setup the colors properly -->
-    <!-- TODO: https://material.io/resources/color/#!/?view.left=0&view.right=0 -->
+    <!--  Material design edition  -->
+    <color name="colorPrimary">#00a9f4</color>
+    <color name="colorPrimaryVariant">#3700B3</color>
+    <color name="colorSecondary">#03DAC6</color>
+    <color name="colorSecondaryVariant">#018786</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorError">#B00020</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#000000</color>
+    <color name="colorOnBackground">#000000</color>
+    <color name="colorOnSurface">#000000</color>
+    <color name="colorOnError">#FFFFFF</color>
 
-    <color name="color_primary">#212121</color>
+    <color name="searchBackgroundColor">#E0E0E0</color>
+    <color name="statusBarColor">#FFFFFF</color>
+
+
+    <color name="colorPrimaryDarkVariant">#007ac1</color>
+
+
+    <color name="grey">#7E7E7E</color>
+    <color name="scrim">#99323232</color>
+
+    <!--  Custom edition for this app
+
+    <color name="primaryColor">#00a9f4</color>
+  <color name="primaryLightColor">#67daff</color>
+  <color name="primaryDarkColor">#007ac1</color>
+  <color name="secondaryColor">#1a237e</color>
+  <color name="secondaryLightColor">#534bae</color>
+  <color name="secondaryDarkColor">#000051</color>
+  <color name="primaryTextColor">#000000</color>
+  <color name="secondaryTextColor">#ffffff</color>
+
+
+      -->
+
+    <!--
+
+     OLD
+
+     <color name="color_primary">#212121</color>
     <color name="color_primary_variant">#000000</color>
     <color name="color_on_primary">#FFFFFF</color>
     <color name="color_secondary">#2962FF</color>
@@ -32,13 +70,11 @@
     <color name="color_on_surface">#000000</color>
     <color name="color_background">#FAFAFA</color>
     <color name="color_on_background">#000000</color>
-    <color name="color_status_bar">#000000</color>
+
+    -->
 
 
-    <color name="grey">#7E7E7E</color>
-    <color name="scrim">#99323232</color>
-    <color name="white">#FFFFFF</color>
-    <color name="colorPrimaryDark">#E0E0E0</color>
+
 
 
 </resources>

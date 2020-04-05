@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 Marco Gomiero
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+
+        <!-- Global shape attributes -->
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/AppShapeAppearance.LargeComponent</item>
+
+        <item name="textAppearanceHeadline1">@style/TextAppearance.Filmatic.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Filmatic.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Filmatic.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Filmatic.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Filmatic.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Filmatic.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Filmatic.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2
+        </item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Filmatic.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Filmatic.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Filmatic.Caption</item>
+
+        <!-- TODO: customize it? -->
+        <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+
+    </style>
+</resources>

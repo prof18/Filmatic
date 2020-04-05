@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- TODO: setup the colors properly -->
-    <!-- TODO: https://material.io/resources/color/#!/?view.left=0&view.right=0 -->
+    <color name="colorPrimary">#BB86FC</color>
+    <color name="colorPrimaryVariant">#3700B3</color>
+    <color name="colorSecondary">#03DAC6</color>
+    <color name="colorSecondaryVariant">#018786</color>
+    <color name="colorBackground">#121212</color>
+    <color name="colorSurface">#121212</color>
+    <color name="colorError">#CF6679</color>
+    <color name="colorOnPrimary">#000000</color>
+    <color name="colorOnSecondary">#000000</color>
+    <color name="colorOnBackground">#FFFFFF</color>
+    <color name="colorOnSurface">#FFFFFF</color>
+    <color name="colorOnError">#000000</color>
 
-    <color name="color_primary">#F5F5F5</color>
+    <color name="statusBarColor">#121212</color>
+
+    <!--
+
+        OLD
+
+            <color name="color_primary">#F5F5F5</color>
     <color name="color_primary_variant">#C2C2C2</color>
     <color name="color_on_primary">#000000</color>
     <color name="color_secondary">#768FFF</color>
@@ -16,5 +32,8 @@
     <color name="color_on_surface">#FFFFFF</color>
     <color name="color_background">#000000</color>
     <color name="color_on_background">#FFFFFF</color>
+
+    -->
+
 
 </resources>
