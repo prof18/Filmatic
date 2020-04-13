@@ -18,6 +18,7 @@ package com.prof18.filmatic.features.home.di
 
 import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
+import com.prof18.filmatic.features.home.presentation.HomeActivity
 import dagger.Component
 
 @Component(
@@ -26,4 +27,5 @@ import dagger.Component
 )
 @FeatureScope
 interface HomeComponent {
+    fun inject(activity: HomeActivity)
 }

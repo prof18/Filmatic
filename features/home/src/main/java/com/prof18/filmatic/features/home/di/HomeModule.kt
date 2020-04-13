@@ -18,16 +18,45 @@ package com.prof18.filmatic.features.home.di
 
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
 import com.prof18.filmatic.features.home.BuildConfig
+import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
+import com.prof18.filmatic.features.home.data.mapper.MovieModelMapper
+import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
+import com.prof18.filmatic.features.home.domain.HomeRepository
+import com.prof18.filmatic.features.home.remote.HomeRemoteDataSourceImpl
 import com.prof18.filmatic.features.home.remote.api.HomeService
+import com.prof18.filmatic.features.home.remote.mapper.MovieResultMapper
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 class HomeModule {
 
+    @Provides
+    @FeatureScope
+    fun provideHomeRepository(homeRemoteDataSource: HomeRemoteDataSource, mapper: MovieModelMapper): HomeRepository {
+        return HomeRepositoryImpl(homeRemoteDataSource, mapper)
+    }
+
+    @Provides
+    @FeatureScope
+    fun provideHomeRemoteDataSource(homeService: HomeService, mapper: MovieResultMapper): HomeRemoteDataSource {
+        return HomeRemoteDataSourceImpl(homeService, mapper)
+    }
+
+    @Provides
+    @FeatureScope
+    fun provideMovieModelMapper(): MovieModelMapper {
+        return MovieModelMapper()
+    }
+
+    @Provides
+    @FeatureScope
+    fun provideMovieResultMapper(): MovieResultMapper {
+        return MovieResultMapper()
+    }
 
     @Provides
     @FeatureScope
@@ -37,7 +66,7 @@ class HomeModule {
         return Retrofit.Builder()
             .client(client)
             .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(HomeService::class.java)
     }

@@ -41,14 +41,14 @@
         </activity>
 
 
-<!--        <activity-->
-<!--                android:name="com.prof18.filmatic.features.home.old.ui.HomeActivity"-->
-<!--                android:theme="@style/AppTheme.NoActionBar">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.prof18.filmatic.features.home" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+        <activity
+                android:name=".features.home.presentation.HomeActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.prof18.filmatic.features.home" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
     </application>
 

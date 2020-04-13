@@ -21,6 +21,7 @@ import com.prof18.filmatic.features.home.data.models.MovieModel
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.remote.api.HomeService
 import com.prof18.filmatic.features.home.remote.mapper.MovieResultMapper
+import timber.log.Timber
 import javax.inject.Inject
 
 class HomeRemoteDataSourceImpl @Inject constructor(
@@ -36,6 +37,7 @@ class HomeRemoteDataSourceImpl @Inject constructor(
                 }
             Result.Success(movies)
         } catch (e: Exception) {
+            Timber.w(e)
             Result.Error(e)
         }
     }

@@ -27,6 +27,9 @@ dependencies {
     implementation Deps.dagger
     kapt Deps.daggerCompiler
 
+    implementation Deps.lifecycleExtensions
+
+
     implementation Deps.moshi
     implementation Deps.moshiConverter
     implementation Deps.retrofit
@@ -44,5 +47,4 @@ dependencies {
     implementation Deps.navigationFragment
     implementation Deps.navigationFragmentKtx
 
-    implementation Deps.gson
 }

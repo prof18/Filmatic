@@ -26,7 +26,6 @@ object Versions {
     val design = "1.2.0-alpha05"
     val cardview = "1.0.0"
     val recyclerview = "1.0.0"
-    val gson = "2.8.6"
 
 
     val androidxArch = "2.0.0"
@@ -95,6 +94,8 @@ object Deps {
 
     val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
 
+    val moshiCodeGen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
+
     val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecylceExtensions}"
     val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
     val lifecycleKtx =  "androidx.lifecycle.lifecycle-viewmodel-ktx:${Versions.lifecycle}"
@@ -103,8 +104,6 @@ object Deps {
 
     val crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}"
 
-    val gsonRetrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-    val gson = "com.google.code.gson:gson:${Versions.gson}"
 
     // Dagger
     val dagger = "com.google.dagger:dagger:${Versions.dagger}"

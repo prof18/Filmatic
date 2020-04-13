@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">core</string>
+    <string name="app_name">Filmatic</string>
     <string name="BOTTOM_BAR_explore">Explore</string>
     <string name="BOTTOM_BAR_discover">Discover</string>
     <string name="BOTTOM_BAR_profile">Profile</string>

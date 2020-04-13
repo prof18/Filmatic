@@ -32,8 +32,6 @@ dependencies {
 
     implementation Deps.appcompat
     implementation Deps.retrofit
-    implementation Deps.gson
-    implementation Deps.gsonRetrofitConverter
 
     implementation Deps.moshi
     implementation Deps.moshiConverter
@@ -59,6 +57,7 @@ dependencies {
     implementation Deps.kotlin
 
     kapt Deps.lifecycleCompiler
+    kapt Deps.moshiCodeGen
 
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.mockitoKotlin

@@ -20,6 +20,8 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.prof18.filmatic.core.net.NetConstants
 
 fun View.visibile() {
@@ -50,3 +52,12 @@ fun Activity.toast(message: String): Toast = Toast
     .apply {
         show()
     }
+
+fun <T: ViewModel> T.createFactory(): ViewModelProvider.Factory {
+    val viewModel = this
+    return object: ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T: ViewModel> create(modelClass: Class<T>): T = viewModel as T
+    }
+}
+

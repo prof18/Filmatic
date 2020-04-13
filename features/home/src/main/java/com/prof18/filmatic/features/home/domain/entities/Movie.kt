@@ -21,8 +21,14 @@ import com.prof18.filmatic.core.net.NetConstants
 data class Movie(
     val id: Int,
     val title: String,
-    val _backdropPath: String
+    val _backdropPath: String?
 ) {
-    val backdropUrl: String
-        get() = NetConstants.basePictureAddress + _backdropPath
+    val backdropUrl: String?
+        get() {
+            return if (_backdropPath == null) {
+                null
+            } else {
+                NetConstants.basePictureAddress + _backdropPath
+            }
+        }
 }
