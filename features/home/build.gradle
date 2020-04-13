@@ -64,5 +64,9 @@ dependencies {
     testImplementation TestLibraries.mockitoInline
     testImplementation TestLibraries.mockitoCore
     testImplementation TestLibraries.faker
+    testImplementation TestLibraries.archTesting
+    testImplementation TestLibraries.coroutineTest
+
+    androidTestImplementation TestLibraries.archTesting
 //    testImplementation Deps.mockitoInline
 }

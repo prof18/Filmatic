@@ -20,48 +20,44 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
 import com.prof18.filmatic.core.architecture.Result
-import com.prof18.filmatic.core.architecture.SingleLiveEvent
+import com.prof18.filmatic.core.architecture.ViewState
 import com.prof18.filmatic.features.home.domain.entities.Movie
 import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val popularMoviesUseCase: GetPopularMoviesUseCase
+    private val popularMoviesUseCase: GetPopularMoviesUseCase,
+    private val dispatcherProvider: CoroutinesDispatcherProvider
 ) : ViewModel() {
 
     // TODO: move to a more interesting ui state
-    private val _loader = SingleLiveEvent<Boolean>()
-    val loader: LiveData<Boolean>
-        get() = _loader
-
-    // TODO: return the ui list visualization not only this list
-    private val _movieList = MutableLiveData<List<Movie>>()
-    val movieList: LiveData<List<Movie>>
-        get() = _movieList
-
-    private val _showError = MutableLiveData<Boolean>()
-    val showError: LiveData<Boolean>
-        get() = _showError
+    private val _exploreState = MutableLiveData<ViewState>()
+    val exploreState: LiveData<ViewState>
+        get() = _exploreState
 
     fun fetchPopularMovies() {
-        viewModelScope.launch {
-            _loader.value = true
-            val movieResult = popularMoviesUseCase.execute()
+        _exploreState.postValue(ViewState.Loading)
 
+        viewModelScope.launch(dispatcherProvider.io) {
+            val movieResult = popularMoviesUseCase.execute()
             when (movieResult) {
                 is Result.Success -> {
-                    _movieList.value = movieResult.data
+                    _exploreState.postValue(ViewState.Success(movieResult.data))
                 }
                 is Result.Error -> {
                     val exception = movieResult.exception
-                    _showError.value = true
+                    _exploreState.postValue(ViewState.Error(exception.localizedMessage ?: ""))
                 }
             }
-            _loader.value = false
         }
     }
 
-
+    suspend fun getPopularMovies(): Result<List<Movie>> {
+        return popularMoviesUseCase.execute()
+    }
 }

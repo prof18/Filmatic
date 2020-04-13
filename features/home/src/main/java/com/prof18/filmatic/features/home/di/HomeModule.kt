@@ -16,6 +16,7 @@
 
 package com.prof18.filmatic.features.home.di
 
+import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
 import com.prof18.filmatic.features.home.BuildConfig
 import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
@@ -33,6 +34,12 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
 class HomeModule {
+
+//    @Provides
+//    @FeatureScope
+//    fun provideCoroutineDispatcher(): CoroutinesDispatcherProvider {
+//        return CoroutinesDispatcherProvider()
+//    }
 
     @Provides
     @FeatureScope

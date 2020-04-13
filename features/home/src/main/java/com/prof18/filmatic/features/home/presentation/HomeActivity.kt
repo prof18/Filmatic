@@ -16,8 +16,10 @@
 
 package com.prof18.filmatic.features.home.presentation
 
+import android.icu.text.TimeZoneNames
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.prof18.filmatic.core.architecture.viewModels
 import com.prof18.filmatic.core.dagger.helper.CoreInjectHelper
 import com.prof18.filmatic.features.home.R
@@ -44,11 +46,19 @@ class HomeActivity: AppCompatActivity() {
 
         setContentView(R.layout.activity_home)
 
+        viewModel.exploreState.observe(this, Observer {
+            it?.let {
+                Timber.d(it.toString())
+            }
+        })
+
         viewModel.fetchPopularMovies()
 
+        viewModel.exploreState.observe(this, Observer {
+            it?.let { viewState ->
+                Timber.d(">>>>>> $viewState")
+            }
+        })
         Timber.d("")
-
-
     }
-
 }

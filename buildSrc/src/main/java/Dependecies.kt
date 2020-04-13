@@ -28,7 +28,7 @@ object Versions {
     val recyclerview = "1.0.0"
 
 
-    val androidxArch = "2.0.0"
+    val androidxArch = "2.1.0"
     val constraintLayout = "2.0.0-beta4"
 
     val ktx = "1.3.0-alpha02"
@@ -62,6 +62,7 @@ object Versions {
     // Testing
     val mockito = "2.23.0"
     val faker = "1.0.2"
+
 }
 
 object Deps {
@@ -134,6 +135,10 @@ object TestLibraries {
     val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"
     val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
     val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInline}"
-    val lifecycleTesting = "androidx.arch.core:core-testing:${Versions.lifecycle}"
+    val archTesting = "androidx.arch.core:core-testing:${Versions.androidxArch}"
     val faker = "com.github.javafaker:javafaker:${Versions.faker}"
+    val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+
+
+
 }
