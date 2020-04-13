@@ -18,6 +18,7 @@ package com.prof18.filmatic.core.dagger
 
 import com.prof18.filmatic.core.BuildConfig
 import com.prof18.filmatic.core.net.AuthInterceptor
+import com.prof18.filmatic.libraries.preferences.UserPreferences
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -31,11 +32,13 @@ class CoreModule {
         interceptor: AuthInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient =
-        OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor(httpLoggingInterceptor).build()
+        OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor(httpLoggingInterceptor)
+            .build()
 
 
     @Provides
-    fun provideAuthInterceptor(): AuthInterceptor = AuthInterceptor()
+    fun provideAuthInterceptor(userPreferences: UserPreferences): AuthInterceptor =
+        AuthInterceptor(userPreferences)
 
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor =

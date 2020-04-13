@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Marco Gomiero
+ * Copyright 2020 Marco Gomiero
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,10 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include ':libraries:preferences'
-include ':libraries:style'
 
-include ':app'
-include ':core'
-include ':features:home'
-rootProject.name='Filmatic'
+package com.prof18.filmatic.core.architecture
+
+sealed class Result<out T> {
+    data class Success<out T>(val data: T) : Result<T>()
+    data class Error(val exception: Exception) : Result<Nothing>()
+}
+
+val Result<*>.succeeded
+    get() = this is Result.Success && data != null

@@ -60,7 +60,9 @@ object Versions {
 
     val gradleVersion = "0.28.0"
 
-
+    // Testing
+    val mockito = "2.23.0"
+    val faker = "1.0.2"
 }
 
 object Deps {
@@ -124,12 +126,15 @@ object Deps {
     val gradleVersion = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersion}"
 
 
+
 }
 
 object TestLibraries {
     val junit = "junit:junit:${Versions.junit}"
     val assertjCore = "org.assertj:assertj-core:${Versions.assertjCore}"
+    val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"
     val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
     val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInline}"
     val lifecycleTesting = "androidx.arch.core:core-testing:${Versions.lifecycle}"
+    val faker = "com.github.javafaker:javafaker:${Versions.faker}"
 }

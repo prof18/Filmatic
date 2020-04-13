@@ -22,10 +22,6 @@ import android.view.View
 import android.widget.Toast
 import com.prof18.filmatic.core.net.NetConstants
 
-
-fun String.getFullImageUrl(): String =
-    NetConstants.basePictureAddress + this
-
 fun View.visibile() {
     visibility = View.VISIBLE
 }

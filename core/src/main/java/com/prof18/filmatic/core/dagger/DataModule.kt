@@ -19,8 +19,9 @@ package com.prof18.filmatic.core.dagger
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.prof18.filmatic.core.UserPreferenceManager
-import com.prof18.filmatic.core.preference.Preferences
+import com.prof18.filmatic.libraries.preferences.Preferences
+import com.prof18.filmatic.libraries.preferences.UserPreferences
+import com.prof18.filmatic.libraries.preferences.UserPreferencesImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -30,8 +31,8 @@ class DataModule(private val application: Application) {
 
     @Provides
     @Singleton
-    fun getUserPreferencesManager(sharedPreferences: SharedPreferences): UserPreferenceManager =
-        UserPreferenceManager(sharedPreferences)
+    fun getUserPreferencesManager(sharedPreferences: SharedPreferences): UserPreferences =
+        UserPreferencesImpl(sharedPreferences)
 
     @Provides
     fun getUserSharedPreferences(context: Context): SharedPreferences =

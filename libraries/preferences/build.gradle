@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Marco Gomiero
+ * Copyright 2020 Marco Gomiero
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,28 +21,7 @@ apply plugin: 'kotlin-kapt'
 
 dependencies {
 
-    implementation project(':libraries:preferences')
-
-
-    implementation Deps.dagger
-    kapt Deps.daggerCompiler
-
-    implementation Deps.moshi
-    implementation Deps.moshiConverter
-    implementation Deps.retrofit
-    implementation Deps.loggingInterceptor
-    implementation Deps.coroutinesCore
-    implementation Deps.coroutinesAndroid
-
+    implementation "javax.inject:javax.inject:1"
     implementation Deps.ktx
 
-    implementation Deps.constraintLayout
-
-    implementation Deps.design
-    implementation Deps.navigation
-    implementation Deps.navigationKtx
-    implementation Deps.navigationFragment
-    implementation Deps.navigationFragmentKtx
-
-    implementation Deps.gson
 }

@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include ':libraries:preferences'
-include ':libraries:style'
 
-include ':app'
-include ':core'
-include ':features:home'
-rootProject.name='Filmatic'
+package com.prof18.filmatic.libraries.preferences
+
+enum class PrefsField {
+    USER_LOCALE
+}

@@ -17,19 +17,19 @@
 package com.prof18.filmatic.core.net
 
 import com.prof18.filmatic.core.BuildConfig
-import com.prof18.filmatic.core.UserPreferenceManager
+import com.prof18.filmatic.libraries.preferences.UserPreferences
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
-class AuthInterceptor : Interceptor {
-
-    @Inject
-    lateinit var userPrefManager: UserPreferenceManager
+class AuthInterceptor @Inject constructor(
+    private val userPreferences: UserPreferences
+) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val newUrl = chain.request().url
             .newBuilder()
+            .addQueryParameter("language", userPreferences.getUserPreferredLocale())
             .addQueryParameter("api_key", BuildConfig.TMDB_KEY)
             .build()
 

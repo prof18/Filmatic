@@ -24,16 +24,19 @@ dependencies {
 
     implementation project(":core")
     implementation project(':libraries:style')
+    implementation project(':libraries:preferences')
 
 
     implementation Deps.dagger
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Deps.daggerCompiler
 
     implementation Deps.appcompat
     implementation Deps.retrofit
     implementation Deps.gson
     implementation Deps.gsonRetrofitConverter
+
+    implementation Deps.moshi
+    implementation Deps.moshiConverter
 
     implementation Deps.lifecycleExtensions
 
@@ -54,7 +57,13 @@ dependencies {
 
     implementation Deps.ktx
     implementation Deps.kotlin
-    implementation group: 'androidx.lifecycle', name: 'lifecycle-viewmodel-ktx', version: '2.2.0-rc03'
 
     kapt Deps.lifecycleCompiler
+
+    testImplementation TestLibraries.junit
+    testImplementation TestLibraries.mockitoKotlin
+    testImplementation TestLibraries.mockitoInline
+    testImplementation TestLibraries.mockitoCore
+    testImplementation TestLibraries.faker
+//    testImplementation Deps.mockitoInline
 }
