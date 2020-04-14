@@ -16,49 +16,61 @@
 
 package com.prof18.filmatic.features.home.presentation
 
-import android.icu.text.TimeZoneNames
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import com.prof18.filmatic.core.architecture.viewModels
-import com.prof18.filmatic.core.dagger.helper.CoreInjectHelper
 import com.prof18.filmatic.features.home.R
-import com.prof18.filmatic.features.home.di.DaggerHomeComponent
-import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Provider
+import com.prof18.filmatic.features.home.presentation.NavigationBottomBarSectionsStateKeeperWorkaround
 
-class HomeActivity: AppCompatActivity() {
+//class HomeActivity : AppCompatActivity() {
+//
+//
+//    private lateinit var navController: NavController
+//
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_home)
+//
+//        // Get the navigation controller
+//        navController = Navigation.findNavController(this, R.id.HOME_nav_host)
+//
+//        // Set the navigation controller to the nav bar
+//        HOME_bottom_nav.setupWithNavController(navController)
+//
+//    }
+//}
 
-    @Inject
-    lateinit var viewModelProvider: Provider<HomeViewModel>
-
-    private val viewModel by viewModels { viewModelProvider }
+class HomeActivity : AppCompatActivity() {
+    private val navSectionsStateKeeper by lazy {
+        NavigationBottomBarSectionsStateKeeperWorkaround(
+            activity = this,
+            navHostContainerID = R.id.nav_host_fragment,
+            navGraphIds = listOf(
+                R.navigation.nav_explore,
+                R.navigation.nav_discover,
+                R.navigation.nav_profile
+            ),
+            bottomNavigationViewID = R.id.bottom_navigation
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        DaggerHomeComponent
-            .builder()
-            .coreComponent(CoreInjectHelper.provideCoreComponent(applicationContext))
-            .build()
-            .inject(this)
-
         setContentView(R.layout.activity_home)
 
-        viewModel.exploreState.observe(this, Observer {
-            it?.let {
-                Timber.d(it.toString())
-            }
-        })
+        navSectionsStateKeeper.onCreate(savedInstanceState)
+    }
 
-        viewModel.fetchPopularMovies()
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        navSectionsStateKeeper.onRestoreInstanceState(savedInstanceState)
+    }
 
-        viewModel.exploreState.observe(this, Observer {
-            it?.let { viewState ->
-                Timber.d(">>>>>> $viewState")
-            }
-        })
-        Timber.d("")
+    override fun onSupportNavigateUp() =
+        navSectionsStateKeeper.onSupportNavigateUp()
+
+    override fun onBackPressed() {
+        if (!navSectionsStateKeeper.onSupportNavigateUp())
+            super.onBackPressed()
     }
 }

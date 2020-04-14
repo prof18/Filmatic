@@ -21,7 +21,7 @@
 
     <fragment
             android:id="@+id/discoverFragment"
-            android:name="com.prof18.filmatic.features.home.old.ui.discover.DiscoverFragment"
+            android:name="com.prof18.filmatic.features.home.presentation.DiscoverFragment"
             android:label="DiscoverFragment" />
 
 </navigation>

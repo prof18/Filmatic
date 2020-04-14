@@ -56,8 +56,4 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
-    suspend fun getPopularMovies(): Result<List<Movie>> {
-        return popularMoviesUseCase.execute()
-    }
 }

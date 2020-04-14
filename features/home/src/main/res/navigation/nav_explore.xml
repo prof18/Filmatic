@@ -23,7 +23,7 @@
 
     <fragment
             android:id="@+id/exploreFragment"
-            android:name="com.prof18.filmatic.features.home.old.ui.explore.ExploreFragment"
+            android:name="com.prof18.filmatic.features.home.presentation.ExploreFragment"
             android:label="ExploreFragment" />
 
 </navigation>
