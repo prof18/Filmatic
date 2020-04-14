@@ -16,57 +16,30 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+
+apply from: '../../test_dependencies.gradle'
+apply from: '../../shared_dependencies.gradle'
 
 
 dependencies {
-
     implementation project(":core")
     implementation project(':libraries:uicomponents')
     implementation project(':libraries:preferences')
 
-
-    implementation Deps.dagger
-    kapt Deps.daggerCompiler
-
-    implementation Deps.appcompat
     implementation Deps.retrofit
-
     implementation Deps.moshi
     implementation Deps.moshiConverter
-
-    implementation Deps.lifecycleExtensions
-
-    implementation Deps.constraintLayout
-    implementation Deps.design
-
     implementation Deps.navigation
     implementation Deps.navigationKtx
     implementation Deps.navigationFragment
     implementation Deps.navigationFragmentKtx
-
     implementation Deps.glide
-    kapt Deps.glideCompiler
-
     implementation Deps.lottie
 
-    implementation Deps.timber
-
-    implementation Deps.ktx
-    implementation Deps.kotlin
-
+    // Kapt
     kapt Deps.lifecycleCompiler
     kapt Deps.moshiCodeGen
-
-    testImplementation TestLibraries.junit
-    testImplementation TestLibraries.mockitoKotlin
-    testImplementation TestLibraries.mockitoInline
-    testImplementation TestLibraries.mockitoCore
-    testImplementation TestLibraries.faker
-    testImplementation TestLibraries.archTesting
-    testImplementation TestLibraries.coroutineTest
-
-    androidTestImplementation TestLibraries.archTesting
-//    testImplementation Deps.mockitoInline
+    kapt Deps.daggerCompiler
+    kapt Deps.glideCompiler
 }

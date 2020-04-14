@@ -14,19 +14,29 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home
+package com.prof18.filmatic.libraries.testshared
 
-import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.rules.TestWatcher
+import org.junit.runner.Description
 
 @ExperimentalCoroutinesApi
-fun provideFakeCoroutinesDispatcherProvider(
-    dispatcher: TestCoroutineDispatcher?
-): CoroutinesDispatcherProvider {
-    val sharedTestCoroutineDispatcher = TestCoroutineDispatcher()
-    return CoroutinesDispatcherProvider(
-        dispatcher ?: sharedTestCoroutineDispatcher,
-        dispatcher ?: sharedTestCoroutineDispatcher,
-        dispatcher ?: sharedTestCoroutineDispatcher)
+class CoroutinesTestRule(
+    private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+) : TestWatcher() {
+
+    override fun starting(description: Description?) {
+        super.starting(description)
+        Dispatchers.setMain(testDispatcher)
+    }
+
+    override fun finished(description: Description?) {
+        super.finished(description)
+        Dispatchers.resetMain()
+        testDispatcher.cleanupTestCoroutines()
+    }
 }

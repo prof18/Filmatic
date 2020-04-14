@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.utils
+package com.prof18.filmatic.features.home
 
 import com.github.javafaker.Faker
 import com.prof18.filmatic.features.home.data.models.MovieModel

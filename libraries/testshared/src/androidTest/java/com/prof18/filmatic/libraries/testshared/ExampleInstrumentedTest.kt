@@ -14,26 +14,27 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.data.mapper
+package com.prof18.filmatic.libraries.testshared
 
-import com.prof18.filmatic.features.home.DataFactory
-import org.junit.Assert.assertEquals
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.ext.junit.runners.AndroidJUnit4
+
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
-@RunWith(JUnit4::class)
-class MovieModelMapperTest {
+import org.junit.Assert.*
 
-    private val mapper = MovieModelMapper()
-
+/**
+ * Instrumented test, which will execute on an Android device.
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+@RunWith(AndroidJUnit4::class)
+class ExampleInstrumentedTest {
     @Test
-    fun mapperMapsMovieCorrectly() {
-        val movieModel = DataFactory.getMovieModel()
-        val movie = mapper.map(movieModel)
-
-        assertEquals(movie.id, movieModel.id)
-        assertEquals(movie.title, movieModel.title)
-        assertEquals(movie._backdropPath, movieModel.backdropPath)
+    fun useAppContext() {
+        // Context of the app under test.
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("com.prof18.filmatic.libraries.testshared.test", appContext.packageName)
     }
 }

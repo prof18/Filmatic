@@ -21,7 +21,7 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.prof18.filmatic.core.architecture.Result
 import com.prof18.filmatic.features.home.domain.HomeRepository
-import com.prof18.filmatic.features.home.utils.DataFactory
+import com.prof18.filmatic.features.home.DataFactory
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test

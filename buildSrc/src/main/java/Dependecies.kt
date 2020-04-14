@@ -19,7 +19,7 @@
 object Versions {
 
     val gradle = "4.1.0-alpha05"
-    val kotlin = "1.3.70"
+    val kotlin = "1.3.72"
 
 
     val appcompat = "1.2.0-alpha03"

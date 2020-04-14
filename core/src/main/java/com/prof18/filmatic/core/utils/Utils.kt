@@ -21,7 +21,7 @@ object Utils {
     /** Retry the [block] for [numOfRetries] times, then throw exception */
     fun <T> retry(numOfRetries: Int, block: () -> T): T {
         var throwable: Throwable? = null
-        (1..numOfRetries).forEach { attempt ->
+        repeat((1..numOfRetries).count()) {
             try {
                 return block()
             } catch (e: Throwable) {

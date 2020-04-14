@@ -14,26 +14,20 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.data.mapper
+package com.prof18.filmatic.libraries.testshared
 
-import com.prof18.filmatic.features.home.DataFactory
-import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
-@RunWith(JUnit4::class)
-class MovieModelMapperTest {
+import org.junit.Assert.*
 
-    private val mapper = MovieModelMapper()
-
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+class ExampleUnitTest {
     @Test
-    fun mapperMapsMovieCorrectly() {
-        val movieModel = DataFactory.getMovieModel()
-        val movie = mapper.map(movieModel)
-
-        assertEquals(movie.id, movieModel.id)
-        assertEquals(movie.title, movieModel.title)
-        assertEquals(movie._backdropPath, movieModel.backdropPath)
+    fun addition_isCorrect() {
+        assertEquals(4, 2 + 2)
     }
 }

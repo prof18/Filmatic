@@ -26,7 +26,7 @@ import com.prof18.filmatic.features.home.remote.api.HomeService
 import com.prof18.filmatic.features.home.remote.mapper.MovieResultMapper
 import com.prof18.filmatic.features.home.remote.model.MovieResult
 import com.prof18.filmatic.features.home.remote.model.PopularMoviesResult
-import com.prof18.filmatic.features.home.utils.DataFactory
+import com.prof18.filmatic.features.home.DataFactory
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -8,6 +8,7 @@
       <module name="Filmatic.features.home" target="1.8" />
       <module name="Filmatic.features.moviedetail" target="1.8" />
       <module name="Filmatic.libraries.preferences" target="1.8" />
+      <module name="Filmatic.libraries.testshared" target="1.8" />
       <module name="Filmatic.libraries.uicomponents" target="1.8" />
       <module name="Filmatic.style" target="1.8" />
     </bytecodeTargetLevel>

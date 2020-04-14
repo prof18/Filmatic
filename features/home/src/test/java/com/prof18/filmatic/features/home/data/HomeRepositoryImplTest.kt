@@ -22,7 +22,7 @@ import com.prof18.filmatic.features.home.data.mapper.MovieModelMapper
 import com.prof18.filmatic.features.home.data.models.MovieModel
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.domain.entities.Movie
-import com.prof18.filmatic.features.home.utils.DataFactory
+import com.prof18.filmatic.features.home.DataFactory
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test

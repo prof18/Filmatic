@@ -21,13 +21,13 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.prof18.filmatic.core.architecture.Result
 import com.prof18.filmatic.core.architecture.ViewState
-import com.prof18.filmatic.features.home.CoroutinesTestRule
+import com.prof18.filmatic.libraries.testshared.CoroutinesTestRule
 import com.prof18.filmatic.features.home.domain.entities.Movie
 import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
-import com.prof18.filmatic.features.home.getOrAwaitValue
+import com.prof18.filmatic.libraries.testshared.getOrAwaitValue
 import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem
-import com.prof18.filmatic.features.home.provideFakeCoroutinesDispatcherProvider
-import com.prof18.filmatic.features.home.utils.DataFactory
+import com.prof18.filmatic.libraries.testshared.provideFakeCoroutinesDispatcherProvider
+import com.prof18.filmatic.features.home.DataFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -48,13 +48,16 @@ class HomeViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @get:Rule
-    var coroutinesTestRule = CoroutinesTestRule()
+    var coroutinesTestRule =
+        com.prof18.filmatic.libraries.testshared.CoroutinesTestRule()
 
     private val popularMoviesUseCase = mock<GetPopularMoviesUseCase>()
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
     private val viewModel = HomeViewModel(
         popularMoviesUseCase,
-        provideFakeCoroutinesDispatcherProvider(testCoroutineDispatcher)
+        com.prof18.filmatic.libraries.testshared.provideFakeCoroutinesDispatcherProvider(
+            testCoroutineDispatcher
+        )
     )
 
     @After

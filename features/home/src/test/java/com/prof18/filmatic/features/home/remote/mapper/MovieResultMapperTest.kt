@@ -16,7 +16,7 @@
 
 package com.prof18.filmatic.features.home.remote.mapper
 
-import com.prof18.filmatic.features.home.utils.DataFactory
+import com.prof18.filmatic.features.home.DataFactory
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
