@@ -16,6 +16,9 @@
 
 dependencies {
 
+    implementation TestLibraries.fragmentTesting
+
+
     testImplementation project(':libraries:testshared')
 
     testImplementation TestLibraries.junit
@@ -26,6 +29,15 @@ dependencies {
     testImplementation TestLibraries.archTesting
     testImplementation TestLibraries.coroutineTest
 
+    kaptAndroidTest Deps.daggerCompiler
     androidTestImplementation TestLibraries.archTesting
+    androidTestImplementation TestLibraries.mockitoAndroid
+    androidTestImplementation project(':libraries:testshared')
+    androidTestImplementation TestLibraries.archTesting
+    androidTestImplementation TestLibraries.espresso
+    androidTestImplementation TestLibraries.extJunit
+    androidTestImplementation TestLibraries.testRules
+    androidTestImplementation TestLibraries.testRunner
+
 
 }

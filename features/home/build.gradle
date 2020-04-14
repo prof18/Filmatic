@@ -21,7 +21,6 @@ apply plugin: 'kotlin-kapt'
 apply from: '../../test_dependencies.gradle'
 apply from: '../../shared_dependencies.gradle'
 
-
 dependencies {
     implementation project(":core")
     implementation project(':libraries:uicomponents')
