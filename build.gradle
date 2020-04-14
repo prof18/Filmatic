@@ -73,6 +73,10 @@ subprojects {
                     jvmTarget = Config.javaVersion
                 }
 
+                buildFeatures {
+                    viewBinding = true
+                }
+
                 buildTypes {
 
                     debug {

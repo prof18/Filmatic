@@ -16,17 +16,24 @@
 
 package com.prof18.filmatic.features.home.presentation
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
 import com.prof18.filmatic.core.architecture.Result
+import com.prof18.filmatic.core.architecture.SingleLiveEvent
 import com.prof18.filmatic.core.architecture.ViewState
+import com.prof18.filmatic.core.utils.Utils.retry
+import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.domain.entities.Movie
 import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem
+import com.prof18.filmatic.features.home.presentation.explore.model.ItemHorizontalCollection
+import com.prof18.filmatic.libraries.uicomponents.listitem.ItemHeader
+import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBig
+import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBottomTitle
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -36,24 +43,90 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     // TODO: move to a more interesting ui state
-    private val _exploreState = MutableLiveData<ViewState>()
-    val exploreState: LiveData<ViewState>
+    private val _exploreState = MutableLiveData<ViewState<List<ExploreItem>>>()
+    val exploreState: LiveData<ViewState<List<ExploreItem>>>
         get() = _exploreState
 
-    fun fetchPopularMovies() {
+    fun fetchExploreItems() {
         _exploreState.postValue(ViewState.Loading)
 
+
         viewModelScope.launch(dispatcherProvider.io) {
-            val movieResult = popularMoviesUseCase.execute()
-            when (movieResult) {
+
+            val result = popularMoviesUseCase.execute()
+
+            when (result) {
                 is Result.Success -> {
-                    _exploreState.postValue(ViewState.Success(movieResult.data))
+                    val exploreItems = generateExploreItems(result.data)
+                    _exploreState.postValue(ViewState.Success(exploreItems))
                 }
                 is Result.Error -> {
-                    val exception = movieResult.exception
+                    val exception = result.exception
+                    // TODO: Maybe add an error mapper
                     _exploreState.postValue(ViewState.Error(exception.localizedMessage ?: ""))
                 }
             }
         }
     }
+
+    private fun generateExploreItems(movies: List<Movie>): List<ExploreItem> {
+
+        // Trending Header
+        val items = mutableListOf<ExploreItem>(
+            ExploreItem.Header(ItemHeader(titleResId = R.string.EXPLORE_popular_title))
+        )
+
+        val itemMovieBigList = movies.map { movie ->
+            ItemMovieBottomTitle(
+                id = movie.id,
+                title = movie.title,
+                imageUrl = movie.backdropUrl
+            )
+        }
+
+        // Trending collection
+        items.add(ExploreItem.TrendingCollection(data = ItemHorizontalCollection(itemMovieBigList)))
+
+        // Next Movie
+        getNextMovieToSee(movies)?.let { nextMovie ->
+            val itemMovieBig = ItemMovieBig(
+                id = nextMovie.id,
+                title = nextMovie.title,
+                /** The image url will be never null! See [getNextMovieToSee] */
+                imageUrl = nextMovie.backdropUrl!!
+            )
+            // Header
+            items.add(ExploreItem.Header(ItemHeader(titleResId = R.string.EXPLORE_next_movie_title)))
+            // Item
+            items.add(ExploreItem.MovieBigCard(data = itemMovieBig))
+        }
+
+        // TODO: Add other items
+
+        return items
+    }
+
+    @VisibleForTesting
+    fun getNextMovieToSee(movies: List<Movie>): Movie? {
+        // TODO: choose a better approach in the future
+        var movieToReturn: Movie? = null
+        try {
+            retry(5) {
+                val randomInt = (0..movies.count()).random()
+                val movie = movies[randomInt]
+                if (movie.backdropUrl == null) {
+                    throw IllegalArgumentException("No image url!")
+                } else {
+                    movieToReturn =  movie
+                    return@retry
+                }
+            }
+        } catch (e: Exception) {
+            return null
+        }
+        return movieToReturn
+    }
+
+
+
 }

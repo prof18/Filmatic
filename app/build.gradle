@@ -42,7 +42,7 @@ dependencies {
 
     implementation project(':core')
     implementation project(':features:home')
-    implementation project(':libraries:style')
+    implementation project(':libraries:uicomponents')
 
 
     implementation Deps.kotlin

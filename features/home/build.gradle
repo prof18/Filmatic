@@ -23,7 +23,7 @@ apply plugin: 'kotlin-kapt'
 dependencies {
 
     implementation project(":core")
-    implementation project(':libraries:style')
+    implementation project(':libraries:uicomponents')
     implementation project(':libraries:preferences')
 
 

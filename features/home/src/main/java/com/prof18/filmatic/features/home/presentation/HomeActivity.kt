@@ -21,25 +21,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.presentation.NavigationBottomBarSectionsStateKeeperWorkaround
 
-//class HomeActivity : AppCompatActivity() {
-//
-//
-//    private lateinit var navController: NavController
-//
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_home)
-//
-//        // Get the navigation controller
-//        navController = Navigation.findNavController(this, R.id.HOME_nav_host)
-//
-//        // Set the navigation controller to the nav bar
-//        HOME_bottom_nav.setupWithNavController(navController)
-//
-//    }
-//}
-
 class HomeActivity : AppCompatActivity() {
     private val navSectionsStateKeeper by lazy {
         NavigationBottomBarSectionsStateKeeperWorkaround(

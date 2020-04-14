@@ -14,18 +14,14 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.core.architecture
+package com.prof18.filmatic.features.home.presentation.explore.model
 
-sealed class ViewState<out T> {
-    data class Success<out T>(val data: T) : ViewState<T>()
-    data class Error(val errorMessage: String) : ViewState<Nothing>()
-    object Loading: ViewState<Nothing>()
+import com.prof18.filmatic.libraries.uicomponents.listitem.ItemHeader
+import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBig
+import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBottomTitle
 
-    override fun toString(): String {
-        return when (this) {
-            is Success<*> -> "Success[data=$data]"
-            is Error -> "Error[errorMessage=$errorMessage]"
-            Loading -> "Loading"
-        }
-    }
+sealed class ExploreItem {
+    data class Header(val data: ItemHeader): ExploreItem()
+    data class TrendingCollection(val data: ItemHorizontalCollection<ItemMovieBottomTitle>): ExploreItem()
+    data class MovieBigCard(val data: ItemMovieBig): ExploreItem()
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Marco Gomiero
+ * Copyright 2020 Marco Gomiero
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include ':libraries:preferences'
-include ':libraries:uicomponents'
 
-include ':app'
-include ':core'
-include ':features:home'
-rootProject.name='Filmatic'
+package com.prof18.filmatic.libraries.uicomponents.listitem
+
+data class ItemMovieBottomTitle(
+    val id: Int,
+    val title: String,
+    val imageUrl: String?
+)

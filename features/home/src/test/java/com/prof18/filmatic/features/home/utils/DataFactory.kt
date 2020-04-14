@@ -19,8 +19,8 @@ package com.prof18.filmatic.features.home.utils
 import com.github.javafaker.Faker
 import com.prof18.filmatic.features.home.data.models.MovieModel
 import com.prof18.filmatic.features.home.domain.entities.Movie
-import com.prof18.filmatic.features.home.remote.model.PopularMoviesResult
 import com.prof18.filmatic.features.home.remote.model.MovieResult
+import com.prof18.filmatic.features.home.remote.model.PopularMoviesResult
 
 object DataFactory {
 
@@ -29,7 +29,16 @@ object DataFactory {
         return Movie(
             id = faker.number().randomDigit(),
             title = faker.harryPotter().book(),
-            _backdropPath = faker.avatar().image()
+            _backdropPath = faker.lorem().word()
+        )
+    }
+
+    fun getMovieWithNoBackdrop(): Movie {
+        val faker = Faker()
+        return Movie(
+            id = faker.number().randomDigit(),
+            title = faker.harryPotter().book(),
+            _backdropPath = null
         )
     }
 
@@ -92,24 +101,4 @@ object DataFactory {
             title = faker.lorem().sentence()
         )
     }
-
-    fun getMovieModels(count: Int): List<MovieModel> {
-        val movies = mutableListOf<MovieModel>()
-        repeat(count) {
-            movies.add(getMovieModel())
-        }
-        return movies
-    }
-
-//    fun getPopularResult(): PopularResult {
-//        val faker = Faker()
-//        return PopularResult(
-//            page = faker.number().randomDigit(),
-//            results = getMovieModels(faker.number().randomDigit()),
-//            totalPages = faker.number().randomDigit(),
-//            totalResults = faker.number().randomDigit()
-//        )
-//    }
-
-
 }
