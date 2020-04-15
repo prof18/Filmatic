@@ -21,11 +21,30 @@ import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.DaggerCoreComponent
 import com.prof18.filmatic.core.dagger.DataModule
 import com.prof18.filmatic.core.dagger.helper.CoreComponentProvider
+import com.prof18.filmatic.features.home.di.DaggerHomeComponent
+import com.prof18.filmatic.features.home.di.HomeComponent
+import com.prof18.filmatic.features.home.di.HomeComponentProvider
 import timber.log.Timber
+import kotlin.reflect.KClass
 
-class FilmaticApp : Application(), CoreComponentProvider {
+class FilmaticApp : Application(), CoreComponentProvider, HomeComponentProvider {
 
     private lateinit var coreComponent: CoreComponent
+
+    private val componentsMap = mutableMapOf<KClass<*>, Any>()
+
+
+    override fun onCreate() {
+        super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+
+            Result
+        }
+    }
+
+    // Dagger Stuff
 
     override fun provideCoreComponent(): CoreComponent {
         if (!this::coreComponent.isInitialized) {
@@ -37,11 +56,16 @@ class FilmaticApp : Application(), CoreComponentProvider {
         return coreComponent
     }
 
-    override fun onCreate() {
-        super.onCreate()
-
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
+    override fun getHomeComponent(): HomeComponent {
+        return if (componentsMap.containsKey(HomeComponent::class)) {
+            componentsMap[HomeComponent::class] as HomeComponent
+        } else {
+            val component = DaggerHomeComponent
+                .builder()
+                .coreComponent(provideCoreComponent())
+                .build()
+            componentsMap[HomeComponent::class] = component
+            component
         }
     }
 }

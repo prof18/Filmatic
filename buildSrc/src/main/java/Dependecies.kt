@@ -47,10 +47,7 @@ object Versions {
     val leakCanary = "2.0-alpha-1"
     val crashlytics = "2.9.9"
 
-    val junit = "4.13"
-    val assertjCore = "3.12.2"
-    val mockitoKotlin = "2.1.0"
-    val mockitoInline = "2.27.0"
+
 
     val navigation = "2.3.0-alpha04"
 
@@ -68,6 +65,10 @@ object Versions {
     val testRules = "1.1.0-beta02"
     val testRunner = "1.1.0-beta02"
     val extJunit = "1.1.0"
+    val junit = "4.13"
+    val assertjCore = "3.12.2"
+    val mockitoKotlin = "2.1.0"
+    val mockitoInline = "2.27.0"
 
 }
 

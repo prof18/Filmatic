@@ -16,12 +16,14 @@
 
 package com.prof18.filmatic.features.home.presentation.explore
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.prof18.filmatic.core.architecture.ViewState
 import com.prof18.filmatic.core.architecture.activityViewModels
@@ -31,6 +33,8 @@ import com.prof18.filmatic.core.utils.visible
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.databinding.FragmentExploreBinding
 import com.prof18.filmatic.features.home.di.DaggerHomeComponent
+import com.prof18.filmatic.features.home.di.HomeComponent
+import com.prof18.filmatic.features.home.di.HomeComponentProvider
 import com.prof18.filmatic.features.home.presentation.HomeViewModel
 import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem
 import timber.log.Timber
@@ -44,38 +48,17 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
     private val viewModel by activityViewModels { viewModelProvider }
 
-    private var _binding: FragmentExploreBinding? = null
-
-    // This property is only valid between onCreateView and onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        DaggerHomeComponent
-            .builder()
-            .coreComponent(CoreInjectHelper.provideCoreComponent(requireActivity().applicationContext))
-            .build()
-            .inject(this)
-
-        _binding = FragmentExploreBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val component = (requireActivity().application as HomeComponentProvider).getHomeComponent()
+        component.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-//        showLoader(view, true)
-
+        val binding = FragmentExploreBinding.bind(view)
+        val lottieAnim = binding.ExploreAnimation
 
         val adapter = ExploreAdapter(requireContext())
         binding.EXPLORERecyclerView.adapter = adapter
@@ -86,48 +69,45 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
                 when (state) {
                     is ViewState.Success<List<ExploreItem>> -> {
-                        showLoader(false)
+                        showLoader(lottieAnim, false)
                         binding.EXPLORERecyclerView.visible()
                         val data = state.data
                         adapter.items = data
                         adapter.notifyDataSetChanged()
                     }
                     is ViewState.Error -> {
-                        showError(true)
+                        showError(lottieAnim, true)
                     }
                     ViewState.Loading -> {
-                        showLoader(true)
+                        showLoader(lottieAnim, true)
                     }
                 }
-
             }
         })
-
         viewModel.fetchExploreItems()
-
     }
 
-    private fun showLoader(showLoader: Boolean) {
+    private fun showLoader(animation: LottieAnimationView, showLoader: Boolean) {
         if (showLoader) {
-            binding.ExploreAnimation.visible()
-            binding.ExploreAnimation.setAnimation("loader.json")
-            binding.ExploreAnimation.playAnimation()
-            binding.ExploreAnimation.repeatCount = LottieDrawable.INFINITE
+            animation.visible()
+            animation.setAnimation("loader.json")
+            animation.playAnimation()
+            animation.repeatCount = LottieDrawable.INFINITE
         } else {
-            binding.ExploreAnimation.pauseAnimation()
-            binding.ExploreAnimation.gone()
+            animation.pauseAnimation()
+            animation.gone()
         }
     }
 
-    private fun showError(showLoader: Boolean) {
+    private fun showError(animation: LottieAnimationView, showLoader: Boolean) {
         if (showLoader) {
-            binding.ExploreAnimation.visible()
-            binding.ExploreAnimation.setAnimation("nodata.json")
-            binding.ExploreAnimation.playAnimation()
-            binding.ExploreAnimation.repeatCount = LottieDrawable.INFINITE
+            animation.visible()
+            animation.setAnimation("nodata.json")
+            animation.playAnimation()
+            animation.repeatCount = LottieDrawable.INFINITE
         } else {
-            binding.ExploreAnimation.pauseAnimation()
-            binding.ExploreAnimation.gone()
+            animation.pauseAnimation()
+            animation.gone()
         }
     }
 }

@@ -35,12 +35,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 @Module
 class HomeModule {
 
-//    @Provides
-//    @FeatureScope
-//    fun provideCoroutineDispatcher(): CoroutinesDispatcherProvider {
-//        return CoroutinesDispatcherProvider()
-//    }
-
     @Provides
     @FeatureScope
     fun provideHomeRepository(homeRemoteDataSource: HomeRemoteDataSource, mapper: MovieModelMapper): HomeRepository {

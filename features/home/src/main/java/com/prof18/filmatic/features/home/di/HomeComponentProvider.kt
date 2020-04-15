@@ -14,20 +14,10 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.libraries.testshared
+package com.prof18.filmatic.features.home.di
 
-import org.junit.Test
+interface HomeComponentProvider {
 
-import org.junit.Assert.*
+    fun getHomeComponent(): HomeComponent
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
 }
