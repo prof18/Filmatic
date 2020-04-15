@@ -62,6 +62,12 @@ object Versions {
     // Testing
     val mockito = "2.23.0"
     val faker = "1.0.2"
+    val fragmentTesting = "1.2.4"
+    val mockitoAndroid = "3.3.3"
+    val espresso = "3.1.0-beta02"
+    val testRules = "1.1.0-beta02"
+    val testRunner = "1.1.0-beta02"
+    val extJunit = "1.1.0"
 
 }
 
@@ -124,7 +130,7 @@ object Deps {
     val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
     val gradleVersion = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersion}"
-
+    
 
 
 }
@@ -138,7 +144,17 @@ object TestLibraries {
     val archTesting = "androidx.arch.core:core-testing:${Versions.androidxArch}"
     val faker = "com.github.javafaker:javafaker:${Versions.faker}"
     val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+    val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
 
 
 
+   val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockitoAndroid}"
+    val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
+    val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    val testRules = "androidx.test:rules:${Versions.testRules}"
+    val testRunner = "androidx.test:runner:${Versions.testRunner}"
+    val extJunit = "androidx.test.ext:junit:${Versions.extJunit}"
+    val retrofitMock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
+
+    
 }

@@ -34,10 +34,12 @@ dependencies {
     androidTestImplementation TestLibraries.mockitoAndroid
     androidTestImplementation project(':libraries:testshared')
     androidTestImplementation TestLibraries.archTesting
-    androidTestImplementation TestLibraries.espresso
+    androidTestImplementation TestLibraries.espressoCore
+    androidTestImplementation TestLibraries.espressoContrib
     androidTestImplementation TestLibraries.extJunit
-    androidTestImplementation TestLibraries.testRules
     androidTestImplementation TestLibraries.testRunner
+    androidTestImplementation TestLibraries.testRules
+    androidTestImplementation TestLibraries.retrofitMock
 
 
 }
