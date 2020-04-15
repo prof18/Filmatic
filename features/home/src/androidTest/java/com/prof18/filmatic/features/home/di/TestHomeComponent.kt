@@ -16,9 +16,19 @@
 
 package com.prof18.filmatic.features.home.di
 
-interface HomeComponentProvider {
+import com.prof18.filmatic.core.dagger.CoreComponent
+import com.prof18.filmatic.core.dagger.scope.FeatureScope
+import com.prof18.filmatic.features.home.presentation.DiscoverFragment
+import com.prof18.filmatic.features.home.presentation.ProfileFragment
+import com.prof18.filmatic.features.home.presentation.explore.ExploreFragment
+import com.prof18.filmatic.features.home.presentation.explore.ExploreFragmentTest
+import dagger.Component
 
-    fun getHomeComponent(): HomeComponent
-    // Used for testing
-    fun setHomeComponent(homeComponent: HomeComponent)
+@Component(
+    modules = [TestHomeModule::class],
+    dependencies = [CoreComponent::class]
+)
+@FeatureScope
+interface TestHomeComponent: HomeComponent {
+    fun inject(fragment: ExploreFragmentTest)
 }

@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.di
+package com.prof18.filmatic.features.home
 
-interface HomeComponentProvider {
+import android.app.Application
+import android.content.Context
+import androidx.test.runner.AndroidJUnitRunner
 
-    fun getHomeComponent(): HomeComponent
-    // Used for testing
-    fun setHomeComponent(homeComponent: HomeComponent)
+class FilmaticTestRunner : AndroidJUnitRunner() {
+    override fun newApplication(cl: ClassLoader, className: String, context: Context): Application {
+        return super.newApplication(cl, HomeTestApp::class.java.name, context)
+    }
 }

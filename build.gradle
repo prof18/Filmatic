@@ -61,7 +61,7 @@ subprojects {
                 defaultConfig {
                     minSdkVersion Config.minSdk
                     targetSdkVersion Config.targetSdk
-                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                    testInstrumentationRunner "com.prof18.filmatic.features.home.FilmaticTestRunner"
                 }
 
                 compileOptions {

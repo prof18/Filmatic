@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Marco Gomiero
+ * Copyright 2020 Marco Gomiero
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,37 +14,19 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic
+package com.prof18.filmatic.libraries.testshared
 
 import android.app.Application
 import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.DaggerCoreComponent
 import com.prof18.filmatic.core.dagger.DataModule
 import com.prof18.filmatic.core.dagger.helper.CoreComponentProvider
-import com.prof18.filmatic.features.home.di.DaggerHomeComponent
-import com.prof18.filmatic.features.home.di.HomeComponent
-import com.prof18.filmatic.features.home.di.HomeComponentProvider
-import timber.log.Timber
 import kotlin.reflect.KClass
 
-open class FilmaticApp : Application(), CoreComponentProvider, HomeComponentProvider {
+open class BaseTestApp: Application(), CoreComponentProvider {
 
     private lateinit var coreComponent: CoreComponent
-
-    private val componentsMap = mutableMapOf<KClass<*>, Any>()
-
-
-    override fun onCreate() {
-        super.onCreate()
-
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-
-            Result
-        }
-    }
-
-    // Dagger Stuff
+    protected val componentsMap = mutableMapOf<KClass<*>, Any>()
 
     override fun provideCoreComponent(): CoreComponent {
         if (!this::coreComponent.isInitialized) {
@@ -56,21 +38,4 @@ open class FilmaticApp : Application(), CoreComponentProvider, HomeComponentProv
         return coreComponent
     }
 
-    override fun getHomeComponent(): HomeComponent {
-        return if (componentsMap.containsKey(HomeComponent::class)) {
-            componentsMap[HomeComponent::class] as HomeComponent
-        } else {
-            val component = DaggerHomeComponent
-                .builder()
-                .coreComponent(provideCoreComponent())
-                .build()
-            componentsMap[HomeComponent::class] = component
-            component
-        }
-    }
-
-    override fun setHomeComponent(homeComponent: HomeComponent) {
-        componentsMap[HomeComponent::class] = homeComponent
-    }
 }
-
