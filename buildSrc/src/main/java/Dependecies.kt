@@ -48,7 +48,6 @@ object Versions {
     val crashlytics = "2.9.9"
 
 
-
     val navigation = "2.3.0-alpha04"
 
     val lottie = "3.4.0"
@@ -95,7 +94,8 @@ object Deps {
 
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
-    val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
+    val loggingInterceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
 
     val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
@@ -104,9 +104,10 @@ object Deps {
 
     val moshiCodeGen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
 
-    val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecylceExtensions}"
+    val lifecycleExtensions =
+        "androidx.lifecycle:lifecycle-extensions:${Versions.lifecylceExtensions}"
     val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
-    val lifecycleKtx =  "androidx.lifecycle.lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    val lifecycleKtx = "androidx.lifecycle.lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 
     val leakCanaryAndroid = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
 
@@ -120,19 +121,18 @@ object Deps {
 
     // Coroutines
     val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-    val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    val coroutinesAndroid =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
     // Navigation
     val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
     val navigation = "androidx.navigation:navigation-ui:${Versions.navigation}"
-    val navigationKtx =  "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    val navigationKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
     val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
     val gradleVersion = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersion}"
-    
-
 
 }
 
@@ -146,16 +146,11 @@ object TestLibraries {
     val faker = "com.github.javafaker:javafaker:${Versions.faker}"
     val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
-
-
-
-   val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockitoAndroid}"
+    val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockitoAndroid}"
     val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
     val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     val testRules = "androidx.test:rules:${Versions.testRules}"
     val testRunner = "androidx.test:runner:${Versions.testRunner}"
     val extJunit = "androidx.test.ext:junit:${Versions.extJunit}"
     val retrofitMock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
-
-    
 }

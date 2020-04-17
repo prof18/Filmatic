@@ -16,6 +16,7 @@
 
 package com.prof18.filmatic.features.home.presentation.explore
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -23,23 +24,47 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.filmatic.features.home.R
-import org.junit.Before
+import org.hamcrest.Matchers.not
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ExploreFragmentTest {
 
-    // TODO: Make it work! Mock retrofit call and test!
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @Before
-    fun init() {
+    // TODO stub
+
+    @Test
+    fun checkLoadingIsVisibleAndListNot() {
+
+//        mockServer.dispatcher = MockServerDispatcher.ResponseDispatcher()
         launchFragmentInContainer<ExploreFragment>()
+
+        onView(withId(R.id.ExploreAnimation)).check(matches(isDisplayed()))
+        onView(withId(R.id.EXPLORE_recycler_view)).check(matches(not(isDisplayed())))
     }
 
     @Test
-    fun checkLoadingIsVisible() {
-        onView(withId(R.id.ExploreAnimation)).check(matches(isDisplayed()))
+    fun checkListShowed() {
+
+
+
+        launchFragmentInContainer<ExploreFragment>(themeResId = R.style.AppTheme)
+
+//        activityRule.launchActivity(Actions.openHomeIntent(InstrumentationRegistry.getInstrumentation().targetContext))
+
+
+
+        onView(withId(R.id.EXPLORE_recycler_view)).check(matches(isDisplayed()))
+
+
+
     }
+
+
+
 
 }

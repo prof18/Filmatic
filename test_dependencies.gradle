@@ -31,7 +31,9 @@ dependencies {
 
     kaptAndroidTest Deps.daggerCompiler
     androidTestImplementation TestLibraries.archTesting
+    androidTestImplementation TestLibraries.coroutineTest
     androidTestImplementation TestLibraries.mockitoAndroid
+    androidTestImplementation TestLibraries.mockitoKotlin
     androidTestImplementation project(':libraries:testshared')
     androidTestImplementation TestLibraries.archTesting
     androidTestImplementation TestLibraries.espressoCore

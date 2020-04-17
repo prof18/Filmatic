@@ -18,9 +18,6 @@ package com.prof18.filmatic.features.home.di
 
 import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
-import com.prof18.filmatic.features.home.presentation.DiscoverFragment
-import com.prof18.filmatic.features.home.presentation.ProfileFragment
-import com.prof18.filmatic.features.home.presentation.explore.ExploreFragment
 import com.prof18.filmatic.features.home.presentation.explore.ExploreFragmentTest
 import dagger.Component
 
@@ -29,6 +26,7 @@ import dagger.Component
     dependencies = [CoreComponent::class]
 )
 @FeatureScope
-interface TestHomeComponent: HomeComponent {
+interface TestHomeComponent : HomeComponent {
     fun inject(fragment: ExploreFragmentTest)
+    // TODO: return use case for mocking
 }

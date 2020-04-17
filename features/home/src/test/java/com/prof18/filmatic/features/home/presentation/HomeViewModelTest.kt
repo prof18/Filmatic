@@ -49,13 +49,13 @@ class HomeViewModelTest {
 
     @get:Rule
     var coroutinesTestRule =
-        com.prof18.filmatic.libraries.testshared.CoroutinesTestRule()
+        CoroutinesTestRule()
 
     private val popularMoviesUseCase = mock<GetPopularMoviesUseCase>()
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
     private val viewModel = HomeViewModel(
         popularMoviesUseCase,
-        com.prof18.filmatic.libraries.testshared.provideFakeCoroutinesDispatcherProvider(
+        provideFakeCoroutinesDispatcherProvider(
             testCoroutineDispatcher
         )
     )
