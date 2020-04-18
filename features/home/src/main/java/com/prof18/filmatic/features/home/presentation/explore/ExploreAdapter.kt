@@ -1,7 +1,7 @@
 /*
  * Copyright 2020 Marco Gomiero
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apcense, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -20,9 +20,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.ImageLoader
+import coil.api.load
 import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
-import com.bumptech.glide.Glide
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.databinding.ItemTrendingCollectionBinding
 import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem
@@ -33,7 +34,7 @@ import com.prof18.filmatic.libraries.uicomponents.listitem.ItemHeader
 import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBig
 import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBottomTitle
 
-class ExploreAdapter(val context: Context) :
+class ExploreAdapter(val context: Context, val imageLoader: ImageLoader) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items: List<ExploreItem> = emptyList()
@@ -89,7 +90,7 @@ class ExploreAdapter(val context: Context) :
     inner class TrendingCollectionViewHolder(val binding: ItemTrendingCollectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemHorizontalCollection<ItemMovieBottomTitle>) {
-            val adapter = TrendingCollectionAdapter(item.items, context)
+            val adapter = TrendingCollectionAdapter(item.items, context, imageLoader)
             binding.ExploreTrendingList.adapter = adapter
         }
     }
@@ -108,12 +109,9 @@ class ExploreAdapter(val context: Context) :
                     lottieDrawable.playAnimation()
                 }
 
-
-            Glide.with(itemView.context)
-                .load(item.imageUrl)
-                .placeholder(lottieDrawable)
-                .fitCenter()
-                .into(binding.ItemMovieBigImage)
+            binding.ItemMovieBigImage.load(item.imageUrl, imageLoader) {
+                    placeholder(lottieDrawable)
+            }
 
             binding.ItemMovieBigCard.setOnClickListener {
                 // TODO: Add on click

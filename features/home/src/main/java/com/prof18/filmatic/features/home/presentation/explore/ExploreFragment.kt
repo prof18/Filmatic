@@ -23,6 +23,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import coil.ImageLoader
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.prof18.filmatic.core.architecture.ViewState
@@ -46,6 +47,9 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
     @Inject
     lateinit var viewModelProvider: Provider<HomeViewModel>
 
+    @Inject lateinit var imageLoader: ImageLoader
+
+
     private val viewModel by activityViewModels { viewModelProvider }
 
     override fun onAttach(context: Context) {
@@ -58,9 +62,15 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentExploreBinding.bind(view)
-        val lottieAnim = binding.ExploreAnimation
+        val loadingAnimation = binding.ExploreLoadingAnimation
+        loadingAnimation.setAnimation("loader.json")
+        loadingAnimation.repeatCount = LottieDrawable.INFINITE
 
-        val adapter = ExploreAdapter(requireContext())
+        val errorAnimation = binding.ExplorErrorAnimation
+        errorAnimation.setAnimation("nodata.json")
+        errorAnimation.repeatCount = LottieDrawable.INFINITE
+
+        val adapter = ExploreAdapter(requireContext(), imageLoader)
         binding.EXPLORERecyclerView.adapter = adapter
 
         viewModel.exploreState.observe(viewLifecycleOwner, Observer {
@@ -69,17 +79,20 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
                 when (state) {
                     is ViewState.Success<List<ExploreItem>> -> {
-                        showLoader(lottieAnim, false)
+                        showAnimation(loadingAnimation, false)
+                        showAnimation(errorAnimation, false)
                         binding.EXPLORERecyclerView.visible()
                         val data = state.data
                         adapter.items = data
                         adapter.notifyDataSetChanged()
                     }
                     is ViewState.Error -> {
-                        showError(lottieAnim, true)
+                        showAnimation(loadingAnimation, false)
+                        showAnimation(errorAnimation, true)
                     }
                     ViewState.Loading -> {
-                        showLoader(lottieAnim, true)
+                        showAnimation(loadingAnimation, true)
+                        showAnimation(errorAnimation, false)
                     }
                 }
             }
@@ -87,27 +100,15 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         viewModel.fetchExploreItems()
     }
 
-    private fun showLoader(animation: LottieAnimationView, showLoader: Boolean) {
+    private fun showAnimation(animation: LottieAnimationView, showLoader: Boolean) {
         if (showLoader) {
             animation.visible()
-            animation.setAnimation("loader.json")
             animation.playAnimation()
-            animation.repeatCount = LottieDrawable.INFINITE
         } else {
             animation.pauseAnimation()
             animation.gone()
         }
     }
 
-    private fun showError(animation: LottieAnimationView, showLoader: Boolean) {
-        if (showLoader) {
-            animation.visible()
-            animation.setAnimation("nodata.json")
-            animation.playAnimation()
-            animation.repeatCount = LottieDrawable.INFINITE
-        } else {
-            animation.pauseAnimation()
-            animation.gone()
-        }
-    }
+
 }

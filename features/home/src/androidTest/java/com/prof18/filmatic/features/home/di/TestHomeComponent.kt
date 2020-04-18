@@ -16,9 +16,11 @@
 
 package com.prof18.filmatic.features.home.di
 
+import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
 import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
 import com.prof18.filmatic.features.home.presentation.explore.ExploreFragmentTest
+import com.prof18.filmatic.features.home.remote.api.HomeService
 import dagger.Component
 
 @Component(
@@ -29,4 +31,7 @@ import dagger.Component
 interface TestHomeComponent : HomeComponent {
     fun inject(fragment: ExploreFragmentTest)
     // TODO: return use case for mocking
+
+    fun provideHomeService(): HomeService
+    fun provideCoroutineDisparcherProvider(): CoroutinesDispatcherProvider
 }

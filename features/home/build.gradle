@@ -33,12 +33,11 @@ dependencies {
     implementation Deps.navigationKtx
     implementation Deps.navigationFragment
     implementation Deps.navigationFragmentKtx
-    implementation Deps.glide
     implementation Deps.lottie
+    implementation Deps.coil
 
     // Kapt
     kapt Deps.lifecycleCompiler
     kapt Deps.moshiCodeGen
     kapt Deps.daggerCompiler
-    kapt Deps.glideCompiler
 }

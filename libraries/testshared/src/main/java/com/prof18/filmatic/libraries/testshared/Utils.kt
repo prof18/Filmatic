@@ -14,23 +14,15 @@
  * limitations under the License.
  */
 
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
+package com.prof18.filmatic.libraries.testshared
 
-dependencies {
-    implementation project(":core")
+import androidx.test.platform.app.InstrumentationRegistry
 
-    implementation Deps.kotlin
-    implementation Deps.coroutinesAndroid
-    implementation Deps.coroutinesCore
-    implementation Deps.lifecycleExtensions
-    implementation Deps.recyclerview
-    implementation Deps.coil
+object Utils {
 
-    implementation TestLibraries.espressoCore
-    implementation TestLibraries.archTesting
-    implementation TestLibraries.coroutineTest
-    implementation TestLibraries.junit
+    fun getResourceString(id: Int): String? {
+        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
+        return targetContext.getResources().getString(id)
+    }
+
 }

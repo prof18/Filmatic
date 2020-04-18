@@ -16,23 +16,45 @@
 
 package com.prof18.filmatic.features.home.di
 
+import android.content.Context
+import coil.ImageLoader
 import com.nhaarman.mockitokotlin2.mock
 import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
+import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
+import com.prof18.filmatic.features.home.data.mapper.MovieModelMapper
+import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
+import com.prof18.filmatic.features.home.domain.HomeRepository
 import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
+import com.prof18.filmatic.features.home.remote.HomeRemoteDataSourceImpl
+import com.prof18.filmatic.features.home.remote.api.HomeService
+import com.prof18.filmatic.features.home.remote.mapper.MovieResultMapper
+import com.prof18.filmatic.libraries.testshared.fakeImageLoader
 import com.prof18.filmatic.libraries.testshared.provideFakeCoroutinesDispatcherProvider
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
+import okhttp3.OkHttpClient
+
 
 @Module
 class TestHomeModule {
 
     @Provides
     @FeatureScope
-    fun provideUseCase(): GetPopularMoviesUseCase {
-        return mock()
+    fun provideImageLoader(
+        context: Context,
+        okHttpClient: OkHttpClient
+    ): ImageLoader {
+        return fakeImageLoader
+    }
+
+
+    @Provides
+    @FeatureScope
+    fun provideUseCase(repository: HomeRepository): GetPopularMoviesUseCase {
+        return GetPopularMoviesUseCase(repository)
     }
 
     @ExperimentalCoroutinesApi
@@ -43,4 +65,42 @@ class TestHomeModule {
             TestCoroutineDispatcher()
         )
     }
+
+    @Provides
+    @FeatureScope
+    fun provideHomeRepository(
+        homeRemoteDataSource: HomeRemoteDataSource,
+        mapper: MovieModelMapper
+    ): HomeRepository {
+        return HomeRepositoryImpl(homeRemoteDataSource, mapper)
+    }
+
+    @Provides
+    @FeatureScope
+    fun provideHomeRemoteDataSource(
+        homeService: HomeService,
+        mapper: MovieResultMapper
+    ): HomeRemoteDataSource {
+        return HomeRemoteDataSourceImpl(homeService, mapper)
+    }
+
+    @Provides
+    @FeatureScope
+    fun provideMovieModelMapper(): MovieModelMapper {
+        return MovieModelMapper()
+    }
+
+    @Provides
+    @FeatureScope
+    fun provideMovieResultMapper(): MovieResultMapper {
+        return MovieResultMapper()
+    }
+
+    @Provides
+    @FeatureScope
+    fun provideHomeService(): HomeService {
+        return mock()
+    }
+
+
 }

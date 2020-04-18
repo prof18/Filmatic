@@ -16,9 +16,13 @@
 
 package com.prof18.filmatic.features.home.di
 
+import android.content.Context
+import coil.ImageLoader
+import coil.ImageLoaderBuilder
 import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
 import com.prof18.filmatic.features.home.BuildConfig
+import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
 import com.prof18.filmatic.features.home.data.mapper.MovieModelMapper
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
@@ -31,9 +35,26 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module
 class HomeModule {
+
+    @Provides
+    @FeatureScope
+    fun provideImageLoader(
+        context: Context,
+        okHttpClient: OkHttpClient
+    ): ImageLoader {
+
+        val imageLoaderBuilder = ImageLoaderBuilder(context)
+
+        imageLoaderBuilder.okHttpClient(okHttpClient)
+//        imageLoaderBuilder.placeholder(R.drawable.placeholder)
+
+        return imageLoaderBuilder.build()
+    }
+
 
     @Provides
     @FeatureScope

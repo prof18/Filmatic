@@ -40,7 +40,6 @@ object Versions {
     val timber = "4.7.1"
     val retrofit = "2.7.2"
     val loggingInterceptor = "4.4.1"
-    val glide = "4.11.0"
     val moshi = "1.9.2"
     val lifecycle = "2.3.0-alpha01"
     val lifecylceExtensions = "2.2.0"
@@ -54,6 +53,7 @@ object Versions {
 
 
     val gradleVersion = "0.28.0"
+    val coil = "0.9.5"
 
     // Testing
     val mockito = "2.23.0"
@@ -68,6 +68,7 @@ object Versions {
     val assertjCore = "3.12.2"
     val mockitoKotlin = "2.1.0"
     val mockitoInline = "2.27.0"
+    val orchestrator = "1.1.0"
 
 }
 
@@ -96,9 +97,6 @@ object Deps {
     val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
-
-    val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
-    val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
     val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
 
@@ -133,10 +131,12 @@ object Deps {
     val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 
     val gradleVersion = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersion}"
+    val coil = "io.coil-kt:coil:${Versions.coil}"
 
 }
 
 object TestLibraries {
+    val testOrchestrator = "androidx.test:orchestrator:${Versions.orchestrator  }"
     val junit = "junit:junit:${Versions.junit}"
     val assertjCore = "org.assertj:assertj-core:${Versions.assertjCore}"
     val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"

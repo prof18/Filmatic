@@ -17,6 +17,7 @@
 package com.prof18.filmatic.libraries.testshared
 
 import android.app.Application
+import androidx.test.espresso.IdlingRegistry
 import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.DaggerCoreComponent
 import com.prof18.filmatic.core.dagger.DataModule
@@ -37,5 +38,4 @@ open class BaseTestApp: Application(), CoreComponentProvider {
         }
         return coreComponent
     }
-
 }

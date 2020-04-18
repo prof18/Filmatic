@@ -20,16 +20,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.ImageLoader
+import coil.api.load
 import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
-import com.bumptech.glide.Glide
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.libraries.uicomponents.databinding.ItemMovieBottomTitleBinding
 import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBottomTitle
 
 class TrendingCollectionAdapter(
     val items: List<ItemMovieBottomTitle> = emptyList(),
-    val context: Context
+    val context: Context,
+    val imageLoader: ImageLoader
 ) :
     RecyclerView.Adapter<TrendingCollectionAdapter.ViewHolder>() {
 
@@ -64,11 +66,9 @@ class TrendingCollectionAdapter(
             // TODO: add null image placeholder
             val imageUrl = item.imageUrl
             if (imageUrl != null) {
-                Glide.with(itemView.context)
-                    .load(imageUrl)
-                    .placeholder(lottieDrawable)
-                    .fitCenter()
-                    .into(binding.IteMovieBottomTitleImage)
+                binding.IteMovieBottomTitleImage.load(item.imageUrl, imageLoader) {
+                    placeholder(lottieDrawable)
+                }
             }
 
             binding.IteMovieBottomTitleCard.setOnClickListener {

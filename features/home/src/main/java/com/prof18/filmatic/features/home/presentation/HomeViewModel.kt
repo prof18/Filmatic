@@ -70,35 +70,43 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun generateExploreItems(movies: List<Movie>): List<ExploreItem> {
+        val items = mutableListOf<ExploreItem>()
+        if (movies.isNotEmpty()) {
+            // Trending Header
+            items.add(ExploreItem.Header(ItemHeader(titleResId = R.string.EXPLORE_popular_title)))
 
-        // Trending Header
-        val items = mutableListOf<ExploreItem>(
-            ExploreItem.Header(ItemHeader(titleResId = R.string.EXPLORE_popular_title))
-        )
 
-        val itemMovieBigList = movies.map { movie ->
-            ItemMovieBottomTitle(
-                id = movie.id,
-                title = movie.title,
-                imageUrl = movie.backdropUrl
+            val itemMovieBigList = movies.map { movie ->
+                ItemMovieBottomTitle(
+                    id = movie.id,
+                    title = movie.title,
+                    imageUrl = movie.backdropUrl
+                )
+            }
+
+            // Trending collection
+            items.add(
+                ExploreItem.TrendingCollection(
+                    data = ItemHorizontalCollection(
+                        itemMovieBigList
+                    )
+                )
             )
-        }
 
-        // Trending collection
-        items.add(ExploreItem.TrendingCollection(data = ItemHorizontalCollection(itemMovieBigList)))
 
-        // Next Movie
-        getNextMovieToSee(movies)?.let { nextMovie ->
-            val itemMovieBig = ItemMovieBig(
-                id = nextMovie.id,
-                title = nextMovie.title,
-                /** The image url will be never null! See [getNextMovieToSee] */
-                imageUrl = nextMovie.backdropUrl!!
-            )
-            // Header
-            items.add(ExploreItem.Header(ItemHeader(titleResId = R.string.EXPLORE_next_movie_title)))
-            // Item
-            items.add(ExploreItem.MovieBigCard(data = itemMovieBig))
+            // Next Movie
+            getNextMovieToSee(movies)?.let { nextMovie ->
+                val itemMovieBig = ItemMovieBig(
+                    id = nextMovie.id,
+                    title = nextMovie.title,
+                    /** The image url will be never null! See [getNextMovieToSee] */
+                    imageUrl = nextMovie.backdropUrl!!
+                )
+                // Header
+                items.add(ExploreItem.Header(ItemHeader(titleResId = R.string.EXPLORE_next_movie_title)))
+                // Item
+                items.add(ExploreItem.MovieBigCard(data = itemMovieBig))
+            }
         }
 
         // TODO: Add other items
