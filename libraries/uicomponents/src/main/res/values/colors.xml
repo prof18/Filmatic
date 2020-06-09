@@ -24,7 +24,7 @@
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorError">#B00020</color>
-    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnPrimary">@color/grey</color>
     <color name="colorOnSecondary">#000000</color>
     <color name="colorOnBackground">#000000</color>
     <color name="colorOnSurface">#000000</color>

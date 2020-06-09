@@ -31,6 +31,7 @@
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="colorOnBackground">@color/colorOnBackground</item>
         <item name="android:statusBarColor">@color/statusBarColor</item>
+        <item name="android:windowLightStatusBar">true</item>
 
         <!-- Global shape attributes -->
         <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
@@ -53,6 +54,8 @@
         <!-- TODO: customize it? -->
         <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
         <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+
+        <item name="bottomAppBarStyle">@style/AppBottomNavigation</item>
 
     </style>
 
@@ -134,6 +137,28 @@
     <style name="TextAppearance.Filmatic.Genre" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="fontFamily">@font/opensans_bold</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SearchViewTheme" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="colorControlActivated">?android:colorAccent</item>
+        <item name="android:searchViewStyle">@style/Widget.Filmatic.SearchView</item>
+    </style>
+
+    <style name="Widget.Filmatic.SearchView" parent="android:style/Widget.Material.SearchView">
+        <item name="android:searchIcon">@android:color/transparent</item>
+        <item name="android:searchHintIcon">@android:color/transparent</item>
+        <item name="queryBackground">@color/grey</item>
+        <item name="android:submitBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- Using AppBottomNavigation2 to avoid conflicts with the main playground style -->
+    <style name="AppBottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="backgroundTint">@color/statusBarColor</item>
+        <item name="itemIconTint">@color/bottom_navigation_item_color</item>
+        <item name="itemTextColor">@color/bottom_navigation_item_color</item>
+        <item name="itemRippleColor">@color/bottom_navigation_item_ripple_color</item>
+        <item name="itemTextAppearanceActive">?attr/textAppearanceCaption</item>
+        <item name="itemTextAppearanceInactive">?attr/textAppearanceCaption</item>
     </style>
 
 </resources>

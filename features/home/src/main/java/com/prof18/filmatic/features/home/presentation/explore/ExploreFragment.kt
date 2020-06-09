@@ -56,6 +56,8 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         super.onAttach(context)
         val component = (requireActivity().application as HomeComponentProvider).getHomeComponent()
         component.inject(this)
+
+        viewModel.fetchExploreItems()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -97,7 +99,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
                 }
             }
         })
-        viewModel.fetchExploreItems()
     }
 
     private fun showAnimation(animation: LottieAnimationView, showLoader: Boolean) {
@@ -109,6 +110,4 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
             animation.gone()
         }
     }
-
-
 }

@@ -30,7 +30,6 @@ import dagger.Component
 @FeatureScope
 interface TestHomeComponent : HomeComponent {
     fun inject(fragment: ExploreFragmentTest)
-    // TODO: return use case for mocking
 
     fun provideHomeService(): HomeService
     fun provideCoroutineDisparcherProvider(): CoroutinesDispatcherProvider
