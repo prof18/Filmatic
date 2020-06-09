@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="Filmatic.app" target="1.8" />
-      <module name="Filmatic.buildSrc" target="1.8" />
-      <module name="Filmatic.core" target="1.8" />
-      <module name="Filmatic.features.home" target="1.8" />
+    <bytecodeTargetLevel target="1.8">
       <module name="Filmatic.features.moviedetail" target="1.8" />
-      <module name="Filmatic.libraries.preferences" target="1.8" />
-      <module name="Filmatic.libraries.testshared" target="1.8" />
-      <module name="Filmatic.libraries.uicomponents" target="1.8" />
       <module name="Filmatic.style" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -18,28 +18,28 @@
 
 object Versions {
 
-    val gradle = "4.1.0-alpha05"
+    val gradle = "4.1.0-alpha10"
     val kotlin = "1.3.72"
 
 
-    val appcompat = "1.2.0-alpha03"
-    val design = "1.2.0-alpha05"
+    val appcompat = "1.3.0-alpha01"
+    val design = "1.3.0-alpha01"
     val cardview = "1.0.0"
     val recyclerview = "1.0.0"
 
 
     val androidxArch = "2.1.0"
-    val constraintLayout = "2.0.0-beta4"
+    val constraintLayout = "2.0.0-beta6"
 
     val ktx = "1.3.0-alpha02"
 
     val coroutines = "1.3.5"
-    val dagger = "2.27"
+    val dagger = "2.28"
     val room = "2.1.0-rc01"
 
     val timber = "4.7.1"
-    val retrofit = "2.7.2"
-    val loggingInterceptor = "4.4.1"
+    val retrofit = "2.9.0"
+    val loggingInterceptor = "4.7.2"
     val moshi = "1.9.2"
     val lifecycle = "2.3.0-alpha01"
     val lifecylceExtensions = "2.2.0"
@@ -47,16 +47,16 @@ object Versions {
     val crashlytics = "2.9.9"
 
 
-    val navigation = "2.3.0-alpha04"
+    val navigation = "2.3.0-beta01"
 
-    val lottie = "3.4.0"
+    val lottie = "3.4.1"
 
 
     val gradleVersion = "0.28.0"
-    val coil = "0.9.5"
+    val coil = "0.11.0"
 
     // Testing
-    val mockito = "2.23.0"
+    val mockito = "3.3.3"
     val faker = "1.0.2"
     val fragmentTesting = "1.2.4"
     val mockitoAndroid = "3.3.3"
@@ -67,7 +67,7 @@ object Versions {
     val junit = "4.13"
     val assertjCore = "3.12.2"
     val mockitoKotlin = "2.1.0"
-    val mockitoInline = "2.27.0"
+    val mockitoInline = "3.3.3"
     val orchestrator = "1.1.0"
 
 }
