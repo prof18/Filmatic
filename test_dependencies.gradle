@@ -28,6 +28,8 @@ dependencies {
     testImplementation TestLibraries.faker
     testImplementation TestLibraries.archTesting
     testImplementation TestLibraries.coroutineTest
+    testImplementation TestLibraries.mockWebServer
+
 
     kaptAndroidTest Deps.daggerCompiler
     androidTestImplementation TestLibraries.archTesting
@@ -42,6 +44,9 @@ dependencies {
     androidTestImplementation TestLibraries.testRunner
     androidTestImplementation TestLibraries.testRules
     androidTestImplementation TestLibraries.retrofitMock
+    androidTestImplementation TestLibraries.mockWebServer
 
+
+    androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
 
 }

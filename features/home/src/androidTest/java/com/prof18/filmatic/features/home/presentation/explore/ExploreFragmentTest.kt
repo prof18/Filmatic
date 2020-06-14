@@ -35,6 +35,7 @@ import com.prof18.filmatic.libraries.testshared.CoroutinesTestRule
 import com.prof18.filmatic.libraries.testshared.RecyclerViewAssertions
 import com.prof18.filmatic.libraries.testshared.RecyclerViewMatcher
 import com.prof18.filmatic.libraries.testshared.Utils.getResourceString
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
@@ -46,6 +47,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
 
+@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 class ExploreFragmentTest {
 

@@ -19,23 +19,19 @@ package com.prof18.filmatic.features.home.di
 import android.content.Context
 import coil.ImageLoader
 import coil.ImageLoaderBuilder
-import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
 import com.prof18.filmatic.features.home.BuildConfig
-import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
-import com.prof18.filmatic.features.home.data.mapper.MovieModelMapper
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.domain.HomeRepository
 import com.prof18.filmatic.features.home.remote.HomeRemoteDataSourceImpl
 import com.prof18.filmatic.features.home.remote.api.HomeService
-import com.prof18.filmatic.features.home.remote.mapper.MovieResultMapper
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
+
 
 @Module
 class HomeModule {
@@ -46,38 +42,21 @@ class HomeModule {
         context: Context,
         okHttpClient: OkHttpClient
     ): ImageLoader {
-
         val imageLoaderBuilder = ImageLoaderBuilder(context)
-
         imageLoaderBuilder.okHttpClient(okHttpClient)
-//        imageLoaderBuilder.placeholder(R.drawable.placeholder)
-
         return imageLoaderBuilder.build()
     }
 
-
     @Provides
     @FeatureScope
-    fun provideHomeRepository(homeRemoteDataSource: HomeRemoteDataSource, mapper: MovieModelMapper): HomeRepository {
-        return HomeRepositoryImpl(homeRemoteDataSource, mapper)
+    fun provideHomePresenter(homeRepository: HomeRepositoryImpl): HomeRepository {
+        return homeRepository
     }
 
     @Provides
     @FeatureScope
-    fun provideHomeRemoteDataSource(homeService: HomeService, mapper: MovieResultMapper): HomeRemoteDataSource {
-        return HomeRemoteDataSourceImpl(homeService, mapper)
-    }
-
-    @Provides
-    @FeatureScope
-    fun provideMovieModelMapper(): MovieModelMapper {
-        return MovieModelMapper()
-    }
-
-    @Provides
-    @FeatureScope
-    fun provideMovieResultMapper(): MovieResultMapper {
-        return MovieResultMapper()
+    fun provideRemoteDataSource(homeRemoteDataSourceImpl: HomeRemoteDataSourceImpl): HomeRemoteDataSource {
+        return homeRemoteDataSourceImpl
     }
 
     @Provides
@@ -92,5 +71,4 @@ class HomeModule {
             .build()
             .create(HomeService::class.java)
     }
-
 }

@@ -18,10 +18,11 @@ package com.prof18.filmatic.features.home.data.remote
 
 import com.prof18.filmatic.core.architecture.Result
 import com.prof18.filmatic.features.home.data.models.MovieModel
+import com.prof18.filmatic.features.home.remote.model.AllGenresResponse
 import com.prof18.filmatic.features.home.remote.model.PopularMoviesResult
 
 interface HomeRemoteDataSource {
 
     suspend fun getPopularMovies(): Result<List<MovieModel>>
-
+    suspend fun getAllGenres(): Result<AllGenresResponse>
 }

@@ -16,68 +16,55 @@
 
 package com.prof18.filmatic.features.home.data
 
-import com.nhaarman.mockitokotlin2.*
 import com.prof18.filmatic.core.architecture.Result
+import com.prof18.filmatic.features.home.FakeErrorHomeRemoteDataSource
+import com.prof18.filmatic.features.home.FakeSuccessHomeRemoteDataSource
+import com.prof18.filmatic.features.home.data.mapper.GenreModelMapper
 import com.prof18.filmatic.features.home.data.mapper.MovieModelMapper
-import com.prof18.filmatic.features.home.data.models.MovieModel
-import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
-import com.prof18.filmatic.features.home.domain.entities.Movie
-import com.prof18.filmatic.features.home.DataFactory
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import java.io.IOException
 
 @RunWith(JUnit4::class)
 class HomeRepositoryImplTest {
 
-    private val mapper = mock<MovieModelMapper>()
-    private val homeRemoteDataSource = mock<HomeRemoteDataSource>()
-    private val repository = HomeRepositoryImpl(homeRemoteDataSource, mapper)
+    private val successRemoteDataSource = FakeSuccessHomeRemoteDataSource()
+    private val errorRemoteDataSource = FakeErrorHomeRemoteDataSource()
+
+    private val successRepository = HomeRepositoryImpl(
+        homeRemoteDataSource = successRemoteDataSource,
+        movieModelMapper = MovieModelMapper(),
+        genreModelMapper = GenreModelMapper()
+    )
+    private val errorRepository = HomeRepositoryImpl(
+        homeRemoteDataSource = errorRemoteDataSource,
+        movieModelMapper = MovieModelMapper(),
+        genreModelMapper = GenreModelMapper()
+    )
 
     @Test
     fun getPopularMoviesReturnsData() = runBlocking {
-        val movieModel = DataFactory.getMovieModel()
-        val movie = DataFactory.getMovie()
-
-        stubHomeRemoteDataSource(listOf(movieModel))
-        stubMovieModelMapper(movieModel, movie)
-
-        val result = repository.getPopularMovies()
+        val result = successRepository.getPopularMovies()
         val movies = (result as Result.Success).data
 
-        verify(homeRemoteDataSource).getPopularMovies()
+        val remoteMovie = successRemoteDataSource.movieModels[0]
 
-        assertEquals(movies[0].id, movie.id)
-        assertEquals(movies[0].title, movie.title)
-        assertEquals(movies[0]._backdropPath, movie._backdropPath)
+        assertEquals(movies[0].id, remoteMovie.id)
+        assertEquals(movies[0].title, remoteMovie.title)
+        assertEquals(movies[0]._backdropPath, remoteMovie.backdropPath)
     }
 
     @Test
     fun getPopularMoviesReturnsError() = runBlocking {
-        val exception = IOException("No network")
-        stubHomeRemoteDataSourceError(exception)
 
-        val result = repository.getPopularMovies()
+        val result = errorRepository.getPopularMovies()
         val exceptionResult = (result as Result.Error).exception
 
-        verify(homeRemoteDataSource).getPopularMovies()
 
-        assertEquals(exception, exceptionResult)
+        assertEquals(errorRemoteDataSource.exception, exceptionResult)
     }
 
-    private fun stubHomeRemoteDataSource(movieModels: List<MovieModel>) = runBlocking {
-        whenever(homeRemoteDataSource.getPopularMovies()).thenReturn(Result.Success(movieModels))
-    }
 
-    private fun stubHomeRemoteDataSourceError(e: IOException) = runBlocking {
-        whenever(homeRemoteDataSource.getPopularMovies())
-            .thenReturn(Result.Error(e))
-    }
-
-    private fun stubMovieModelMapper(movieModel: MovieModel, movie: Movie) {
-        whenever(mapper.map(movieModel)).thenReturn(movie)
-    }
 }

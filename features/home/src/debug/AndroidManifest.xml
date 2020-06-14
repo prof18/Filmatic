@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright 2020 Marco Gomiero
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2019 Marco Gomiero
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -15,8 +14,13 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.prof18.filmatic.features.home"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.prof18.filmatic.features.home">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <application android:usesCleartextTraffic="true">
+
+    </application>
+
 </manifest>

@@ -18,7 +18,7 @@
 
 object Versions {
 
-    val gradle = "4.1.0-alpha10"
+    val gradle = "4.2.0-alpha01"
     val kotlin = "1.3.72"
 
 
@@ -33,7 +33,7 @@ object Versions {
 
     val ktx = "1.3.0-alpha02"
 
-    val coroutines = "1.3.5"
+    val coroutines = "1.3.6"
     val dagger = "2.28"
     val room = "2.1.0-rc01"
 
@@ -69,6 +69,7 @@ object Versions {
     val mockitoKotlin = "2.1.0"
     val mockitoInline = "3.3.3"
     val orchestrator = "1.1.0"
+    val mockWebServer = "4.7.2"
 
 }
 
@@ -153,4 +154,5 @@ object TestLibraries {
     val testRunner = "androidx.test:runner:${Versions.testRunner}"
     val extJunit = "androidx.test.ext:junit:${Versions.extJunit}"
     val retrofitMock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
+    val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
 }

@@ -19,8 +19,9 @@ package com.prof18.filmatic.features.home.remote.mapper
 import com.prof18.filmatic.core.architecture.Mapper
 import com.prof18.filmatic.features.home.data.models.MovieModel
 import com.prof18.filmatic.features.home.remote.model.MovieResult
+import javax.inject.Inject
 
-class MovieResultMapper : Mapper<MovieResult, MovieModel> {
+class MovieResultMapper @Inject constructor() : Mapper<MovieResult, MovieModel> {
 
     override fun map(t: MovieResult): MovieModel {
         return MovieModel(

@@ -20,38 +20,37 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import coil.DefaultRequestOptions
 import coil.ImageLoader
-import coil.annotation.ExperimentalCoil
-import coil.request.GetRequest
-import coil.request.LoadRequest
-import coil.request.RequestDisposable
+import coil.annotation.ExperimentalCoilApi
+import coil.decode.DataSource
+import coil.request.*
 
-@ExperimentalCoil
+@ExperimentalCoilApi
 val fakeImageLoader = object : ImageLoader {
 
-private val drawable = ColorDrawable(Color.BLACK)
+    private val drawable = ColorDrawable(Color.BLACK)
 
-private val disposable = object : RequestDisposable {
-    override val isDisposed: Boolean
-        get() = true
+    private val disposable = object : RequestDisposable {
+        override val isDisposed = true
+        override fun dispose() {}
+        override suspend fun await() {}
+    }
 
-    @ExperimentalCoil
-    override suspend fun await() {}
+    override val defaults = DefaultRequestOptions()
 
-    override fun dispose() {}
-}
+    override fun execute(request: LoadRequest): RequestDisposable {
+        // Always call onStart before onSuccess.
+        request.target?.onStart(drawable)
+        request.target?.onSuccess(drawable)
+        return disposable
+    }
 
-override val defaults = DefaultRequestOptions()
+    override suspend fun execute(request: GetRequest): RequestResult {
+        return SuccessResult(drawable, DataSource.MEMORY_CACHE)
+    }
 
-override fun load(request: LoadRequest): RequestDisposable {
-    // Always call onStart before onSuccess.
-    request.target?.onStart(drawable)
-    request.target?.onSuccess(drawable)
-    return disposable
-}
+    override fun invalidate(key: String) {}
 
-override suspend fun get(request: GetRequest) = drawable
+    override fun clearMemory() {}
 
-override fun clearMemory() {}
-
-override fun shutdown() {}
+    override fun shutdown() {}
 }

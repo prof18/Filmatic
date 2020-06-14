@@ -22,12 +22,14 @@ import com.prof18.filmatic.core.dagger.scope.FeatureScope
 import com.prof18.filmatic.features.home.presentation.explore.ExploreFragmentTest
 import com.prof18.filmatic.features.home.remote.api.HomeService
 import dagger.Component
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @Component(
     modules = [TestHomeModule::class],
     dependencies = [CoreComponent::class]
 )
 @FeatureScope
+@ExperimentalCoroutinesApi
 interface TestHomeComponent : HomeComponent {
     fun inject(fragment: ExploreFragmentTest)
 

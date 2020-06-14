@@ -14,15 +14,27 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.domain
+package com.prof18.filmatic.features.home.data.mapper
 
-import com.prof18.filmatic.core.architecture.Result
+import com.prof18.filmatic.features.home.DataFactory
 import com.prof18.filmatic.features.home.domain.entities.Genre
-import com.prof18.filmatic.features.home.domain.entities.Movie
+import org.junit.Assert.*
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 
-interface HomeRepository {
+@RunWith(JUnit4::class)
+class GenreModelMapperTest {
 
-    suspend fun getPopularMovies(): Result<List<Movie>>
-    suspend fun getGenres(): Result<List<Genre>>
+    private val mapper = GenreModelMapper()
+
+    @Test
+    fun mapperMapsGenreCorrectly() {
+        val genreResult = DataFactory.getGenreResult()
+        val genre = mapper.map(genreResult)
+
+        assertEquals(genreResult.id, genre.id)
+        assertEquals(genreResult.name, genre.name)
+    }
 
 }

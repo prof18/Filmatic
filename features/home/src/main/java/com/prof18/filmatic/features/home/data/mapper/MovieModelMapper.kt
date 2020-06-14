@@ -19,8 +19,9 @@ package com.prof18.filmatic.features.home.data.mapper
 import com.prof18.filmatic.core.architecture.Mapper
 import com.prof18.filmatic.features.home.data.models.MovieModel
 import com.prof18.filmatic.features.home.domain.entities.Movie
+import javax.inject.Inject
 
-class MovieModelMapper : Mapper<MovieModel, Movie> {
+class MovieModelMapper @Inject constructor() : Mapper<MovieModel, Movie> {
     override fun map(t: MovieModel): Movie {
         return Movie(
             id = t.id,

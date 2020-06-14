@@ -16,6 +16,7 @@
 
 package com.prof18.filmatic.features.home.remote.api
 
+import com.prof18.filmatic.features.home.remote.model.AllGenresResponse
 import com.prof18.filmatic.features.home.remote.model.PopularMoviesResult
 import retrofit2.http.GET
 
@@ -24,5 +25,9 @@ interface HomeService {
     @GET("movie/popular")
     @Throws(Exception::class)
     suspend fun getPopularMovies(): PopularMoviesResult
+
+    @GET("genre/movie/list")
+    @Throws(Exception::class)
+    suspend fun getGenres(): AllGenresResponse
 
 }

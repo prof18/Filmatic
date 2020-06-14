@@ -14,15 +14,24 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.domain
+package com.prof18.filmatic.features.home
 
 import com.prof18.filmatic.core.architecture.Result
+import com.prof18.filmatic.features.home.domain.HomeRepository
 import com.prof18.filmatic.features.home.domain.entities.Genre
 import com.prof18.filmatic.features.home.domain.entities.Movie
 
-interface HomeRepository {
+class FakeSuccessHomeRepository : HomeRepository {
 
-    suspend fun getPopularMovies(): Result<List<Movie>>
-    suspend fun getGenres(): Result<List<Genre>>
+    var genres = listOf(DataFactory.getGenre(), DataFactory.getGenre())
+    var movies = DataFactory.getPopularMovies(3)
+
+    override suspend fun getPopularMovies(): Result<List<Movie>> {
+        return Result.Success(movies)
+    }
+
+    override suspend fun getGenres(): Result<List<Genre>> {
+        return Result.Success(genres)
+    }
 
 }

@@ -18,6 +18,7 @@ package com.prof18.filmatic.features.home.di
 
 import android.content.Context
 import coil.ImageLoader
+import coil.annotation.ExperimentalCoilApi
 import com.nhaarman.mockitokotlin2.mock
 import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
@@ -38,6 +39,7 @@ import kotlinx.coroutines.test.TestCoroutineDispatcher
 import okhttp3.OkHttpClient
 
 
+@ExperimentalCoilApi
 @Module
 class TestHomeModule {
 
@@ -68,32 +70,14 @@ class TestHomeModule {
 
     @Provides
     @FeatureScope
-    fun provideHomeRepository(
-        homeRemoteDataSource: HomeRemoteDataSource,
-        mapper: MovieModelMapper
-    ): HomeRepository {
-        return HomeRepositoryImpl(homeRemoteDataSource, mapper)
+    fun provideHomePresenter(homeRepository: HomeRepositoryImpl): HomeRepository {
+        return homeRepository
     }
 
     @Provides
     @FeatureScope
-    fun provideHomeRemoteDataSource(
-        homeService: HomeService,
-        mapper: MovieResultMapper
-    ): HomeRemoteDataSource {
-        return HomeRemoteDataSourceImpl(homeService, mapper)
-    }
-
-    @Provides
-    @FeatureScope
-    fun provideMovieModelMapper(): MovieModelMapper {
-        return MovieModelMapper()
-    }
-
-    @Provides
-    @FeatureScope
-    fun provideMovieResultMapper(): MovieResultMapper {
-        return MovieResultMapper()
+    fun provideRemoteDataSource(homeRemoteDataSourceImpl: HomeRemoteDataSourceImpl): HomeRemoteDataSource {
+        return homeRemoteDataSourceImpl
     }
 
     @Provides

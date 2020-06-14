@@ -16,44 +16,34 @@
 
 package com.prof18.filmatic.features.home.domain.usecases
 
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
 import com.prof18.filmatic.core.architecture.Result
-import com.prof18.filmatic.features.home.domain.HomeRepository
-import com.prof18.filmatic.features.home.DataFactory
+import com.prof18.filmatic.features.home.FakeErrorHomeRepository
+import com.prof18.filmatic.features.home.FakeSuccessHomeRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import java.io.IOException
 
 @RunWith(JUnit4::class)
 class GetPopularMoviesUseCaseTest {
+    private val successHomeRepository = FakeSuccessHomeRepository()
+    private val errorHomeRepository = FakeErrorHomeRepository()
 
-    private val homeRepository = mock<HomeRepository>()
-    private val getPopularMoviesUseCase = GetPopularMoviesUseCase(homeRepository)
+    private val successGetPopularMoviesUseCase = GetPopularMoviesUseCase(successHomeRepository)
+    private val errorGetPopularMoviesUseCase = GetPopularMoviesUseCase(errorHomeRepository)
+
 
     @Test
     fun getPopularMoviesReturnsData() = runBlocking {
-        val successResult = Result.Success(DataFactory.getPopularMovies(3))
-        whenever(homeRepository.getPopularMovies()).thenReturn(successResult)
-
-        val result = getPopularMoviesUseCase.execute()
-
-        verify(homeRepository).getPopularMovies()
-        assertEquals(successResult, result)
+        val result = successGetPopularMoviesUseCase.execute()
+        assertEquals(successHomeRepository.movies, (result as Result.Success).data)
     }
 
     @Test
     fun getPopularMoviesReturnsError() = runBlocking {
-        val errorResponse = Result.Error(IOException())
-        whenever(homeRepository.getPopularMovies())
-            .thenReturn(errorResponse)
-
-        val result = getPopularMoviesUseCase.execute()
-        assertEquals(errorResponse, result)
+        val result = errorGetPopularMoviesUseCase.execute()
+        assertEquals(errorHomeRepository.exception, (result as Result.Error).exception)
     }
 }
 

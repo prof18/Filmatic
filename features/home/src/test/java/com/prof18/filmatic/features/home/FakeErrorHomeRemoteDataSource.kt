@@ -14,42 +14,23 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.remote
+package com.prof18.filmatic.features.home
 
 import com.prof18.filmatic.core.architecture.Result
 import com.prof18.filmatic.features.home.data.models.MovieModel
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
-import com.prof18.filmatic.features.home.remote.api.HomeService
-import com.prof18.filmatic.features.home.remote.mapper.MovieResultMapper
 import com.prof18.filmatic.features.home.remote.model.AllGenresResponse
-import timber.log.Timber
-import javax.inject.Inject
+import java.io.IOException
 
-class HomeRemoteDataSourceImpl @Inject constructor(
-    private val homeService: HomeService,
-    private val mapper: MovieResultMapper
-) : HomeRemoteDataSource {
+class FakeErrorHomeRemoteDataSource : HomeRemoteDataSource {
+
+    val exception = IOException()
+
     override suspend fun getPopularMovies(): Result<List<MovieModel>> {
-        return try {
-            val result = homeService.getPopularMovies()
-            val movies = result.movieResults
-                .map { movieResult ->
-                    mapper.map(movieResult)
-                }
-            Result.Success(movies)
-        } catch (e: Exception) {
-            Timber.w(e)
-            Result.Error(e)
-        }
+        return Result.Error(exception)
     }
 
     override suspend fun getAllGenres(): Result<AllGenresResponse> {
-        return try {
-            val result = homeService.getGenres()
-            return Result.Success(result)
-        } catch (e: Exception) {
-            Timber.w(e)
-            Result.Error(e)
-        }
+        return Result.Error(exception)
     }
 }

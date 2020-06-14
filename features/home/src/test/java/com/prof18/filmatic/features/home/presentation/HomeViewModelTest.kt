@@ -17,19 +17,16 @@
 package com.prof18.filmatic.features.home.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
-import com.prof18.filmatic.core.architecture.Result
 import com.prof18.filmatic.core.architecture.ViewState
-import com.prof18.filmatic.libraries.testshared.CoroutinesTestRule
-import com.prof18.filmatic.features.home.domain.entities.Movie
-import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
-import com.prof18.filmatic.libraries.testshared.getOrAwaitValue
-import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem
-import com.prof18.filmatic.libraries.testshared.provideFakeCoroutinesDispatcherProvider
 import com.prof18.filmatic.features.home.DataFactory
+import com.prof18.filmatic.features.home.FakeErrorHomeRepository
+import com.prof18.filmatic.features.home.FakeSuccessHomeRepository
+import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
+import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem
+import com.prof18.filmatic.libraries.testshared.CoroutinesTestRule
+import com.prof18.filmatic.libraries.testshared.getOrAwaitValue
+import com.prof18.filmatic.libraries.testshared.provideFakeCoroutinesDispatcherProvider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
@@ -51,37 +48,47 @@ class HomeViewModelTest {
     var coroutinesTestRule =
         CoroutinesTestRule()
 
-    private val popularMoviesUseCase = mock<GetPopularMoviesUseCase>()
+    private var successHomeRepository = FakeSuccessHomeRepository()
+    private var errorHomeRepository = FakeErrorHomeRepository()
+
+    private lateinit var getPopularMoviesUseCase: GetPopularMoviesUseCase
+
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
-    private val viewModel = HomeViewModel(
-        popularMoviesUseCase,
-        provideFakeCoroutinesDispatcherProvider(
-            testCoroutineDispatcher
-        )
-    )
+    private var viewModel: HomeViewModel? = null
 
     @After
     fun tearDown() {
+        viewModel = null
         testCoroutineDispatcher.cleanupTestCoroutines()
     }
 
     @Test
     fun fetchPopularMoviesShouldEmitLoadingAndThenSuccess() =
         testCoroutineDispatcher.runBlockingTest {
+
             val movie = DataFactory.getMovie()
-            stubGetPopularMovieUseCase(listOf(movie))
+
+            successHomeRepository.movies = listOf(movie)
+            getPopularMoviesUseCase = GetPopularMoviesUseCase(successHomeRepository)
+
+            viewModel = HomeViewModel(
+                getPopularMoviesUseCase,
+                provideFakeCoroutinesDispatcherProvider(
+                    testCoroutineDispatcher
+                )
+            )
 
             // Pause the dispatcher to observe the loading value
             testCoroutineDispatcher.pauseDispatcher()
 
-            viewModel.fetchExploreItems()
+            viewModel!!.fetchExploreItems()
 
-            val loadingResult = viewModel.exploreState.getOrAwaitValue()
+            val loadingResult = viewModel!!.exploreState.getOrAwaitValue()
             assertEquals(loadingResult, ViewState.Loading)
 
             testCoroutineDispatcher.resumeDispatcher()
 
-            val successResult = viewModel.exploreState.getOrAwaitValue()
+            val successResult = viewModel!!.exploreState.getOrAwaitValue()
 
             val successItems = (successResult as ViewState.Success<List<ExploreItem>>).data
             val collection = successItems
@@ -99,18 +106,27 @@ class HomeViewModelTest {
     fun fetchPopularMoviesShouldEmitLoadingAndThenError() =
         testCoroutineDispatcher.runBlockingTest {
             val exception = IOException("No network")
-            stubGetPopularMovieUseCaseWithError(exception)
+
+            errorHomeRepository.exception = exception
+            getPopularMoviesUseCase = GetPopularMoviesUseCase(errorHomeRepository)
+
+            viewModel = HomeViewModel(
+                getPopularMoviesUseCase,
+                provideFakeCoroutinesDispatcherProvider(
+                    testCoroutineDispatcher
+                )
+            )
 
             testCoroutineDispatcher.pauseDispatcher()
 
-            viewModel.fetchExploreItems()
+            viewModel?.fetchExploreItems()
 
-            val loadingResult = viewModel.exploreState.getOrAwaitValue()
+            val loadingResult = viewModel!!.exploreState.getOrAwaitValue()
             assertEquals(loadingResult, ViewState.Loading)
 
             testCoroutineDispatcher.resumeDispatcher()
 
-            val errorResult = viewModel.exploreState.getOrAwaitValue()
+            val errorResult = viewModel!!.exploreState.getOrAwaitValue()
             assertEquals(errorResult, ViewState.Error(exception.localizedMessage ?: ""))
         }
 
@@ -119,7 +135,17 @@ class HomeViewModelTest {
         val movie = DataFactory.getMovieWithNoBackdrop()
         val movies = listOf(movie, movie)
 
-        val randomMovie = viewModel.getNextMovieToSee(movies)
+        successHomeRepository.movies = movies
+        getPopularMoviesUseCase = GetPopularMoviesUseCase(successHomeRepository)
+
+        viewModel = HomeViewModel(
+            getPopularMoviesUseCase,
+            provideFakeCoroutinesDispatcherProvider(
+                testCoroutineDispatcher
+            )
+        )
+
+        val randomMovie = viewModel!!.getNextMovieToSee(movies)
 
         assertNull(randomMovie)
     }
@@ -129,19 +155,18 @@ class HomeViewModelTest {
         val movieWithImage = DataFactory.getMovie()
         val movies = listOf(movieWithImage, movieWithImage)
 
-        val randomMovie = viewModel.getNextMovieToSee(movies)
+        successHomeRepository.movies = movies
+        getPopularMoviesUseCase = GetPopularMoviesUseCase(successHomeRepository)
+
+        viewModel = HomeViewModel(
+            getPopularMoviesUseCase,
+            provideFakeCoroutinesDispatcherProvider(
+                testCoroutineDispatcher
+            )
+        )
+
+        val randomMovie = viewModel!!.getNextMovieToSee(movies)
         assertNotNull(randomMovie)
         assertEquals(randomMovie?.backdropUrl, movieWithImage.backdropUrl)
     }
-
-    private fun stubGetPopularMovieUseCase(list: List<Movie>) = runBlocking {
-        whenever(popularMoviesUseCase.execute())
-            .thenReturn(Result.Success(list))
-    }
-
-    private fun stubGetPopularMovieUseCaseWithError(exception: Exception) = runBlocking {
-        whenever(popularMoviesUseCase.execute())
-            .thenReturn(Result.Error(exception))
-    }
 }
-

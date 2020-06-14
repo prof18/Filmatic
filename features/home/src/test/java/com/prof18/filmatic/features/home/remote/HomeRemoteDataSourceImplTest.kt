@@ -16,77 +16,116 @@
 
 package com.prof18.filmatic.features.home.remote
 
-import com.nhaarman.mockitokotlin2.doThrow
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
 import com.prof18.filmatic.core.architecture.Result
-import com.prof18.filmatic.features.home.data.models.MovieModel
+import com.prof18.filmatic.features.home.DataFactory
+import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.remote.api.HomeService
 import com.prof18.filmatic.features.home.remote.mapper.MovieResultMapper
-import com.prof18.filmatic.features.home.remote.model.MovieResult
-import com.prof18.filmatic.features.home.remote.model.PopularMoviesResult
-import com.prof18.filmatic.features.home.DataFactory
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import okhttp3.OkHttpClient
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.MockWebServer
+import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import java.io.IOException
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+import java.net.HttpURLConnection
 
+@ExperimentalCoroutinesApi
 @RunWith(JUnit4::class)
 class HomeRemoteDataSourceImplTest {
 
-    private val homeService = mock<HomeService>()
-    private val mapper = mock<MovieResultMapper>()
-    private val remoteDataSource = HomeRemoteDataSourceImpl(homeService, mapper)
+    private lateinit var mockWebServer: MockWebServer
+    private lateinit var homeService: HomeService
+    private lateinit var remoteDataSource: HomeRemoteDataSource
+
+    @Before
+    fun setUp() {
+        mockWebServer = MockWebServer()
+        mockWebServer.start()
+
+        homeService = Retrofit.Builder()
+            .client(OkHttpClient.Builder().build())
+            .baseUrl(mockWebServer.url("/"))
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+            .create(HomeService::class.java)
+
+        remoteDataSource = HomeRemoteDataSourceImpl(homeService, MovieResultMapper())
+
+    }
+
+    @After
+    fun tearDown() {
+        mockWebServer.shutdown()
+    }
 
     @Test
     fun getPopularMoviesReturnsData() = runBlocking {
-        val moviesResult = DataFactory.getMovieResult()
-        val popularMovieResult = DataFactory.getPopularMovieResult(listOf(moviesResult))
+        val response = MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_OK)
+            .setBody(DataFactory.getPopularMovieJsonResponse())
 
-        val movieModel = DataFactory.getMovieModel()
+        mockWebServer.enqueue(response)
 
-        stubMapper(moviesResult, movieModel)
-        stubHomeServiceSuccess(popularMovieResult)
 
         val dataSourceResult = remoteDataSource.getPopularMovies()
         val movieModelList = (dataSourceResult as Result.Success).data
 
-        verify(homeService).getPopularMovies()
-        assertEquals(movieModelList[0].backdropPath, movieModel.backdropPath)
-        assertEquals(movieModelList[0].genreIds, movieModel.genreIds)
-        assertEquals(movieModelList[0].id, movieModel.id)
-        assertEquals(movieModelList[0].overview, movieModel.overview)
-        assertEquals(movieModelList[0].posterPath, movieModel.posterPath)
-        assertEquals(movieModelList[0].releaseDate, movieModel.releaseDate)
-        assertEquals(movieModelList[0].title, movieModel.title)
+        assertEquals(movieModelList[0].backdropPath, "/t93doi7EzoqLFckidrGGnukFPwd.jpg")
+        assertEquals(movieModelList[0].genreIds, listOf(28, 80, 53))
+        assertEquals(movieModelList[0].id, 339095)
+        assertEquals(
+            movieModelList[0].overview,
+            "In the not-too-distant future, where as a final response to crime and terrorism, the U.S. government plans to broadcast a signal that will make it impossible for anyone to knowingly break the law."
+        )
+        assertEquals(movieModelList[0].posterPath, "/ygCQnDEqUEIamBpdQdDYnFfxvgM.jpg")
+        assertEquals(movieModelList[0].releaseDate, "2020-06-05")
+        assertEquals(movieModelList[0].title, "The Last Days of American Crime")
+    }
+
+    @Test
+    fun getGenresReturnsData() = runBlocking {
+        val response = MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_OK)
+            .setBody(DataFactory.getAllGenresJsonResponse())
+
+        mockWebServer.enqueue(response)
+
+        val result = remoteDataSource.getAllGenres()
+        val genres = (result as Result.Success).data
+
+        assertEquals(genres.genres[0].name, "Action")
+        assertEquals(genres.genres[1].name, "Adventure")
     }
 
     @Test
     fun getPopularMoviesReturnsError() = runBlocking {
-        val exception = IOException("no network")
-        stubHomeServiceReturnsException(exception)
+        val response = MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_NOT_FOUND)
+            .setBody(DataFactory.getPopularMovieJsonResponse())
+
+        mockWebServer.enqueue(response)
 
         val result = remoteDataSource.getPopularMovies()
-        val dataSourceException = (result as Result.Error).exception
-
-        verify(homeService).getPopularMovies()
-        assertEquals(dataSourceException, exception)
+        assertTrue(result is Result.Error)
     }
 
-    private fun stubHomeServiceSuccess(popularMovieResult: PopularMoviesResult) = runBlocking {
-        whenever(homeService.getPopularMovies())
-            .thenReturn(popularMovieResult)
-    }
+    @Test
+    fun getGenresReturnsError() = runBlocking {
+        val response = MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_NOT_FOUND)
+            .setBody(DataFactory.getAllGenresJsonResponse())
 
-    private fun stubHomeServiceReturnsException(exception: Exception) = runBlocking {
-        doThrow(exception).whenever(homeService).getPopularMovies()
-    }
+        mockWebServer.enqueue(response)
 
-    private fun stubMapper(movieResult: MovieResult, model: MovieModel) {
-        whenever(mapper.map(movieResult))
-            .thenReturn(model)
+        val result = remoteDataSource.getAllGenres()
+        assertTrue(result is Result.Error)
     }
 }

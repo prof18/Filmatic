@@ -23,7 +23,7 @@ import com.prof18.filmatic.features.home.domain.entities.Movie
 import timber.log.Timber
 import javax.inject.Inject
 
-open class GetPopularMoviesUseCase @Inject constructor(
+open class GetPopularMoviesUseCase @Inject  constructor(
     private val homeRepository: HomeRepository
 ) : UseCase<List<Movie>, Nothing?>() {
 

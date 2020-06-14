@@ -17,17 +17,18 @@
 package com.prof18.filmatic.features.home.data
 
 import com.prof18.filmatic.core.architecture.Result
+import com.prof18.filmatic.features.home.data.mapper.GenreModelMapper
 import com.prof18.filmatic.features.home.data.mapper.MovieModelMapper
-import com.prof18.filmatic.features.home.remote.mapper.MovieResultMapper
-import com.prof18.filmatic.features.home.data.models.MovieModel
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.domain.HomeRepository
+import com.prof18.filmatic.features.home.domain.entities.Genre
 import com.prof18.filmatic.features.home.domain.entities.Movie
 import javax.inject.Inject
 
 class HomeRepositoryImpl @Inject constructor(
     private val homeRemoteDataSource: HomeRemoteDataSource,
-    private val mapper: MovieModelMapper
+    private val movieModelMapper: MovieModelMapper,
+    private val genreModelMapper: GenreModelMapper
 ) : HomeRepository {
 
     override suspend fun getPopularMovies(): Result<List<Movie>> {
@@ -38,13 +39,27 @@ class HomeRepositoryImpl @Inject constructor(
                 val popularMovies = result.data
                 val movies = popularMovies
                     .map { movieModel ->
-                        mapper.map(movieModel)
+                        movieModelMapper.map(movieModel)
                     }
                 return Result.Success(movies)
             }
             is Result.Error -> {
                 return Result.Error(result.exception)
             }
+        }
+    }
+
+    override suspend fun getGenres(): Result<List<Genre>> {
+        val result = homeRemoteDataSource.getAllGenres()
+
+        when(result) {
+            is Result.Success -> {
+                val genres = result.data.genres.map {
+                    genreModelMapper.map(it)
+                }
+                return Result.Success(genres)
+            }
+            is Result.Error -> return Result.Error(result.exception)
         }
     }
 }
