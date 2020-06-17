@@ -29,21 +29,18 @@ fun View.gone() {
     visibility = View.GONE
 }
 
-// Anko Replacement
 fun Context.longToast(message: String): Toast = Toast
     .makeText(this, message, Toast.LENGTH_LONG)
     .apply {
         show()
     }
 
-// Anko Replacement
 fun Context.toast(message: String): Toast = Toast
     .makeText(this, message, Toast.LENGTH_SHORT)
     .apply {
         show()
     }
 
-// Anko Replacement
 fun Activity.toast(message: String): Toast = Toast
     .makeText(this, message, Toast.LENGTH_SHORT)
     .apply {

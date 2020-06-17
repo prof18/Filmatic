@@ -16,9 +16,10 @@
 
 package com.prof18.filmatic
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.prof18.filmatic.core.utils.Actions
+import com.prof18.filmatic.features.home.presentation.HomeActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +28,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Decide what to open
-        startActivity(Actions.openHomeIntent(this))
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 }

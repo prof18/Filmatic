@@ -18,9 +18,7 @@ package com.prof18.filmatic.features.home.presentation.explore
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import coil.ImageLoader
@@ -28,13 +26,10 @@ import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.prof18.filmatic.core.architecture.ViewState
 import com.prof18.filmatic.core.architecture.activityViewModels
-import com.prof18.filmatic.core.dagger.helper.CoreInjectHelper
 import com.prof18.filmatic.core.utils.gone
 import com.prof18.filmatic.core.utils.visible
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.databinding.FragmentExploreBinding
-import com.prof18.filmatic.features.home.di.DaggerHomeComponent
-import com.prof18.filmatic.features.home.di.HomeComponent
 import com.prof18.filmatic.features.home.di.HomeComponentProvider
 import com.prof18.filmatic.features.home.presentation.HomeViewModel
 import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem

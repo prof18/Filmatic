@@ -21,7 +21,7 @@
 
     <fragment
             android:id="@+id/profileFragment"
-            android:name="com.prof18.filmatic.features.home.presentation.ProfileFragment"
+            android:name="com.prof18.filmatic.features.home.presentation.profile.ProfileFragment"
             android:label="ProfileFragment" />
 
 </navigation>

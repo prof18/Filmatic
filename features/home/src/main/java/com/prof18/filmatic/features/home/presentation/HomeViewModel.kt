@@ -23,11 +23,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
 import com.prof18.filmatic.core.architecture.Result
-import com.prof18.filmatic.core.architecture.SingleLiveEvent
 import com.prof18.filmatic.core.architecture.ViewState
 import com.prof18.filmatic.core.utils.Utils.retry
 import com.prof18.filmatic.features.home.R
+import com.prof18.filmatic.features.home.domain.entities.Genre
 import com.prof18.filmatic.features.home.domain.entities.Movie
+import com.prof18.filmatic.features.home.domain.usecases.GetGenresUseCase
 import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
 import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem
 import com.prof18.filmatic.features.home.presentation.explore.model.ItemHorizontalCollection
@@ -39,6 +40,7 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val popularMoviesUseCase: GetPopularMoviesUseCase,
+    private val genresUseCase: GetGenresUseCase,
     private val dispatcherProvider: CoroutinesDispatcherProvider
 ) : ViewModel() {
 
@@ -47,14 +49,15 @@ class HomeViewModel @Inject constructor(
     val exploreState: LiveData<ViewState<List<ExploreItem>>>
         get() = _exploreState
 
+    private val _discoverState = MutableLiveData<ViewState<List<Genre>>>()
+    val discoverState: LiveData<ViewState<List<Genre>>>
+        get() = _discoverState
+
     fun fetchExploreItems() {
         _exploreState.postValue(ViewState.Loading)
 
-
-        viewModelScope.launch(dispatcherProvider.io) {
-
+        viewModelScope.launch(dispatcherProvider.main) {
             val result = popularMoviesUseCase.execute()
-
             when (result) {
                 is Result.Success -> {
                     val exploreItems = generateExploreItems(result.data)
@@ -125,7 +128,7 @@ class HomeViewModel @Inject constructor(
                 if (movie.backdropUrl == null) {
                     throw IllegalArgumentException("No image url!")
                 } else {
-                    movieToReturn =  movie
+                    movieToReturn = movie
                     return@retry
                 }
             }
@@ -136,5 +139,23 @@ class HomeViewModel @Inject constructor(
     }
 
 
+    fun fetchGenres() {
+        _discoverState.postValue(ViewState.Loading)
+
+        viewModelScope.launch(dispatcherProvider.main) {
+            val genreResult = genresUseCase.execute()
+            when (genreResult) {
+                is Result.Success -> {
+                    val genres = genreResult.data
+                    _discoverState.postValue(ViewState.Success(genres))
+                }
+                is Result.Error -> {
+                    // TODO: Maybe add an error mapper
+                    val error = genreResult.exception
+                    _discoverState.postValue(ViewState.Error(error.localizedMessage ?: ""))
+                }
+            }
+        }
+    }
 
 }

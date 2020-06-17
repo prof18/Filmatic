@@ -18,9 +18,9 @@ package com.prof18.filmatic.features.home.di
 
 import com.prof18.filmatic.core.dagger.CoreComponent
 import com.prof18.filmatic.core.dagger.scope.FeatureScope
-import com.prof18.filmatic.features.home.presentation.DiscoverFragment
+import com.prof18.filmatic.features.home.presentation.discover.DiscoverFragment
 import com.prof18.filmatic.features.home.presentation.explore.ExploreFragment
-import com.prof18.filmatic.features.home.presentation.ProfileFragment
+import com.prof18.filmatic.features.home.presentation.profile.ProfileFragment
 import dagger.Component
 
 @Component(

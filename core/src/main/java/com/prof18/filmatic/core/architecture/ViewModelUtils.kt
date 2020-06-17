@@ -24,6 +24,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import javax.inject.Provider
 
+/**
+ * From https://proandroiddev.com/dagger-dependencies-beyond-the-basics-53474e48f932
+ */
+
 inline fun <reified VM : ViewModel> AppCompatActivity.viewModels(crossinline producer: () -> Provider<VM>): Lazy<VM> =
     viewModels {
         object : ViewModelProvider.Factory {

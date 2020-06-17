@@ -22,26 +22,27 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.prof18.filmatic.core.utils.toast
 import com.prof18.filmatic.features.home.R
+import com.prof18.filmatic.features.home.databinding.ItemGenreBinding
+import com.prof18.filmatic.features.home.domain.entities.Genre
 
-//class GenreAdapter(val items: List<Genre>) :
-//    RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-//        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_genre, parent, false))
-//
-//    override fun getItemCount() = items.size
-//
-//    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-//        holder.bind(items[position])
-//
-//    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        fun bind(item: Genre) {
-//            itemView.genre_title.text = item.name
-//
-//            itemView.genre_title.setOnClickListener {
-//                itemView.context.toast("Genre Clicked")
-//            }
-//
-//        }
-//    }
-//}
+class GenreAdapter(val items: List<Genre>) :
+    RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ViewHolder(ItemGenreBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+
+    override fun getItemCount() = items.size
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(items[position])
+
+    inner class ViewHolder(private val binding: ItemGenreBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Genre) {
+            binding.genreTitle.text = item.name
+
+            binding.genreTitle.setOnClickListener {
+                itemView.context.toast("Genre Clicked")
+            }
+        }
+    }
+}

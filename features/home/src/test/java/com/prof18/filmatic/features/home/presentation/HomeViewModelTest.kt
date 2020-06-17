@@ -21,6 +21,8 @@ import com.prof18.filmatic.core.architecture.ViewState
 import com.prof18.filmatic.features.home.DataFactory
 import com.prof18.filmatic.features.home.FakeErrorHomeRepository
 import com.prof18.filmatic.features.home.FakeSuccessHomeRepository
+import com.prof18.filmatic.features.home.domain.entities.Genre
+import com.prof18.filmatic.features.home.domain.usecases.GetGenresUseCase
 import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
 import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem
 import com.prof18.filmatic.libraries.testshared.CoroutinesTestRule
@@ -52,6 +54,7 @@ class HomeViewModelTest {
     private var errorHomeRepository = FakeErrorHomeRepository()
 
     private lateinit var getPopularMoviesUseCase: GetPopularMoviesUseCase
+    private lateinit var getGenresUseCase: GetGenresUseCase
 
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
     private var viewModel: HomeViewModel? = null
@@ -70,9 +73,11 @@ class HomeViewModelTest {
 
             successHomeRepository.movies = listOf(movie)
             getPopularMoviesUseCase = GetPopularMoviesUseCase(successHomeRepository)
+            getGenresUseCase = GetGenresUseCase(successHomeRepository)
 
             viewModel = HomeViewModel(
                 getPopularMoviesUseCase,
+                getGenresUseCase,
                 provideFakeCoroutinesDispatcherProvider(
                     testCoroutineDispatcher
                 )
@@ -109,9 +114,11 @@ class HomeViewModelTest {
 
             errorHomeRepository.exception = exception
             getPopularMoviesUseCase = GetPopularMoviesUseCase(errorHomeRepository)
+            getGenresUseCase = GetGenresUseCase(successHomeRepository)
 
             viewModel = HomeViewModel(
                 getPopularMoviesUseCase,
+                getGenresUseCase,
                 provideFakeCoroutinesDispatcherProvider(
                     testCoroutineDispatcher
                 )
@@ -137,9 +144,11 @@ class HomeViewModelTest {
 
         successHomeRepository.movies = movies
         getPopularMoviesUseCase = GetPopularMoviesUseCase(successHomeRepository)
+        getGenresUseCase = GetGenresUseCase(successHomeRepository)
 
         viewModel = HomeViewModel(
             getPopularMoviesUseCase,
+            getGenresUseCase,
             provideFakeCoroutinesDispatcherProvider(
                 testCoroutineDispatcher
             )
@@ -157,9 +166,11 @@ class HomeViewModelTest {
 
         successHomeRepository.movies = movies
         getPopularMoviesUseCase = GetPopularMoviesUseCase(successHomeRepository)
+        getGenresUseCase = GetGenresUseCase(successHomeRepository)
 
         viewModel = HomeViewModel(
             getPopularMoviesUseCase,
+            getGenresUseCase,
             provideFakeCoroutinesDispatcherProvider(
                 testCoroutineDispatcher
             )
@@ -169,4 +180,72 @@ class HomeViewModelTest {
         assertNotNull(randomMovie)
         assertEquals(randomMovie?.backdropUrl, movieWithImage.backdropUrl)
     }
+
+    @Test
+    fun fetchGenresShouldEmitLoadingAndThenSuccess() =
+        testCoroutineDispatcher.runBlockingTest {
+
+            val genre = DataFactory.getGenre()
+
+            successHomeRepository.genres = listOf(genre)
+            getPopularMoviesUseCase = GetPopularMoviesUseCase(successHomeRepository)
+            getGenresUseCase = GetGenresUseCase(successHomeRepository)
+
+            viewModel = HomeViewModel(
+                getPopularMoviesUseCase,
+                getGenresUseCase,
+                provideFakeCoroutinesDispatcherProvider(
+                    testCoroutineDispatcher
+                )
+            )
+
+            // Pause the dispatcher to observe the loading value
+            testCoroutineDispatcher.pauseDispatcher()
+
+            viewModel!!.fetchGenres()
+
+            val loadingResult = viewModel!!.discoverState.getOrAwaitValue()
+            assertEquals(loadingResult, ViewState.Loading)
+
+            testCoroutineDispatcher.resumeDispatcher()
+
+            val successResult = viewModel!!.discoverState.getOrAwaitValue()
+
+            val successItems = (successResult as ViewState.Success<List<Genre>>).data
+
+            assertEquals(genre.name, successItems.first().name)
+            assertEquals(genre.id, successItems.first().id)
+
+        }
+
+    @Test
+    fun fetchGenresShouldEmitLoadingAndThenError() =
+        testCoroutineDispatcher.runBlockingTest {
+            val exception = IOException("No network")
+
+            errorHomeRepository.exception = exception
+            getPopularMoviesUseCase = GetPopularMoviesUseCase(errorHomeRepository)
+            getGenresUseCase = GetGenresUseCase(errorHomeRepository)
+
+            viewModel = HomeViewModel(
+                getPopularMoviesUseCase,
+                getGenresUseCase,
+                provideFakeCoroutinesDispatcherProvider(
+                    testCoroutineDispatcher
+                )
+            )
+
+            testCoroutineDispatcher.pauseDispatcher()
+
+            viewModel?.fetchGenres()
+
+            val loadingResult = viewModel!!.discoverState.getOrAwaitValue()
+            assertEquals(loadingResult, ViewState.Loading)
+
+            testCoroutineDispatcher.resumeDispatcher()
+
+            val errorResult = viewModel!!.discoverState.getOrAwaitValue()
+            assertEquals(errorResult, ViewState.Error(exception.localizedMessage ?: ""))
+        }
+
 }

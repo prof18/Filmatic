@@ -14,12 +14,28 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.presentation
+package com.prof18.filmatic.features.home.presentation.profile
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.prof18.filmatic.features.home.R
 
+class ProfileFragment : Fragment() {
 
-class DiscoverFragment : Fragment(R.layout.fragment_discover) {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_profile, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
 }
