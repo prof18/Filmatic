@@ -21,5 +21,10 @@ plugins {
 }
 // Required since Gradle 4.10+.
 repositories {
+    google()
     jcenter()
+}
+
+dependencies {
+    implementation("com.android.tools.build:gradle:4.2.0-alpha01" )
 }

@@ -1,20 +1,22 @@
-    /*
- * Copyright 2019 Marco Gomiero
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+/*
+* Copyright 2019 Marco Gomiero
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 @file:Suppress("MayBeConstant")
+
+import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Versions {
 
@@ -133,11 +135,21 @@ object Deps {
 
     val gradleVersion = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersion}"
     val coil = "io.coil-kt:coil:${Versions.coil}"
+}
 
+fun DependencyHandler.applyCommonDeps() {
+    add("implementation", Deps.kotlin)
+    add("implementation", Deps.appcompat)
+    add("implementation", Deps.lifecycleExtensions)
+    add("implementation", Deps.dagger)
+    add("implementation", Deps.constraintLayout)
+    add("implementation", Deps.design)
+    add("implementation", Deps.timber)
+    add("implementation", Deps.ktx)
 }
 
 object TestLibraries {
-    val testOrchestrator = "androidx.test:orchestrator:${Versions.orchestrator  }"
+    val testOrchestrator = "androidx.test:orchestrator:${Versions.orchestrator}"
     val junit = "junit:junit:${Versions.junit}"
     val assertjCore = "org.assertj:assertj-core:${Versions.assertjCore}"
     val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"
@@ -156,3 +168,33 @@ object TestLibraries {
     val retrofitMock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
     val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
 }
+
+fun DependencyHandler.applyTests() {
+    add("kapt", Deps.daggerCompiler)
+    add("testImplementation", TestLibraries.fragmentTesting)
+    add("testImplementation", TestLibraries.junit)
+    add("testImplementation", TestLibraries.mockitoKotlin)
+    add("testImplementation", TestLibraries.mockitoInline)
+    add("testImplementation", TestLibraries.mockitoCore)
+    add("testImplementation", TestLibraries.faker)
+    add("testImplementation", TestLibraries.archTesting)
+    add("testImplementation", TestLibraries.coroutineTest)
+    add("testImplementation", TestLibraries.mockWebServer)
+
+    add("androidTestImplementation", TestLibraries.archTesting)
+    add("androidTestImplementation", TestLibraries.coroutineTest)
+    add("androidTestImplementation", TestLibraries.mockitoAndroid)
+    add("androidTestImplementation", TestLibraries.mockitoKotlin)
+    add("androidTestImplementation", TestLibraries.archTesting)
+    add("androidTestImplementation", TestLibraries.espressoCore)
+    add("androidTestImplementation", TestLibraries.espressoContrib)
+    add("androidTestImplementation", TestLibraries.extJunit)
+    add("androidTestImplementation", TestLibraries.testRunner)
+    add("androidTestImplementation", TestLibraries.testRules)
+    add("androidTestImplementation", TestLibraries.retrofitMock)
+    add("androidTestImplementation", TestLibraries.mockWebServer)
+    add("androidTestImplementation", "com.jakewharton.espresso:okhttp3-idling-resource:1.0.0")
+}
+
+
+

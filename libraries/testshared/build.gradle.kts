@@ -15,13 +15,24 @@
  */
 
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id("com.android.library" )
+    id("kotlin-android" )
 }
 
+android { applyAndroidConfig() }
+
 dependencies {
-    implementation Deps.appcompat
-    implementation Deps.design
-    implementation Deps.constraintLayout
+    implementation(project(":core"))
+
+    implementation(Deps.kotlin)
+    implementation(Deps.coroutinesAndroid)
+    implementation(Deps.coroutinesCore)
+    implementation(Deps.lifecycleExtensions)
+    implementation(Deps.recyclerview)
+    implementation(Deps.coil)
+
+    implementation(TestLibraries.espressoCore)
+    implementation(TestLibraries.archTesting)
+    implementation(TestLibraries.coroutineTest)
+    implementation(TestLibraries.junit)
 }

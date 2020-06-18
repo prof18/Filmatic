@@ -66,7 +66,7 @@ class HomeModule {
     ): HomeService {
         return Retrofit.Builder()
             .client(client)
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl("https://api.themoviedb.org/3")
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(HomeService::class.java)

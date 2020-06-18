@@ -15,22 +15,23 @@
  */
 
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    id("com.android.library" )
+    id("kotlin-android" )
+    id("kotlin-android-extensions" )
+    id("kotlin-kapt" )
+}
+
+android {
+    applyAndroidConfig()
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
+        }
+    }
 }
 
 dependencies {
-    implementation project(":core")
-
-    implementation Deps.kotlin
-    implementation Deps.coroutinesAndroid
-    implementation Deps.coroutinesCore
-    implementation Deps.lifecycleExtensions
-    implementation Deps.recyclerview
-    implementation Deps.coil
-
-    implementation TestLibraries.espressoCore
-    implementation TestLibraries.archTesting
-    implementation TestLibraries.coroutineTest
-    implementation TestLibraries.junit
+    implementation(Deps.dagger)
+    implementation(Deps.ktx)
 }

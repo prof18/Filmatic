@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
+plugins {
+    id("com.android.library" )
+    id("kotlin-android" )
+    id("kotlin-android-extensions" )
+}
+
+android { applyAndroidConfig() }
+
 dependencies {
-    implementation Deps.kotlin
-    implementation Deps.appcompat
-    implementation Deps.lifecycleExtensions
-    implementation Deps.dagger
-    implementation Deps.constraintLayout
-    implementation Deps.design
-    implementation Deps.timber
-    implementation Deps.ktx
+    implementation(Deps.appcompat)
+    implementation(Deps.design)
+    implementation(Deps.constraintLayout)
 }

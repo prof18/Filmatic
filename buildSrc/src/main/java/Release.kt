@@ -16,7 +16,7 @@
 
 @file:Suppress("MayBeConstant")
 
-object Releases {
+object Release {
     val versionCode = 1
     val versionName = "1.0"
 }
