@@ -20,7 +20,13 @@ plugins {
     id("kotlin-android-extensions" )
 }
 
-android { applyAndroidConfig() }
+android {
+    applyAndroidConfig()
+
+    buildFeatures {
+        viewBinding= true
+    }
+}
 
 dependencies {
     implementation(Deps.appcompat)

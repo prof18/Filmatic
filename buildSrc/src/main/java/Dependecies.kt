@@ -20,7 +20,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Versions {
 
-    val gradle = "4.2.0-alpha01"
+    val gradle = "4.2.0-alpha02"
     val kotlin = "1.3.72"
 
 
