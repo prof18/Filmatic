@@ -32,6 +32,6 @@ android {
 }
 
 dependencies {
-    implementation(Deps.dagger)
+    implementation(Deps.hilt)
     implementation(Deps.ktx)
 }

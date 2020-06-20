@@ -48,12 +48,6 @@ dependencies {
     implementation(project(":libraries:uicomponents"))
     implementation(project(":libraries:preferences"))
 
-    implementation(Deps.hilt)
-    kapt(Deps.hiltCompiler)
-
-    implementation(Deps.hiltAndroidX)
-    kapt(Deps.hiltAndroidXCompiler)
-
     implementation(Deps.retrofit)
     implementation(Deps.moshi)
     implementation(Deps.moshiConverter)
@@ -67,8 +61,11 @@ dependencies {
     // Kapt
     kapt(Deps.lifecycleCompiler)
     kapt(Deps.moshiCodeGen)
-    kapt(Deps.daggerCompiler)
 
     testImplementation(project(":libraries:testshared"))
     androidTestImplementation(project(":libraries:testshared"))
+
+    androidTestImplementation(Deps.hiltTesting)
+    kaptAndroidTest(Deps.hiltCompiler)
+    kaptAndroidTest(Deps.hiltAndroidXCompiler)
 }

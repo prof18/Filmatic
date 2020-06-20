@@ -30,7 +30,9 @@ dependencies {
     implementation(Deps.lifecycleExtensions)
     implementation(Deps.recyclerview)
     implementation(Deps.coil)
+    implementation(Deps.ktx)
 
+    implementation(TestLibraries.fragmentTesting)
     implementation(TestLibraries.espressoCore)
     implementation(TestLibraries.archTesting)
     implementation(TestLibraries.coroutineTest)

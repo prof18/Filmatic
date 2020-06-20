@@ -36,7 +36,6 @@ object Versions {
     val ktx = "1.3.0-alpha02"
 
     val coroutines = "1.3.6"
-    val dagger = "2.28"
     val room = "2.1.0-rc01"
 
     val timber = "4.7.1"
@@ -58,6 +57,7 @@ object Versions {
     val coil = "0.11.0"
 
     val hilt = "2.28-alpha"
+    val hiltAndroidX = "1.0.0-alpha01"
 
     // Testing
     val mockito = "3.3.3"
@@ -117,11 +117,6 @@ object Deps {
     val crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}"
 
 
-    // Dagger
-    val dagger = "com.google.dagger:dagger:${Versions.dagger}"
-    val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
-
-
     // Coroutines
     val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     val coroutinesAndroid =
@@ -138,12 +133,13 @@ object Deps {
     val gradleVersion = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersion}"
     val coil = "io.coil-kt:coil:${Versions.coil}"
 
+    // Hilt
     val hiltGradle = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
     val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
-
-    val hiltAndroidX = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt}"
-    val hiltAndroidXCompiler = "androidx.hilt:hilt-compiler:${Versions.hilt}"
+    val hiltAndroidX = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltAndroidX}"
+    val hiltAndroidXCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltAndroidX}"
+    val hiltTesting = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
 
 }
 
@@ -151,11 +147,14 @@ fun DependencyHandler.applyCommonDeps() {
     add("implementation", Deps.kotlin)
     add("implementation", Deps.appcompat)
     add("implementation", Deps.lifecycleExtensions)
-    add("implementation", Deps.dagger)
     add("implementation", Deps.constraintLayout)
     add("implementation", Deps.design)
     add("implementation", Deps.timber)
     add("implementation", Deps.ktx)
+    add("implementation", Deps.hilt)
+    add("implementation", Deps.hiltAndroidX)
+    add("kapt", Deps.hiltCompiler)
+    add("kapt", Deps.hiltAndroidXCompiler)
 }
 
 object TestLibraries {
@@ -182,7 +181,7 @@ object TestLibraries {
 }
 
 fun DependencyHandler.applyTests() {
-    add("kapt", Deps.daggerCompiler)
+    add("implementation", TestLibraries.fragmentTesting)
     add("testImplementation", TestLibraries.fragmentTesting)
     add("testImplementation", TestLibraries.junit)
     add("testImplementation", TestLibraries.mockitoKotlin)

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Marco Gomiero
+ * Copyright 2020 Marco Gomiero
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.core.dagger.scope
+package com.prof18.filmatic.features.home
 
-import javax.inject.Scope
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * Scope for a feature module.
- */
-@Scope
-@Retention(AnnotationRetention.RUNTIME)
-annotation class FeatureScope
+@AndroidEntryPoint
+class HiltTestActivity : AppCompatActivity()

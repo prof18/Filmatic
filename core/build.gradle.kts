@@ -35,9 +35,6 @@ android {
 dependencies {
     implementation(project(":libraries:preferences"))
 
-    implementation(Deps.dagger)
-    kapt(Deps.daggerCompiler)
-
     implementation(Deps.hilt)
     kapt(Deps.hiltCompiler)
 

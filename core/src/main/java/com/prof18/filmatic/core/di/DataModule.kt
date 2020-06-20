@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.core.dagger
+package com.prof18.filmatic.core.di
 
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.prof18.filmatic.libraries.preferences.Preferences
@@ -24,10 +23,15 @@ import com.prof18.filmatic.libraries.preferences.UserPreferences
 import com.prof18.filmatic.libraries.preferences.UserPreferencesImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
+
+@InstallIn(ApplicationComponent::class)
 @Module
-class DataModule(private val application: Application) {
+class DataModule {
 
     @Provides
     @Singleton
@@ -35,13 +39,10 @@ class DataModule(private val application: Application) {
         UserPreferencesImpl(sharedPreferences)
 
     @Provides
-    fun getUserSharedPreferences(context: Context): SharedPreferences =
+    @Singleton
+    fun getUserSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
         context.applicationContext.getSharedPreferences(
             Preferences.USER_PREFERENCES,
             Context.MODE_PRIVATE
         )
-
-    @Provides
-    @Singleton
-    fun provideContext(): Context = application.applicationContext
 }
