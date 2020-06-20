@@ -17,39 +17,41 @@
 package com.prof18.filmatic.features.home.presentation.explore
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.whenever
-import com.prof18.filmatic.features.home.HomeTestApp
 import com.prof18.filmatic.features.home.MockResponses
 import com.prof18.filmatic.features.home.R
-import com.prof18.filmatic.features.home.di.TestHomeComponent
+import com.prof18.filmatic.features.home.di.HomeModule
+import com.prof18.filmatic.features.home.launchFragmentInHiltContainer
 import com.prof18.filmatic.features.home.remote.api.HomeService
 import com.prof18.filmatic.features.home.remote.model.PopularMoviesResult
 import com.prof18.filmatic.libraries.testshared.CoroutinesTestRule
 import com.prof18.filmatic.libraries.testshared.RecyclerViewAssertions
 import com.prof18.filmatic.libraries.testshared.RecyclerViewMatcher
 import com.prof18.filmatic.libraries.testshared.Utils.getResourceString
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import java.io.IOException
+import javax.inject.Inject
 
+@UninstallModules(HomeModule::class)
+@HiltAndroidTest
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
 class ExploreFragmentTest {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -57,29 +59,26 @@ class ExploreFragmentTest {
     @get:Rule
     var coroutinesTestRule = CoroutinesTestRule()
 
-    private lateinit var service: HomeService
-    private lateinit var testDispatcher: TestCoroutineDispatcher
+    @Inject
+     lateinit var service: HomeService
+//    @Inject
+//     lateinit var testDispatcher: TestCoroutineDispatcher
 
     @Before
-    fun setup() {
-        val app =
-            InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as HomeTestApp
-        val homeComponent = (app.getHomeComponent() as TestHomeComponent)
-        service = homeComponent.provideHomeService()
-        testDispatcher =
-            homeComponent.provideCoroutineDisparcherProvider().computation as TestCoroutineDispatcher
-
+    fun init() {
+        hiltRule.inject()
     }
+
 
     @After
     fun tearDown() {
-        testDispatcher.cleanupTestCoroutines()
+//        testDispatcher.cleanupTestCoroutines()
     }
 
     @Test
     fun checkErrorViewIsShowed() {
         stubServiceWithError()
-        launchFragmentInContainer<ExploreFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInHiltContainer<ExploreFragment>(themeResId = R.style.AppTheme)
         onView(withId(R.id.ExplorErrorAnimation)).check(matches(isDisplayed()))
         onView(withId(R.id.ExploreLoadingAnimation)).check(matches(not(isDisplayed())))
         onView(withId(R.id.EXPLORE_recycler_view)).check(matches(not(isDisplayed())))
@@ -90,7 +89,7 @@ class ExploreFragmentTest {
         val popularResult = MockResponses.getEmptyPopularMovieResult()
         stubServiceWithData(popularResult)
 
-        launchFragmentInContainer<ExploreFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInHiltContainer<ExploreFragment>(themeResId = R.style.AppTheme)
 
         onView(withId(R.id.EXPLORE_recycler_view)).check(matches(isDisplayed()))
         onView(withId(R.id.EXPLORE_recycler_view)).check(RecyclerViewAssertions.hasItemsCount(0))
@@ -101,7 +100,7 @@ class ExploreFragmentTest {
         val popularResult = MockResponses.getPopularMovieResult()
         stubServiceWithData(popularResult)
 
-        launchFragmentInContainer<ExploreFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInHiltContainer<ExploreFragment>(themeResId = R.style.AppTheme)
 
         onView(listMatcher().atPosition(0))
             .check(matches(hasDescendant(withText(getResourceString(R.string.EXPLORE_popular_title)))))

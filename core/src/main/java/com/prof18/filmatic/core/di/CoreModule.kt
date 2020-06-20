@@ -14,39 +14,45 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.core.dagger
+package com.prof18.filmatic.core.di
 
 import com.prof18.filmatic.core.BuildConfig
 import com.prof18.filmatic.core.net.AuthInterceptor
 import com.prof18.filmatic.libraries.preferences.UserPreferences
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class CoreModule {
 
     @Provides
+    @Singleton
     fun provideOkHttpClient(
-        interceptor: AuthInterceptor,
-        httpLoggingInterceptor: HttpLoggingInterceptor
-    ): OkHttpClient =
-        OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor(httpLoggingInterceptor)
-            .build()
+        interceptor: AuthInterceptor
+    ): OkHttpClient {
 
-
-    @Provides
-    fun provideAuthInterceptor(userPreferences: UserPreferences): AuthInterceptor =
-        AuthInterceptor(userPreferences)
-
-    @Provides
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().apply {
+        val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BODY
             } else {
                 HttpLoggingInterceptor.Level.NONE
             }
         }
+
+        return OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor(httpLoggingInterceptor)
+            .build()
+
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthInterceptor(userPreferences: UserPreferences): AuthInterceptor =
+        AuthInterceptor(userPreferences)
+
 }

@@ -20,38 +20,31 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import coil.ImageLoader
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.prof18.filmatic.core.architecture.ViewState
-import com.prof18.filmatic.core.architecture.activityViewModels
 import com.prof18.filmatic.core.utils.gone
 import com.prof18.filmatic.core.utils.visible
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.databinding.FragmentExploreBinding
-import com.prof18.filmatic.features.home.di.HomeComponentProvider
 import com.prof18.filmatic.features.home.presentation.HomeViewModel
 import com.prof18.filmatic.features.home.presentation.explore.model.ExploreItem
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
-import javax.inject.Provider
 
+@AndroidEntryPoint
 class ExploreFragment : Fragment(R.layout.fragment_explore) {
-
-    @Inject
-    lateinit var viewModelProvider: Provider<HomeViewModel>
 
     @Inject lateinit var imageLoader: ImageLoader
 
-
-    private val viewModel by activityViewModels { viewModelProvider }
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val component = (requireActivity().application as HomeComponentProvider).getHomeComponent()
-        component.inject(this)
-
         viewModel.fetchExploreItems()
     }
 

@@ -19,8 +19,8 @@ package com.prof18.filmatic.features.home
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import android.os.StrictMode
 import androidx.test.runner.AndroidJUnitRunner
+import dagger.hilt.android.testing.HiltTestApplication
 
 class FilmaticTestRunner : AndroidJUnitRunner() {
     override fun onCreate(arguments: Bundle?) {
@@ -29,6 +29,6 @@ class FilmaticTestRunner : AndroidJUnitRunner() {
     }
 
     override fun newApplication(cl: ClassLoader, className: String, context: Context): Application {
-        return super.newApplication(cl, HomeTestApp::class.java.name, context)
+        return super.newApplication(cl, HiltTestApplication::class.java.name, context)
     }
 }

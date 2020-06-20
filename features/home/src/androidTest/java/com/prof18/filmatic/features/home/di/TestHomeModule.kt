@@ -16,52 +16,44 @@
 
 package com.prof18.filmatic.features.home.di
 
-import android.content.Context
 import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
 import com.nhaarman.mockitokotlin2.mock
 import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
-import com.prof18.filmatic.core.dagger.scope.FeatureScope
 import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
-import com.prof18.filmatic.features.home.data.mapper.MovieModelMapper
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.domain.HomeRepository
 import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
 import com.prof18.filmatic.features.home.remote.HomeRemoteDataSourceImpl
 import com.prof18.filmatic.features.home.remote.api.HomeService
-import com.prof18.filmatic.features.home.remote.mapper.MovieResultMapper
 import com.prof18.filmatic.libraries.testshared.fakeImageLoader
 import com.prof18.filmatic.libraries.testshared.provideFakeCoroutinesDispatcherProvider
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
-import okhttp3.OkHttpClient
+import javax.inject.Singleton
 
-
+@InstallIn(ApplicationComponent::class)
 @ExperimentalCoilApi
 @Module
 class TestHomeModule {
 
     @Provides
-    @FeatureScope
-    fun provideImageLoader(
-        context: Context,
-        okHttpClient: OkHttpClient
-    ): ImageLoader {
+    fun provideImageLoader(): ImageLoader {
         return fakeImageLoader
     }
 
 
     @Provides
-    @FeatureScope
     fun provideUseCase(repository: HomeRepository): GetPopularMoviesUseCase {
         return GetPopularMoviesUseCase(repository)
     }
 
     @ExperimentalCoroutinesApi
     @Provides
-    @FeatureScope
     fun provideCoroutineDispatcher(): CoroutinesDispatcherProvider {
         return provideFakeCoroutinesDispatcherProvider(
             TestCoroutineDispatcher()
@@ -69,22 +61,18 @@ class TestHomeModule {
     }
 
     @Provides
-    @FeatureScope
     fun provideHomePresenter(homeRepository: HomeRepositoryImpl): HomeRepository {
         return homeRepository
     }
 
     @Provides
-    @FeatureScope
     fun provideRemoteDataSource(homeRemoteDataSourceImpl: HomeRemoteDataSourceImpl): HomeRemoteDataSource {
         return homeRemoteDataSourceImpl
     }
 
     @Provides
-    @FeatureScope
+    @Singleton
     fun provideHomeService(): HomeService {
         return mock()
     }
-
-
 }

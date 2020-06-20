@@ -19,6 +19,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-android-extensions")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -60,8 +61,11 @@ dependencies {
     // Kapt
     kapt(Deps.lifecycleCompiler)
     kapt(Deps.moshiCodeGen)
-    kapt(Deps.daggerCompiler)
 
     testImplementation(project(":libraries:testshared"))
     androidTestImplementation(project(":libraries:testshared"))
+
+    androidTestImplementation(Deps.hiltTesting)
+    kaptAndroidTest(Deps.hiltCompiler)
+    kaptAndroidTest(Deps.hiltAndroidXCompiler)
 }

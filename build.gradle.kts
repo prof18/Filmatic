@@ -32,6 +32,7 @@ buildscript {
         classpath(Deps.kotlinGradle)
         classpath(Deps.kotlinAndroid)
         classpath(Deps.gradleVersion)
+        classpath(Deps.hiltGradle)
     }
 }
 

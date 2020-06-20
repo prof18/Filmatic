@@ -19,6 +19,7 @@ plugins {
     id("kotlin-android" )
     id("kotlin-android-extensions" )
     id("kotlin-kapt" )
+    id("dagger.hilt.android.plugin" )
 }
 
 android {
@@ -33,6 +34,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":features:home"))
     implementation(project(":libraries:uicomponents"))
+    implementation(project(":libraries:preferences"))
 
     implementation(Deps.kotlin)
     implementation(Deps.appcompat)
@@ -41,8 +43,15 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.constraintLayout)
 
+    implementation(Deps.hilt)
+    kapt(Deps.hiltCompiler)
+    implementation(Deps.hiltAndroidX)
+    kapt(Deps.hiltAndroidXCompiler)
+
     implementation(Deps.timber)
 
-    implementation(Deps.dagger)
-    kapt(Deps.daggerCompiler)
+    implementation(Deps.retrofit)
+    implementation(Deps.loggingInterceptor)
+    implementation(Deps.coil)
+    implementation(Deps.lottie)
 }

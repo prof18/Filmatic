@@ -19,8 +19,9 @@ package com.prof18.filmatic.features.home.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.prof18.filmatic.features.home.R
-import com.prof18.filmatic.features.home.presentation.NavigationBottomBarSectionsStateKeeperWorkaround
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private val navSectionsStateKeeper by lazy {
         NavigationBottomBarSectionsStateKeeperWorkaround(

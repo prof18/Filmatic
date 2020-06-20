@@ -17,6 +17,7 @@
 package com.prof18.filmatic.features.home.presentation
 
 import androidx.annotation.VisibleForTesting
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,9 +37,8 @@ import com.prof18.filmatic.libraries.uicomponents.listitem.ItemHeader
 import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBig
 import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBottomTitle
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
+class HomeViewModel @ViewModelInject constructor(
     private val popularMoviesUseCase: GetPopularMoviesUseCase,
     private val genresUseCase: GetGenresUseCase,
     private val dispatcherProvider: CoroutinesDispatcherProvider

@@ -17,60 +17,16 @@
 package com.prof18.filmatic
 
 import android.app.Application
-import com.prof18.filmatic.core.dagger.CoreComponent
-import com.prof18.filmatic.core.dagger.DaggerCoreComponent
-import com.prof18.filmatic.core.dagger.DataModule
-import com.prof18.filmatic.core.dagger.helper.CoreComponentProvider
-import com.prof18.filmatic.features.home.di.DaggerHomeComponent
-import com.prof18.filmatic.features.home.di.HomeComponent
-import com.prof18.filmatic.features.home.di.HomeComponentProvider
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
-import kotlin.reflect.KClass
 
-open class FilmaticApp : Application(), CoreComponentProvider, HomeComponentProvider {
-
-    private lateinit var coreComponent: CoreComponent
-
-    private val componentsMap = mutableMapOf<KClass<*>, Any>()
-
-
+@HiltAndroidApp
+open class FilmaticApp : Application() {
     override fun onCreate() {
         super.onCreate()
-
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
-
-            Result
         }
-    }
-
-    // Dagger Stuff
-
-    override fun provideCoreComponent(): CoreComponent {
-        if (!this::coreComponent.isInitialized) {
-            coreComponent = DaggerCoreComponent
-                .builder()
-                .dataModule(DataModule(this))
-                .build()
-        }
-        return coreComponent
-    }
-
-    override fun getHomeComponent(): HomeComponent {
-        return if (componentsMap.containsKey(HomeComponent::class)) {
-            componentsMap[HomeComponent::class] as HomeComponent
-        } else {
-            val component = DaggerHomeComponent
-                .builder()
-                .coreComponent(provideCoreComponent())
-                .build()
-            componentsMap[HomeComponent::class] = component
-            component
-        }
-    }
-
-    override fun setHomeComponent(homeComponent: HomeComponent) {
-        componentsMap[HomeComponent::class] = homeComponent
     }
 }
 

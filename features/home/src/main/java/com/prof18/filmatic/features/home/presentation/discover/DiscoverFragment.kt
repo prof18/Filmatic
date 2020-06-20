@@ -20,39 +20,23 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import coil.ImageLoader
-import com.prof18.filmatic.core.architecture.activityViewModels
+import androidx.fragment.app.activityViewModels
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.databinding.FragmentDiscoverBinding
-import com.prof18.filmatic.features.home.databinding.FragmentExploreBinding
-import com.prof18.filmatic.features.home.di.HomeComponentProvider
 import com.prof18.filmatic.features.home.presentation.HomeViewModel
-import javax.inject.Inject
-import javax.inject.Provider
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DiscoverFragment : Fragment(R.layout.fragment_discover) {
-
-    @Inject
-    lateinit var viewModelProvider: Provider<HomeViewModel>
-
-    private val viewModel by activityViewModels { viewModelProvider }
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val component = (requireActivity().application as HomeComponentProvider).getHomeComponent()
-        component.inject(this)
-
-        viewModel.fetchExploreItems()
+        viewModel.fetchGenres()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val binding = FragmentDiscoverBinding.bind(view)
-
-
-
     }
-
 }
