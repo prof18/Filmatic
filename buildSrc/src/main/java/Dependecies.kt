@@ -57,6 +57,8 @@ object Versions {
     val gradleVersion = "0.28.0"
     val coil = "0.11.0"
 
+    val hilt = "2.28-alpha"
+
     // Testing
     val mockito = "3.3.3"
     val faker = "1.0.2"
@@ -135,6 +137,14 @@ object Deps {
 
     val gradleVersion = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersion}"
     val coil = "io.coil-kt:coil:${Versions.coil}"
+
+    val hiltGradle = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
+    val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+
+    val hiltAndroidX = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt}"
+    val hiltAndroidXCompiler = "androidx.hilt:hilt-compiler:${Versions.hilt}"
+
 }
 
 fun DependencyHandler.applyCommonDeps() {
@@ -167,6 +177,8 @@ object TestLibraries {
     val extJunit = "androidx.test.ext:junit:${Versions.extJunit}"
     val retrofitMock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
     val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
+
+    val hilt = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
 }
 
 fun DependencyHandler.applyTests() {

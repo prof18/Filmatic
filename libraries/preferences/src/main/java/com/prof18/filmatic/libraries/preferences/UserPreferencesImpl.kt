@@ -20,7 +20,9 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UserPreferencesImpl @Inject constructor(private val sharedPreferences: SharedPreferences) :
     UserPreferences {
 

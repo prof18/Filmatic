@@ -19,6 +19,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-android-extensions")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -46,6 +47,12 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":libraries:uicomponents"))
     implementation(project(":libraries:preferences"))
+
+    implementation(Deps.hilt)
+    kapt(Deps.hiltCompiler)
+
+    implementation(Deps.hiltAndroidX)
+    kapt(Deps.hiltAndroidXCompiler)
 
     implementation(Deps.retrofit)
     implementation(Deps.moshi)
