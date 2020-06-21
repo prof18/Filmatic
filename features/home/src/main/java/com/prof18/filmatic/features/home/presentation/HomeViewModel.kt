@@ -22,7 +22,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
+import com.prof18.filmatic.core.architecture.CoroutineDispatcherProvider
 import com.prof18.filmatic.core.architecture.Result
 import com.prof18.filmatic.core.architecture.ViewState
 import com.prof18.filmatic.core.utils.Utils.retry
@@ -41,7 +41,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel @ViewModelInject constructor(
     private val popularMoviesUseCase: GetPopularMoviesUseCase,
     private val genresUseCase: GetGenresUseCase,
-    private val dispatcherProvider: CoroutinesDispatcherProvider
+    private val dispatcherProvider: CoroutineDispatcherProvider
 ) : ViewModel() {
 
     // TODO: move to a more interesting ui state
@@ -78,7 +78,6 @@ class HomeViewModel @ViewModelInject constructor(
             // Trending Header
             items.add(ExploreItem.Header(ItemHeader(titleResId = R.string.EXPLORE_popular_title)))
 
-
             val itemMovieBigList = movies.map { movie ->
                 ItemMovieBottomTitle(
                     id = movie.id,
@@ -95,7 +94,6 @@ class HomeViewModel @ViewModelInject constructor(
                     )
                 )
             )
-
 
             // Next Movie
             getNextMovieToSee(movies)?.let { nextMovie ->
@@ -138,7 +136,6 @@ class HomeViewModel @ViewModelInject constructor(
         return movieToReturn
     }
 
-
     fun fetchGenres() {
         _discoverState.postValue(ViewState.Loading)
 
@@ -157,5 +154,4 @@ class HomeViewModel @ViewModelInject constructor(
             }
         }
     }
-
 }

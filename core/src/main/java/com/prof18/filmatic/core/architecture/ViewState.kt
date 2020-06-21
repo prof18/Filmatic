@@ -19,7 +19,7 @@ package com.prof18.filmatic.core.architecture
 sealed class ViewState<out T> {
     data class Success<out T>(val data: T) : ViewState<T>()
     data class Error(val errorMessage: String) : ViewState<Nothing>()
-    object Loading: ViewState<Nothing>()
+    object Loading : ViewState<Nothing>()
 
     override fun toString(): String {
         return when (this) {

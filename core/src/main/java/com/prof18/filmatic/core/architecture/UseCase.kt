@@ -17,7 +17,5 @@
 package com.prof18.filmatic.core.architecture
 
 abstract class UseCase<T, in Params> {
-
     abstract suspend fun execute(params: Params? = null): Result<T>
-
 }

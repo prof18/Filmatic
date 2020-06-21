@@ -19,7 +19,7 @@ package com.prof18.filmatic.features.home.di
 import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
 import com.nhaarman.mockitokotlin2.mock
-import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
+import com.prof18.filmatic.core.architecture.CoroutineDispatcherProvider
 import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.domain.HomeRepository
@@ -32,9 +32,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import javax.inject.Singleton
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
-import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
 @ExperimentalCoilApi
@@ -46,7 +46,6 @@ class TestHomeModule {
         return fakeImageLoader
     }
 
-
     @Provides
     fun provideUseCase(repository: HomeRepository): GetPopularMoviesUseCase {
         return GetPopularMoviesUseCase(repository)
@@ -54,7 +53,7 @@ class TestHomeModule {
 
     @ExperimentalCoroutinesApi
     @Provides
-    fun provideCoroutineDispatcher(): CoroutinesDispatcherProvider {
+    fun provideCoroutineDispatcher(): CoroutineDispatcherProvider {
         return provideFakeCoroutinesDispatcherProvider(
             TestCoroutineDispatcher()
         )

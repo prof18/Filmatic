@@ -16,17 +16,18 @@
 
 package com.prof18.filmatic.libraries.testshared
 
-import com.prof18.filmatic.core.architecture.CoroutinesDispatcherProvider
+import com.prof18.filmatic.core.architecture.CoroutineDispatcherProvider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 
 @ExperimentalCoroutinesApi
 fun provideFakeCoroutinesDispatcherProvider(
     dispatcher: TestCoroutineDispatcher?
-): CoroutinesDispatcherProvider {
+): CoroutineDispatcherProvider {
     val sharedTestCoroutineDispatcher = TestCoroutineDispatcher()
-    return CoroutinesDispatcherProvider(
+    return CoroutineDispatcherProvider(
         dispatcher ?: sharedTestCoroutineDispatcher,
         dispatcher ?: sharedTestCoroutineDispatcher,
-        dispatcher ?: sharedTestCoroutineDispatcher)
+        dispatcher ?: sharedTestCoroutineDispatcher
+    )
 }

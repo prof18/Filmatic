@@ -15,11 +15,11 @@
  */
 
 plugins {
-    id("com.android.application" )
-    id("kotlin-android" )
-    id("kotlin-android-extensions" )
-    id("kotlin-kapt" )
-    id("dagger.hilt.android.plugin" )
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -49,9 +49,11 @@ dependencies {
     kapt(Deps.hiltAndroidXCompiler)
 
     implementation(Deps.timber)
-
+    debugImplementation(Deps.leakCanaryAndroid)
     implementation(Deps.retrofit)
     implementation(Deps.loggingInterceptor)
     implementation(Deps.coil)
     implementation(Deps.lottie)
+    debugImplementation(Deps.chucker)
+    releaseImplementation(Deps.chuckerNoOp)
 }

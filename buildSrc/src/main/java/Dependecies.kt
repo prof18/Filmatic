@@ -20,6 +20,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Versions {
 
+
     val gradle = "4.2.0-alpha02"
     val kotlin = "1.3.72"
 
@@ -44,7 +45,7 @@ object Versions {
     val moshi = "1.9.2"
     val lifecycle = "2.3.0-alpha01"
     val lifecylceExtensions = "2.2.0"
-    val leakCanary = "2.0-alpha-1"
+    val leakCanary = "2.4"
     val crashlytics = "2.9.9"
 
 
@@ -58,6 +59,11 @@ object Versions {
 
     val hilt = "2.28-alpha"
     val hiltAndroidX = "1.0.0-alpha01"
+
+    val detekt = "1.9.1"
+    val klint = "0.36.0"
+    val klitGradle = "9.2.1"
+    val chucker = "3.2.0"
 
     // Testing
     val mockito = "3.3.3"
@@ -113,6 +119,8 @@ object Deps {
     val lifecycleKtx = "androidx.lifecycle.lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 
     val leakCanaryAndroid = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
+    val chucker = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
+    val chuckerNoOp = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
 
     val crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}"
 

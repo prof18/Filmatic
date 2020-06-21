@@ -15,11 +15,11 @@
  */
 
 plugins {
-    id("com.android.library" )
-    id("kotlin-android" )
-    id("kotlin-android-extensions" )
-    id("kotlin-kapt" )
-    id("dagger.hilt.android.plugin" )
+    id("com.android.library")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -51,5 +51,6 @@ dependencies {
     implementation(Deps.ktx)
     implementation(Deps.navigationKtx)
     implementation(Deps.navigationFragmentKtx)
-
+    debugImplementation(Deps.chucker)
+    releaseImplementation(Deps.chuckerNoOp)
 }

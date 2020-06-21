@@ -16,14 +16,14 @@
 
 package com.prof18.filmatic.core.architecture
 
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import javax.inject.Inject
 
 /**
  * Provide coroutines context.
  */
-data class CoroutinesDispatcherProvider(
+data class CoroutineDispatcherProvider(
     val main: CoroutineDispatcher,
     val computation: CoroutineDispatcher,
     val io: CoroutineDispatcher

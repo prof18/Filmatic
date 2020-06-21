@@ -18,6 +18,8 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
     id("com.github.ben-manes.versions") version Versions.gradleVersion
+    id("io.gitlab.arturbosch.detekt") version Versions.detekt
+    id("org.jlleitschuh.gradle.ktlint") version Versions.klitGradle
 }
 
 buildscript {
@@ -25,7 +27,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-
     }
     dependencies {
         classpath(Deps.gradleTools)
@@ -44,8 +45,39 @@ allprojects {
     }
 }
 
-tasks.register("clean", Delete::class.java ) {
-    delete( rootProject.buildDir )
+subprojects {
+    apply {
+        plugin("io.gitlab.arturbosch.detekt")
+        plugin("org.jlleitschuh.gradle.ktlint")
+    }
+
+    ktlint {
+        debug.set(false)
+        version.set(Versions.klint)
+        verbose.set(true)
+        android.set(false)
+        outputToConsole.set(true)
+        ignoreFailures.set(false)
+        enableExperimentalRules.set(true)
+        filter {
+            exclude("**/generated/**")
+            include("**/kotlin/**")
+        }
+    }
+
+    detekt {
+        config = rootProject.files("config/detekt/detekt.yml")
+        reports {
+            html {
+                enabled = true
+                destination = file("build/reports/detekt.html")
+            }
+        }
+    }
+}
+
+tasks.register("clean", Delete::class.java) {
+    delete(rootProject.buildDir)
 }
 
 tasks.withType<DependencyUpdatesTask> {

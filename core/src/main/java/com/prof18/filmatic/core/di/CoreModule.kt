@@ -16,6 +16,8 @@
 
 package com.prof18.filmatic.core.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.prof18.filmatic.core.BuildConfig
 import com.prof18.filmatic.core.net.AuthInterceptor
 import com.prof18.filmatic.libraries.preferences.UserPreferences
@@ -23,9 +25,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
 @Module
@@ -34,9 +37,9 @@ class CoreModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(
+        @ApplicationContext context: Context,
         interceptor: AuthInterceptor
     ): OkHttpClient {
-
         val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BODY
@@ -45,14 +48,15 @@ class CoreModule {
             }
         }
 
-        return OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor(httpLoggingInterceptor)
+        return OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(ChuckerInterceptor(context))
             .build()
-
     }
 
     @Provides
     @Singleton
     fun provideAuthInterceptor(userPreferences: UserPreferences): AuthInterceptor =
         AuthInterceptor(userPreferences)
-
 }
