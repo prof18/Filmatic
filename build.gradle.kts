@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-
 plugins {
     id("com.github.ben-manes.versions") version Versions.gradleVersion
     id("io.gitlab.arturbosch.detekt") version Versions.detekt
@@ -79,11 +77,11 @@ subprojects {
 tasks.register("clean", Delete::class.java) {
     delete(rootProject.buildDir)
 }
-
-tasks.withType<DependencyUpdatesTask> {
-    rejectVersionIf {
-        isNonStable(candidate.version)
-    }
-}
-
-fun isNonStable(version: String) = "^[0-9,.v-]+(-r)?$".toRegex().matches(version).not()
+//
+// tasks.withType<DependencyUpdatesTask> {
+//     rejectVersionIf {
+//         isNonStable(candidate.version)
+//     }
+// }
+//
+// fun isNonStable(version: String) = "^[0-9,.v-]+(-r)?$".toRegex().matches(version).not()

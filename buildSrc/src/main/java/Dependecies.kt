@@ -21,65 +21,65 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 object Versions {
 
 
-    val gradle = "4.2.0-alpha02"
-    val kotlin = "1.3.72"
+    val gradle = "4.2.0-alpha07"
+    val kotlin = "1.4.0"
 
 
-    val appcompat = "1.3.0-alpha01"
-    val design = "1.3.0-alpha01"
+    val appcompat = "1.3.0-alpha02"
+    val design = "1.3.0-alpha02"
     val cardview = "1.0.0"
-    val recyclerview = "1.0.0"
+    val recyclerview = "1.2.0-alpha05"
 
 
     val androidxArch = "2.1.0"
-    val constraintLayout = "2.0.0-beta6"
+    val constraintLayout = "2.0.0"
 
-    val ktx = "1.3.0-alpha02"
+    val ktx = "1.5.0-alpha02"
 
-    val coroutines = "1.3.6"
+    val coroutines = "1.3.9"
     val room = "2.1.0-rc01"
 
     val timber = "4.7.1"
     val retrofit = "2.9.0"
-    val loggingInterceptor = "4.7.2"
-    val moshi = "1.9.2"
-    val lifecycle = "2.3.0-alpha01"
+    val loggingInterceptor = "4.8.1"
+    val moshi = "1.9.3"
+    val lifecycle = "2.3.0-alpha07"
     val lifecylceExtensions = "2.2.0"
     val leakCanary = "2.4"
     val crashlytics = "2.9.9"
 
 
-    val navigation = "2.3.0-beta01"
+    val navigation = "2.3.0"
 
     val lottie = "3.4.1"
 
 
-    val gradleVersion = "0.28.0"
-    val coil = "0.11.0"
+    val gradleVersion = "0.29.0"
+    val coil = "1.0.0-rc1"
 
-    val hilt = "2.28-alpha"
-    val hiltAndroidX = "1.0.0-alpha01"
+    val hilt = "2.28.3-alpha"
+    val hiltAndroidX = "1.0.0-alpha02"
 
-    val detekt = "1.9.1"
-    val klint = "0.36.0"
-    val klitGradle = "9.2.1"
+    val detekt = "1.12.0-RC1"
+    val klint = "0.38.0"
+    val klitGradle = "9.3.0"
     val chucker = "3.2.0"
 
     // Testing
-    val mockito = "3.3.3"
+    val mockito = "3.5.2"
     val faker = "1.0.2"
-    val fragmentTesting = "1.2.4"
-    val mockitoAndroid = "3.3.3"
-    val espresso = "3.1.0-beta02"
-    val testRules = "1.1.0-beta02"
-    val testRunner = "1.1.0-beta02"
-    val extJunit = "1.1.0"
+    val fragmentTesting = "1.3.0-alpha08"
+    val mockitoAndroid = "3.5.3"
+    val espresso = "3.3.0-rc03"
+    val testRules = " 1.3.0-rc03"
+    val testRunner = "1.3.0-rc03"
+    val extJunit = "1.1.2-rc03"
     val junit = "4.13"
     val assertjCore = "3.12.2"
-    val mockitoKotlin = "2.1.0"
-    val mockitoInline = "3.3.3"
+    val mockitoKotlin = "2.2.0"
+    val mockitoInline = "3.5.2"
     val orchestrator = "1.1.0"
-    val mockWebServer = "4.7.2"
+    val mockWebServer = "4.8.1"
 
 }
 
