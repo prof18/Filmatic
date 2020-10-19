@@ -18,18 +18,23 @@ package com.prof18.filmatic.libraries.testshared
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import coil.DefaultRequestOptions
 import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
+import coil.bitmap.BitmapPool
 import coil.decode.DataSource
-import coil.request.*
+import coil.memory.MemoryCache
+import coil.request.DefaultRequestOptions
+import coil.request.Disposable
+import coil.request.ImageRequest
+import coil.request.ImageResult
+import coil.request.SuccessResult
 
 @ExperimentalCoilApi
 val fakeImageLoader = object : ImageLoader {
 
     private val drawable = ColorDrawable(Color.BLACK)
 
-    private val disposable = object : RequestDisposable {
+    private val disposable = object : Disposable {
         override val isDisposed = true
         override fun dispose() {}
         override suspend fun await() {}
@@ -37,20 +42,30 @@ val fakeImageLoader = object : ImageLoader {
 
     override val defaults = DefaultRequestOptions()
 
-    override fun execute(request: LoadRequest): RequestDisposable {
+    // Optionally, you can add a custom fake memory cache implementation.
+    override val memoryCache get() = throw UnsupportedOperationException()
+
+    override val bitmapPool = BitmapPool(0)
+
+    override fun enqueue(request: ImageRequest): Disposable {
         // Always call onStart before onSuccess.
         request.target?.onStart(drawable)
         request.target?.onSuccess(drawable)
         return disposable
     }
 
-    override suspend fun execute(request: GetRequest): RequestResult {
-        return SuccessResult(drawable, DataSource.MEMORY_CACHE)
+    override suspend fun execute(request: ImageRequest): ImageResult {
+        return SuccessResult(
+            drawable = drawable,
+            request = request,
+            metadata = ImageResult.Metadata(
+                memoryCacheKey = MemoryCache.Key(""),
+                isSampled = false,
+                dataSource = DataSource.MEMORY_CACHE,
+                isPlaceholderMemoryCacheKeyPresent = false
+            )
+        )
     }
-
-    override fun invalidate(key: String) {}
-
-    override fun clearMemory() {}
 
     override fun shutdown() {}
 }

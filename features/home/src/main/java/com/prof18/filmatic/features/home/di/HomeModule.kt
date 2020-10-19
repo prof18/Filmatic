@@ -18,7 +18,6 @@ package com.prof18.filmatic.features.home.di
 
 import android.content.Context
 import coil.ImageLoader
-import coil.ImageLoaderBuilder
 import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.domain.HomeRepository
@@ -42,7 +41,7 @@ class HomeModule {
         @ApplicationContext context: Context,
         okHttpClient: OkHttpClient
     ): ImageLoader {
-        val imageLoaderBuilder = ImageLoaderBuilder(context)
+        val imageLoaderBuilder = ImageLoader.Builder(context)
         imageLoaderBuilder.okHttpClient(okHttpClient)
         return imageLoaderBuilder.build()
     }

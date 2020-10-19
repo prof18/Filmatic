@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.presentation.explore;
+package com.prof18.filmatic.features.home.presentation.explore
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
-import coil.api.load
+import coil.load
 import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
 import com.prof18.filmatic.features.home.R
@@ -34,7 +34,6 @@ class TrendingCollectionAdapter(
     val imageLoader: ImageLoader
 ) :
     RecyclerView.Adapter<TrendingCollectionAdapter.ViewHolder>() {
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

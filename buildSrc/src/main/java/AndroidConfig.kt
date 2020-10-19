@@ -27,6 +27,7 @@ fun TestedExtension.applyAndroidConfig() {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+    buildToolsVersion = Config.buildTools
 
     buildTypes {
         getByName("release") {

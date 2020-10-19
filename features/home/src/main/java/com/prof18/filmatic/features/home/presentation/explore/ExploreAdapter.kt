@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.prof18.filmatic.features.home.presentation.explore;
+package com.prof18.filmatic.features.home.presentation.explore
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
-import coil.api.load
+import coil.load
 import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
 import com.prof18.filmatic.features.home.R
@@ -98,7 +98,6 @@ class ExploreAdapter(val context: Context, val imageLoader: ImageLoader) :
     inner class MovieBigCardViewHolder(val binding: ItemMovieBigBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemMovieBig) {
-
             binding.ItemMovieBigTitle.text = item.title
 
             val lottieDrawable = LottieDrawable()
@@ -110,13 +109,12 @@ class ExploreAdapter(val context: Context, val imageLoader: ImageLoader) :
                 }
 
             binding.ItemMovieBigImage.load(item.imageUrl, imageLoader) {
-                    placeholder(lottieDrawable)
+                placeholder(lottieDrawable)
             }
 
             binding.ItemMovieBigCard.setOnClickListener {
                 // TODO: Add on click
             }
-
         }
     }
 

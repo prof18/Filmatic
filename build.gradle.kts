@@ -20,6 +20,10 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version Versions.klitGradle
 }
 
+apply {
+    from("https://raw.githubusercontent.com/JakeWharton/SdkSearch/63d952c03291da9ad74a6ecd8990cf309d6f3fce/gradle/projectDependencyGraph.gradle")
+}
+
 buildscript {
 
     repositories {

@@ -15,10 +15,10 @@
  */
 
 plugins {
-    id("com.android.library" )
-    id("kotlin-android" )
-    id("kotlin-android-extensions" )
-    id("kotlin-kapt" )
+    id("com.android.library")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
+    id("kotlin-kapt")
 }
 
 android {
@@ -27,6 +27,7 @@ android {
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_1_8.toString()
+            freeCompilerArgs = listOf("-Xjvm-default=compatibility")
         }
     }
 }

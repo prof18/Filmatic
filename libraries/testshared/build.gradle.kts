@@ -15,11 +15,20 @@
  */
 
 plugins {
-    id("com.android.library" )
-    id("kotlin-android" )
+    id("com.android.library")
+    id("kotlin-android")
 }
 
-android { applyAndroidConfig() }
+android {
+    applyAndroidConfig()
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
+            freeCompilerArgs = listOf("-Xjvm-default=compatibility")
+        }
+    }
+}
 
 dependencies {
     implementation(project(":core"))
