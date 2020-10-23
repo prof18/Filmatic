@@ -23,5 +23,5 @@ object Config {
     val compileSdk = 30
     val targetSdk = 30
     val javaVersion = JavaVersion.VERSION_1_8
-    val buildTools = "30.0.1"
+    val buildTools = "30.0.2"
 }

@@ -14,12 +14,51 @@
  * limitations under the License.
  */
 
-import com.android.build.gradle.TestedExtension
+import com.android.build.gradle.LibraryExtension
+import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 
-fun TestedExtension.applyAndroidConfig() {
+// For app module
+fun BaseAppModuleExtension.applyAndroidConfig() {
     compileSdkVersion(Config.compileSdk)
     defaultConfig {
+        minSdkVersion(Config.minSdk)
+        targetSdkVersion(Config.targetSdk)
+        versionCode = Release.versionCode
+        versionName = Release.versionName
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildToolsVersion = Config.buildTools
 
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles( getDefaultProguardFile("proguard-android.txt" ), "proguard-rules.pro" )
+            buildConfigField("String", "TMDB_KEY", "\"${Key.tmdbApiKey}\"")
+
+        }
+        getByName("debug") {
+            buildConfigField("String", "TMDB_KEY", "\"${Key.tmdbApiKey}\"")
+        }
+    }
+    compileOptions {
+        sourceCompatibility = Config.javaVersion
+        targetCompatibility = Config.javaVersion
+    }
+
+    packagingOptions {
+        exclude("win32-x86-64/attach_hotspot_windows.dll" )
+        exclude("win32-x86/attach_hotspot_windows.dll" )
+        exclude("META-INF/AL2.0" )
+        exclude("META-INF/LGPL2.1" )
+        exclude("META-INF/licenses/ASM" )
+    }
+}
+
+// For library modules
+fun LibraryExtension.applyAndroidConfig() {
+    compileSdkVersion(Config.compileSdk)
+    defaultConfig {
         minSdkVersion(Config.minSdk)
         targetSdkVersion(Config.targetSdk)
         versionCode = Release.versionCode
@@ -55,3 +94,4 @@ fun TestedExtension.applyAndroidConfig() {
     }
 
 }
+
