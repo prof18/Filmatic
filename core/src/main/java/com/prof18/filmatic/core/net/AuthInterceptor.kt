@@ -18,10 +18,12 @@ package com.prof18.filmatic.core.net
 
 import com.prof18.filmatic.core.BuildConfig
 import com.prof18.filmatic.libraries.preferences.UserPreferences
-import javax.inject.Inject
 import okhttp3.Interceptor
 import okhttp3.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AuthInterceptor @Inject constructor(
     private val userPreferences: UserPreferences
 ) : Interceptor {

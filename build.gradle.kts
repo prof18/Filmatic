@@ -33,7 +33,6 @@ buildscript {
     dependencies {
         classpath(Deps.gradleTools)
         classpath(Deps.kotlinGradle)
-        classpath(Deps.kotlinAndroid)
         classpath(Deps.gradleVersion)
         classpath(Deps.hiltGradle)
     }

@@ -23,48 +23,47 @@ import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.domain.HomeRepository
 import com.prof18.filmatic.features.home.remote.HomeRemoteDataSourceImpl
 import com.prof18.filmatic.features.home.remote.api.HomeService
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
-@InstallIn(ActivityComponent::class)
-class HomeModule {
+@InstallIn(ActivityRetainedComponent::class)
+abstract class HomeModule {
 
-    @Provides
-    fun provideImageLoader(
-        @ApplicationContext context: Context,
-        okHttpClient: OkHttpClient
-    ): ImageLoader {
-        val imageLoaderBuilder = ImageLoader.Builder(context)
-        imageLoaderBuilder.okHttpClient(okHttpClient)
-        return imageLoaderBuilder.build()
-    }
+    @Binds
+    abstract fun provideRemoteDataSource(homeRemoteDataSourceImpl: HomeRemoteDataSourceImpl): HomeRemoteDataSource
 
-    @Provides
-    fun provideHomePresenter(homeRepository: HomeRepositoryImpl): HomeRepository {
-        return homeRepository
-    }
+    @Binds
+    abstract fun provideHomeRepository(homeRepository: HomeRepositoryImpl): HomeRepository
 
-    @Provides
-    fun provideRemoteDataSource(homeRemoteDataSourceImpl: HomeRemoteDataSourceImpl): HomeRemoteDataSource {
-        return homeRemoteDataSourceImpl
-    }
+    companion object {
+        @Provides
+        fun provideHomeService(
+            client: OkHttpClient
+        ): HomeService {
+            return Retrofit.Builder()
+                .client(client)
+                .baseUrl("https://api.themoviedb.org/3/")
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build()
+                .create(HomeService::class.java)
+        }
 
-    @Provides
-    fun provideHomeService(
-        client: OkHttpClient
-    ): HomeService {
-        return Retrofit.Builder()
-            .client(client)
-            .baseUrl("https://api.themoviedb.org/3/")
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-            .create(HomeService::class.java)
+        @Provides
+        fun provideImageLoader(
+            @ApplicationContext context: Context,
+            okHttpClient: OkHttpClient
+        ): ImageLoader {
+            val imageLoaderBuilder = ImageLoader.Builder(context)
+            imageLoaderBuilder.okHttpClient(okHttpClient)
+            return imageLoaderBuilder.build()
+        }
     }
 }

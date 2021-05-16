@@ -16,11 +16,10 @@
 
 package com.prof18.filmatic.features.home.presentation.explore
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import coil.ImageLoader
 import com.airbnb.lottie.LottieAnimationView
@@ -41,10 +40,10 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
     @Inject lateinit var imageLoader: ImageLoader
 
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel by viewModels<HomeViewModel>()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         viewModel.fetchExploreItems()
     }
 
@@ -63,30 +62,33 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         val adapter = ExploreAdapter(requireContext(), imageLoader)
         binding.EXPLORERecyclerView.adapter = adapter
 
-        viewModel.exploreState.observe(viewLifecycleOwner, Observer {
-            it?.let { state ->
-                Timber.d(">>> STATE FROM EXPLORE VIEW MODEL -> $state")
+        viewModel.exploreState.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let { state ->
+                    Timber.d(">>> STATE FROM EXPLORE VIEW MODEL -> $state")
 
-                when (state) {
-                    is ViewState.Success<List<ExploreItem>> -> {
-                        showAnimation(loadingAnimation, false)
-                        showAnimation(errorAnimation, false)
-                        binding.EXPLORERecyclerView.visible()
-                        val data = state.data
-                        adapter.items = data
-                        adapter.notifyDataSetChanged()
-                    }
-                    is ViewState.Error -> {
-                        showAnimation(loadingAnimation, false)
-                        showAnimation(errorAnimation, true)
-                    }
-                    ViewState.Loading -> {
-                        showAnimation(loadingAnimation, true)
-                        showAnimation(errorAnimation, false)
+                    when (state) {
+                        is ViewState.Success<List<ExploreItem>> -> {
+                            showAnimation(loadingAnimation, false)
+                            showAnimation(errorAnimation, false)
+                            binding.EXPLORERecyclerView.visible()
+                            val data = state.data
+                            adapter.items = data
+                            adapter.notifyDataSetChanged()
+                        }
+                        is ViewState.Error -> {
+                            showAnimation(loadingAnimation, false)
+                            showAnimation(errorAnimation, true)
+                        }
+                        ViewState.Loading -> {
+                            showAnimation(loadingAnimation, true)
+                            showAnimation(errorAnimation, false)
+                        }
                     }
                 }
             }
-        })
+        )
     }
 
     private fun showAnimation(animation: LottieAnimationView, showLoader: Boolean) {

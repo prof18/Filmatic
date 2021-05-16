@@ -20,10 +20,8 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Versions {
 
-
-    val gradle = "4.2.0-alpha14"
-    val kotlin = "1.4.0"
-
+    val gradle = "4.2.1"
+    val kotlin = "1.5.0"
 
     val appcompat = "1.3.0-alpha02"
     val design = "1.3.0-alpha02"
@@ -42,7 +40,7 @@ object Versions {
     val timber = "4.7.1"
     val retrofit = "2.9.0"
     val loggingInterceptor = "4.8.1"
-    val moshi = "1.9.3"
+    val moshi = "1.12.0"
     val lifecycle = "2.3.0-alpha07"
     val lifecylceExtensions = "2.2.0"
     val leakCanary = "2.4"
@@ -57,8 +55,9 @@ object Versions {
     val gradleVersion = "0.29.0"
     val coil = "1.0.0-rc1"
 
-    val hilt = "2.28.3-alpha"
-    val hiltAndroidX = "1.0.0-alpha02"
+    val hilt = "2.35.1"
+    val hiltAndroidX = "1.0.0-alpha03"
+    val hiltCompiler = "1.0.0"
 
     val detekt = "1.12.0-RC1"
     val klint = "0.38.0"
@@ -146,7 +145,7 @@ object Deps {
     val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
     val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     val hiltAndroidX = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltAndroidX}"
-    val hiltAndroidXCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltAndroidX}"
+    val hiltAndroidXCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltCompiler}"
     val hiltTesting = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
 
 }

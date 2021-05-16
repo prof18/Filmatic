@@ -20,22 +20,21 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.prof18.filmatic.core.BuildConfig
 import com.prof18.filmatic.core.net.AuthInterceptor
-import com.prof18.filmatic.libraries.preferences.UserPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Singleton
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import javax.inject.Singleton
 
-@InstallIn(ApplicationComponent::class)
 @Module
-class CoreModule {
+@InstallIn(SingletonComponent::class)
+object CoreModule {
 
-    @Provides
     @Singleton
+    @Provides
     fun provideOkHttpClient(
         @ApplicationContext context: Context,
         interceptor: AuthInterceptor
@@ -55,8 +54,8 @@ class CoreModule {
             .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideAuthInterceptor(userPreferences: UserPreferences): AuthInterceptor =
-        AuthInterceptor(userPreferences)
+//    @Provides
+//    @Singleton
+//    fun provideAuthInterceptor(userPreferences: UserPreferences): AuthInterceptor =
+//        AuthInterceptor(userPreferences)
 }

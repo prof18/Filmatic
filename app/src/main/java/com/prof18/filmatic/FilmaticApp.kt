@@ -21,7 +21,7 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-open class FilmaticApp : Application() {
+class FilmaticApp : Application() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
@@ -29,4 +29,3 @@ open class FilmaticApp : Application() {
         }
     }
 }
-
