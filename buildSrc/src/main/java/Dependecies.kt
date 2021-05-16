@@ -34,7 +34,7 @@ object Versions {
 
     val ktx = "1.5.0-alpha02"
 
-    val coroutines = "1.3.9"
+    val coroutines = "1.5.0"
     val room = "2.1.0-rc01"
 
     val timber = "4.7.1"
@@ -59,19 +59,19 @@ object Versions {
     val hiltAndroidX = "1.0.0-alpha03"
     val hiltCompiler = "1.0.0"
 
-    val detekt = "1.12.0-RC1"
+    val detekt = "1.17.0"
     val klint = "0.38.0"
-    val klitGradle = "9.3.0"
+    val klitGradle = "10.0.0"
     val chucker = "3.2.0"
 
     // Testing
-    val mockito = "3.5.2"
+    val mockito = "3.10.0"
     val faker = "1.0.2"
     val fragmentTesting = "1.3.0-alpha08"
-    val mockitoAndroid = "3.5.3"
+    val mockitoAndroid = "3.10.0"
     val espresso = "3.3.0-rc03"
-    val testRules = " 1.3.0-rc03"
-    val testRunner = "1.3.0-rc03"
+    val testRules = "1.4.0-alpha06"
+    val testRunner = "1.4.0-alpha06"
     val extJunit = "1.1.2-rc03"
     val junit = "4.13"
     val assertjCore = "3.12.2"
