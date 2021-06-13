@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Filmatic</string>
+    <string name="missing_network_message">It seems that you are not connected to internet! 🤳</string>
+    <string name="error_message_not_allowed">You\'re not allowed to access what you\'ve requested! ⛔️</string>
+    <string name="unknown_error">Something unexpected just happened 🧐</string>
+    <string name="unknown_network_error">Something unexpected just happened during the connection with our servers 🧐</string>
+    <string name="server_unreachable">Sorry, servers are on fire 🚒</string>
+    <string name="data_not_found">This is embarrassing. I was unable to found what you have requested 😞</string>
+    <string name="title_not_found">Not found</string>
+    <string name="retry_button">Retry</string>
+    <string name="back_button_content_desc">Back Button</string>
+    <string name="popular_title">Trending</string>
+    <string name="app_info_button_content_desc">App info button</string>
+    <string name="next_movie_title">Your next movie</string>
+    <string name="show_on_github">Show on GitHub</string>
+    <string name="open_source_licenses">Open Source Licenses</string>
+    <string name="author_label">Developed with ❤️ by Marco Gomiero</string>
+    <string name="about_screen_content">Filmatic shows you the popular movies of the moment. This is a playground application, developed to play with modularization, dependency injection and to catch up with modern Android development. For an overview of the project structure and architecture, give a look at the README on GitHub.</string>
+    <string name="about">About</string>
+</resources>

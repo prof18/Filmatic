@@ -5,10 +5,13 @@
 I'm currently working on this application, which will be a film tracking app.
 It is still in its early stages of development, so things can heavily change!
 
+Filmatic shows you the popular movies of the moment. This is a playground application, developed to 
+play with modularization, dependency injection and to catch up with modern Android development. 
+
 ## License
 
 ```
-   Copyright 2019 Marco Gomiero
+   Copyright 2019-2020 Marco Gomiero
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="FilmaticBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnPrimary">@color/lightGrey</item>
+        <item name="colorError">@color/red1</item>
+        <item name="colorOnSecondary">@color/gray4</item>
+        <item name="colorOnBackground">@color/gray4</item>
+        <item name="colorOnSurface">@color/gray4</item>
+        <item name="colorOnError">@color/gray4</item>
+        <item name="colorAccent">@color/blue1</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+
+        <!-- Global shape attributes -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.LargeComponent</item>
+
+        <!-- Typography -->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.Filmatic.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Filmatic.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Filmatic.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Filmatic.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Filmatic.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Filmatic.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Filmatic.Subtitle1</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Filmatic.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Filmatic.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Filmatic.Caption</item>
+    </style>
+
+    <style name="FilmaticTheme" parent="FilmaticBaseTheme" />
+
+
+    <style name="AppTextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">@dimen/card_corner_radius</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="ShapeAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/card_corner_radius</item>
+    </style>
+
+    <style name="ShapeAppearance.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/card_corner_radius</item>
+    </style>
+
+    <style name="FilmaticTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="FilmaticTheme.Toolbar" parent="ThemeOverlay.AppCompat.Light" >
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <!--  Typography  -->
+    <style name="TextAppearance.Filmatic.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/opensans_bold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/opensans_bold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">@font/opensans_bold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/opensans_bold</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/opensans_semibold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/opensans_semibold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/opensans_light</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.SearchHint" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/opensans_light</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/opensans_regular</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/opensans_regular</item>
+    </style>
+
+    <style name="TextAppearance.Filmatic.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/opensans_light</item>
+    </style>
+
+</resources>

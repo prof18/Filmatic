@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="FilmaticTheme" parent="FilmaticBaseTheme">
+        <item name="colorOnPrimary">@color/gray4</item>
+    </style>
+</resources>
