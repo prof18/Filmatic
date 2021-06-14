@@ -5,7 +5,7 @@ to catch up with modern Android development. In particular, I've used it to lear
 Dependency Injection with [Dagger](https://dagger.dev/) and then [Hilt](https://dagger.dev/hilt/).
 
 <div align="center">
-  <img src="image/filmatic-ui.jpeg">
+  <img src="img/filmatic-ui.jpeg">
 </div>
 
 ## Modular Architecture 🧩
@@ -17,16 +17,16 @@ As mentioned, the app uses a multi-modular project structure. A module can be of
 - App Module
 
 <div align="center">
-  <img src="image/modules-arch.jpeg">
+  <img src="img/modules-arch.jpeg">
 </div>
 
 A **library module** can be an Android or a pure Kotlin module. A library module never depends on a feature or an app module, 
-but it can depend on another library. Library modules can contains different functionalities, for example 
+but it can depend on another library. Library modules can contain different functionalities, for example 
 UI components, data storage, networking, analytics, etc.
 
 A **feature module** is an Android library that contains a specific feature of the app. For example,
-the onboarding flow, the home screen, the settings, etc. A feature module never depend on other feature modules 
-or an app module. However it depends on many libraries module
+the onboarding flow, the home screen, the settings, etc. A feature module never depends on other feature modules 
+or an app module. However, it depends on many libraries module
 
 The **app module** is an Android Application and it links all the modules together. For that reason it 
 depends on other feature and library modules.
@@ -34,7 +34,7 @@ depends on other feature and library modules.
 Filmatic is composed of different feature and library modules:
 
 <div align="center">
-  <img src="image/modules.jpeg">
+  <img src="img/modules.jpeg">
 </div>
 
 - **App module** 
@@ -77,7 +77,7 @@ Or as an alternative, you can set them as system environment variables.
 
 - `TMDB_KEY`
 
-N.B. The system environment variables are mandatory to make the CI work
+N.B. The system environment variables are mandatory to make the CI work.
 
 ## License
 
