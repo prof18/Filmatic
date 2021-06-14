@@ -5,7 +5,7 @@ to catch up with modern Android development. In particular, I've used it to lear
 Dependency Injection with [Dagger](https://dagger.dev/) and then [Hilt](https://dagger.dev/hilt/).
 
 <div align="center">
-  <img src="img/filmatic-ui.jpeg">
+  <img src="img/filmatic-ui.png">
 </div>
 
 ## Modular Architecture 🧩
@@ -34,7 +34,7 @@ depends on other feature and library modules.
 Filmatic is composed of different feature and library modules:
 
 <div align="center">
-  <img src="img/modules.jpeg">
+  <img src="img/modules.jpg">
 </div>
 
 - **App module** 
