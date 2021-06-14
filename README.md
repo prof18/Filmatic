@@ -26,7 +26,7 @@ UI components, data storage, networking, analytics, etc.
 
 A **feature module** is an Android library that contains a specific feature of the app. For example,
 the onboarding flow, the home screen, the settings, etc. A feature module never depends on other feature modules 
-or an app module. However, it depends on many libraries module
+or on an app module. However, it depends on many libraries module
 
 The **app module** is an Android Application and it links all the modules together. For that reason it 
 depends on other feature and library modules.
@@ -37,14 +37,14 @@ Filmatic is composed of different feature and library modules:
   <img src="img/modules.jpg">
 </div>
 
-- **App module** 
-- **buildSrc**  -> contains the definitions of the dependencies used in the project.
+- **App module** -> wraps all the modules together and decides which activity to start
+- **buildSrc**  -> contains the definitions of the dependencies used in the project
+- **core**      -> contains common code used around the app, plus the localized strings.
 - **Feature modules**: 
     - **about** -> contains the code for the about screen
     - **home**  -> contains the code for the home screen
 - **Library modules**:
-    - **core**          -> contains common code used around the app, plus the localized strings. 
-    - **navigation**    -> handles navigation between different feature modules. The navigation is handled with implicit intents.  
+    - **navigation**    -> handles navigation between different feature modules. The navigation is handled with implicit intents
     - **preferences**   -> retrieve and store data from shared preferences
     - **test-shared**   -> contains common test utilities used in different feature modules
     - **ui-components** -> contains the UI components used in the app, plus style, colors and common drawables
@@ -63,7 +63,7 @@ Dependency Injection is managed with [Hilt](https://dagger.dev/hilt/).
 The projects is using [**ktlint**](https://github.com/pinterest/ktlint) with the [ktlint-gradle](https://github.com/jlleitschuh/ktlint-gradle) 
 plugin to format the code and [**detekt**](https://github.com/detekt/detekt) to analyze it.
 
-There is also a GitHub Action, named [Code Checks]() that builds and runs the `check` gradle task. 
+There is also a GitHub Action, named [Code Checks](https://github.com/prof18/Filmatic/blob/master/.github/workflows/checks.yaml) that builds and runs the `check` gradle task. 
 
 ## Build and Run 💻
 
@@ -73,11 +73,9 @@ To build and run the app, you have to set a secret in your local.properties file
 tmdbKey=YOUR_SECRET_API_KEY
 ```
 
-Or as an alternative, you can set them as system environment variables. 
+Or as an alternative, you can set it as system environment variables: `TMDB_KEY`
 
-- `TMDB_KEY`
-
-N.B. The system environment variables are mandatory to make the CI work.
+N.B. The system environment variable is mandatory to make the CI work.
 
 ## License
 
