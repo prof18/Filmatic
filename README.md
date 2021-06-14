@@ -1,17 +1,88 @@
 # Filmatic
 
-## 🚧 Work in Progress
+Filmatic shows you some popular movies of the moment. The project is a playground application that I use 
+to catch up with modern Android development. In particular, I've used it to learn modularization and 
+Dependency Injection with [Dagger](https://dagger.dev/) and then [Hilt](https://dagger.dev/hilt/).
 
-I'm currently working on this application, which will be a film tracking app.
-It is still in its early stages of development, so things can heavily change!
+<div align="center">
+  <img src="image/filmatic-ui.jpeg">
+</div>
 
-Filmatic shows you the popular movies of the moment. This is a playground application, developed to 
-play with modularization, dependency injection and to catch up with modern Android development. 
+## Modular Architecture 🧩
+
+As mentioned, the app uses a multi-modular project structure. A module can be of 3 different types:
+
+- Library module
+- Feature module
+- App Module
+
+<div align="center">
+  <img src="image/modules-arch.jpeg">
+</div>
+
+A **library module** can be an Android or a pure Kotlin module. A library module never depends on a feature or an app module, 
+but it can depend on another library. Library modules can contains different functionalities, for example 
+UI components, data storage, networking, analytics, etc.
+
+A **feature module** is an Android library that contains a specific feature of the app. For example,
+the onboarding flow, the home screen, the settings, etc. A feature module never depend on other feature modules 
+or an app module. However it depends on many libraries module
+
+The **app module** is an Android Application and it links all the modules together. For that reason it 
+depends on other feature and library modules.
+
+Filmatic is composed of different feature and library modules:
+
+<div align="center">
+  <img src="image/modules.jpeg">
+</div>
+
+- **App module** 
+- **buildSrc**  -> contains the definitions of the dependencies used in the project.
+- **Feature modules**: 
+    - **about** -> contains the code for the about screen
+    - **home**  -> contains the code for the home screen
+- **Library modules**:
+    - **core**          -> contains common code used around the app, plus the localized strings. 
+    - **navigation**    -> handles navigation between different feature modules. The navigation is handled with implicit intents.  
+    - **preferences**   -> retrieve and store data from shared preferences
+    - **test-shared**   -> contains common test utilities used in different feature modules
+    - **ui-components** -> contains the UI components used in the app, plus style, colors and common drawables
+   
+
+## Feature module architecture 🏗
+
+Every feature module is structured using Clean Architecture, with [data](https://github.com/prof18/Filmatic/tree/master/features/home/src/main/java/com/prof18/filmatic/features/home/data),
+[domain](https://github.com/prof18/Filmatic/tree/master/features/home/src/main/java/com/prof18/filmatic/features/home/domain)
+and [presentation](https://github.com/prof18/Filmatic/tree/master/features/home/src/main/java/com/prof18/filmatic/features/home/presentation) layers.  
+
+Dependency Injection is managed with [Hilt](https://dagger.dev/hilt/).
+
+## Automations 🤖
+
+The projects is using [**ktlint**](https://github.com/pinterest/ktlint) with the [ktlint-gradle](https://github.com/jlleitschuh/ktlint-gradle) 
+plugin to format the code and [**detekt**](https://github.com/detekt/detekt) to analyze it.
+
+There is also a GitHub Action, named [Code Checks]() that builds and runs the `check` gradle task. 
+
+## Build and Run 💻
+
+To build and run the app, you have to set a secret in your local.properties file, for the TMDB API.
+
+```
+tmdbKey=YOUR_SECRET_API_KEY
+```
+
+Or as an alternative, you can set them as system environment variables. 
+
+- `TMDB_KEY`
+
+N.B. The system environment variables are mandatory to make the CI work
 
 ## License
 
 ```
-   Copyright 2019-2020 Marco Gomiero
+   Copyright 2019-2021 Marco Gomiero
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

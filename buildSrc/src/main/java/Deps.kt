@@ -7,13 +7,13 @@ object BuildPluginsVersion {
 }
 
 object Versions {
+    const val KOTLIN = "1.5.10"
     const val APP_COMPAT = "1.2.0"
     const val MATERIAL = "1.3.0"
     const val RECYCLER_VIEW = "1.2.1"
     const val CONSTRAINT_LAYOUT = "2.0.4"
     const val CORE_KTX = "1.5.0"
 
-    const val ACTIVITY_KTX = "1.3.0-beta01"
     const val LIFECYCLE = "2.4.0-alpha01"
 
     const val HILT = "2.37"
@@ -40,8 +40,6 @@ object Versions {
     const val MOCK_WEB_SERVER = "4.9.1"
     const val MOCKITO_KOTLIN = "3.2.0"
     const val MOCKITO = "3.11.0"
-    const val UI_AUTOMATOR = "2.1.3"
-    const val TEST_ORCHESTRATOR = "1.3.0"
 
     const val ANDROIDX_TEST_EXT = "1.1.2"
     const val ANDROIDX_TEST = "1.3.0"
@@ -94,6 +92,8 @@ object Deps {
 
     const val ABOUT_LIB_CORE = "com.mikepenz:aboutlibraries-core:${Versions.ABOUT_LIB}"
     const val ABOUT_LIB = "com.mikepenz:aboutlibraries:${Versions.ABOUT_LIB}"
+
+    const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${Versions.KOTLIN}"
 }
 
 object TestingDeps {

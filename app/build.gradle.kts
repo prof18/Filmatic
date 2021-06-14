@@ -39,4 +39,7 @@ dependencies {
     kapt(Deps.HILT_COMPILER)
 
     debugImplementation(Deps.LEAK_CANARY)
+
+    // Add because of: Consider providing an explicit dependency on kotlin-reflect 1.5 to prevent strange errors
+    implementation(Deps.KOTLIN_REFLECT)
 }
