@@ -56,6 +56,7 @@ abstract class CoreModule {
         }
 
         @Provides
+        @Singleton
         fun provideCoroutineDispatcherProvider() = CoroutineDispatcherProvider(
             main = Dispatchers.Main,
             computation = Dispatchers.Default,

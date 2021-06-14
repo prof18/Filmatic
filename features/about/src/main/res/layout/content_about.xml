@@ -50,7 +50,7 @@
         android:layout_margin="@dimen/margin_medium"
         android:gravity="center"
         android:text="@string/author_label"
-android:textAppearance="@style/TextAppearance.Filmatic.Body2"
+        android:textAppearance="@style/TextAppearance.Filmatic.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -30,6 +30,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    // A customize Coil image loader, that can be replaced during testing
     @Inject
     lateinit var imageLoader: ImageLoader
 
@@ -76,6 +77,7 @@ class HomeFragment : Fragment() {
         binding.homeRecyclerView.adapter = adapter
 
         binding.homeInfoButton.setOnClickListener {
+            // Open About Screen
             startActivity(Destinations.openAboutActivity(requireContext()))
         }
 
@@ -83,6 +85,7 @@ class HomeFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Observe the state used to setup the entire view
                 viewModel.homeState.collect { state ->
                     Timber.v("Got state -> $state")
                     setupUI(state, adapter)

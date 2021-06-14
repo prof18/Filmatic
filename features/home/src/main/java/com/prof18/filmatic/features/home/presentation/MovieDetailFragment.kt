@@ -51,7 +51,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.movieDetailState.collect { state ->
-
                     Timber.v("Got state: $state")
                     setupDetailUI(binding, state)
                 }

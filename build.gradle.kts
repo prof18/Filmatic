@@ -34,6 +34,7 @@ allprojects {
 }
 
 subprojects {
+    // Apply common configurations to every android app or android library module
     afterEvaluate {
         (
             extensions.findByType(com.android.build.gradle.LibraryExtension::class)

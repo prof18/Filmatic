@@ -24,7 +24,7 @@ class AboutActivity : AppCompatActivity() {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setTitle(getString(R.string.about))
+        supportActionBar?.title = getString(R.string.about)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.contentAbout.aboutScreenShowLicensesBtn.setOnClickListener {
@@ -42,8 +42,10 @@ class AboutActivity : AppCompatActivity() {
         }
 
         binding.contentAbout.aboutScreenShowGithubBtn.setOnClickListener {
-            val browserIntent =
-                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/prof18/Filmatic"))
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://github.com/prof18/Filmatic")
+            )
             startActivity(browserIntent)
         }
 

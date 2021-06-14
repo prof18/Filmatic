@@ -10,6 +10,7 @@ class UserPreferencesImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : UserPreferences {
 
+    // Internal cache to avoid accessing every time to shared prefs
     internal val cacheMap = mutableMapOf<String, Any>()
 
     override fun getUserPreferredLocale(): String? {

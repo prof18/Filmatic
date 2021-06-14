@@ -32,12 +32,14 @@ class HomeViewModel @Inject constructor(
     private val _movieDetailState = MutableStateFlow<UIState<MovieDetailState>>(UIState.Loading)
     val movieDetailState: StateFlow<UIState<MovieDetailState>> = _movieDetailState.asStateFlow()
 
+    // This variable caches the retrieved movies to be able to show the movie detail when requested.
     private var movies: List<Movie> = listOf()
 
     fun getHomeState() {
         viewModelScope.launch {
             when (val result = popularMoviesUseCase()) {
                 is DataResult.Success -> {
+                    // Cache the movies
                     movies = result.data
                     val homeData = generateHomeData()
                     if (result.data.isNotEmpty()) {
@@ -53,12 +55,18 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Called when something goes wrong and the user want to retry the request.
+     */
     fun reloadData() {
         movies = listOf()
         _homeState.value = UIState.Loading
         getHomeState()
     }
 
+    /**
+     * Builds the home list state
+     */
     private fun generateHomeData(): List<HomeListItem> {
         val items = mutableListOf<HomeListItem>()
         if (movies.isNotEmpty()) {
@@ -90,7 +98,7 @@ class HomeViewModel @Inject constructor(
                 )
                 // Header
                 items.add(HomeListItem.Header(ItemHeader(titleResId = R.string.next_movie_title)))
-                // Item
+                // Big Movie Card
                 items.add(HomeListItem.MovieBigCard(data = itemMovieBig))
             }
         }
@@ -98,6 +106,11 @@ class HomeViewModel @Inject constructor(
         return items
     }
 
+    /**
+     * Generate the movie detail state, starting from the movies cached during the previous call to
+     * [getHomeState]. If something bad happens and the movie is missing, then a NoData state will be
+     * generated.
+     */
     fun getMovie(movieId: Int) {
         val movie = movies.firstOrNull { it.id == movieId }
         if (movie == null) {

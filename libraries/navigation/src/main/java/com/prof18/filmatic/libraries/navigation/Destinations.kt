@@ -10,6 +10,7 @@ object Destinations {
         action = "com.prof18.filmatic.features.about"
     )
 
+    // Makes the intent respond to actions only inside the app
     private fun internalIntent(context: Context, action: String) =
         Intent(action).setPackage(context.packageName)
 }

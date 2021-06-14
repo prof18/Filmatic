@@ -2,6 +2,9 @@ package com.prof18.filmatic.core.architecture
 
 import com.prof18.filmatic.core.error.ErrorData
 
+/**
+ * A wrapper to contain different UI states
+ */
 sealed class UIState<out T> {
     data class Success<out T>(val data: T) : UIState<T>()
     data class Error(val errorStringsId: ErrorData) : UIState<Nothing>()
