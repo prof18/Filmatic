@@ -1,30 +1,31 @@
+@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.gradle)
 }
 
 android {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
 dependencies {
     implementation(project(":libraries:preferences"))
 
-    implementation(Deps.MOSHI)
-    implementation(Deps.MOSHI_CONVERTER)
-    implementation(Deps.RETROFIT)
-    implementation(Deps.OKHTTP)
-    implementation(Deps.OKHTTP_LOGGING_INTERCEPTOR)
-    implementation(Deps.COROUTINES_CORE)
-    implementation(Deps.COROUTINES_ANDROID)
-    implementation(Deps.CORE_KTX)
+    implementation(libs.com.squareup.retrofit)
+    implementation(libs.com.squareup.retrofit.converter.moshi)
+    implementation(libs.com.squareup.moshi)
+    implementation(libs.com.squareup.okhttp3.okhttp)
+    implementation(libs.com.squareup.okhttp3.logging.interceptor)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.core.ktx)
 
-    implementation(Deps.COIL)
+    implementation(libs.io.coil)
 
-    implementation(Deps.HILT)
-    kapt(Deps.HILT_COMPILER)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 }

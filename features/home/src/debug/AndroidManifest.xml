@@ -9,7 +9,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/FilmaticTheme">
         <activity
-            android:name="com.prof18.filmatic.libraries.testshared.HiltTestActivity"
+            android:name="com.prof18.filmatic.libraries.hared.HiltTestActivity"
             android:exported="false" />
     </application>
 
