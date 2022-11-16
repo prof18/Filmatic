@@ -9,20 +9,26 @@ import com.prof18.filmatic.features.home.data.testutils.generateHomeRepositoryWi
 import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
 import com.prof18.filmatic.features.home.presentation.state.HomeListItem
 import com.prof18.filmatic.libraries.testshared.MainCoroutineRule
+import com.prof18.filmatic.libraries.testshared.testCoroutineDispatcherProvider
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
 class HomeViewModelTest {
 
     @get:Rule
-    val coroutineRule = MainCoroutineRule(TestCoroutineDispatcher())
+    val coroutineRule = MainCoroutineRule(testCoroutineDispatcherProvider.main)
 
     @Test
-    fun `homeState emit success state`() = runBlockingTest {
+    fun `homeState emit success state`() = runTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
@@ -41,7 +47,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `getHomeState generates correct state`() = runBlockingTest {
+    fun `getHomeState generates correct state`() = runTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
@@ -72,7 +78,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `homeState emit NoData state if movie list is empty`() = runBlockingTest {
+    fun `homeState emit NoData state if movie list is empty`() = runTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
@@ -91,7 +97,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `homeState emit error state`() = runBlockingTest {
+    fun `homeState emit error state`() = runTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
@@ -110,7 +116,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `movieDetailState emit NoData when movie is not found`() = runBlockingTest {
+    fun `movieDetailState emit NoData when movie is not found`() = runTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
@@ -130,7 +136,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `movieDetailState emit success`() = runBlockingTest {
+    fun `movieDetailState emit success`() = runTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
@@ -139,10 +145,14 @@ class HomeViewModelTest {
             )
         )
 
+        sut.getHomeState()
+
+        advanceUntilIdle()
+
         sut.movieDetailState.test {
             assertTrue(expectItem() is UIState.Loading)
 
-            sut.getHomeState()
+            // sut.getHomeState()
             sut.getMovie(movieId = DataFactory.adventureMovie.id)
 
             assertTrue(expectItem() is UIState.Success)
@@ -150,7 +160,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `getMovie generates correct state`() = runBlockingTest {
+    fun `getMovie generates correct state`() = runTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
@@ -159,10 +169,12 @@ class HomeViewModelTest {
             )
         )
 
+        sut.getHomeState()
+        advanceUntilIdle()
+
         sut.movieDetailState.test {
             assertTrue(expectItem() is UIState.Loading)
 
-            sut.getHomeState()
             sut.getMovie(movieId = DataFactory.adventureMovie.id)
 
             val movieState = (expectItem() as UIState.Success).data

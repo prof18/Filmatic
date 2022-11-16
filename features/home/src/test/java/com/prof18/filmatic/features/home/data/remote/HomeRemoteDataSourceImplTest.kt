@@ -8,7 +8,7 @@ import com.prof18.filmatic.features.home.data.datasource.HomeRemoteDataSource
 import com.prof18.filmatic.libraries.testshared.enqueueResponse
 import com.prof18.filmatic.libraries.testshared.fakes.FakeConnectivityCheckReturnNotSuccess
 import com.prof18.filmatic.libraries.testshared.fakes.FakeConnectivityCheckReturnSuccess
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -45,7 +45,7 @@ class HomeRemoteDataSourceImplTest {
     }
 
     @Test
-    fun `getPopularMovies returns ConnectionNotAvailable when phone not connected`() = runBlocking {
+    fun `getPopularMovies returns ConnectionNotAvailable when phone not connected`() = runTest {
         systemUnderTest = HomeRemoteDataSourceImpl(
             homeService = apiService,
             connectivityChecker = FakeConnectivityCheckReturnNotSuccess(),
@@ -59,7 +59,7 @@ class HomeRemoteDataSourceImplTest {
     }
 
     @Test
-    fun `getPopularMovies returns ServiceNotWorking when http code is 500`() = runBlocking {
+    fun `getPopularMovies returns ServiceNotWorking when http code is 500`() = runTest {
         mockWebServer.enqueueResponse(POPULAR_MOVIES_JSON_RESPONSE, 500)
 
         val response = systemUnderTest.getPopularMovies()
@@ -68,7 +68,7 @@ class HomeRemoteDataSourceImplTest {
     }
 
     @Test
-    fun `getPopularMovies returns NotAuthorized when http code is 401`() = runBlocking {
+    fun `getPopularMovies returns NotAuthorized when http code is 401`() = runTest {
         mockWebServer.enqueueResponse(POPULAR_MOVIES_JSON_RESPONSE, 401)
 
         val response = systemUnderTest.getPopularMovies()
@@ -77,7 +77,7 @@ class HomeRemoteDataSourceImplTest {
     }
 
     @Test
-    fun `getPopularMovies returns NotFound when http code is 404`() = runBlocking {
+    fun `getPopularMovies returns NotFound when http code is 404`() = runTest {
         mockWebServer.enqueueResponse(POPULAR_MOVIES_JSON_RESPONSE, 404)
 
         val response = systemUnderTest.getPopularMovies()
@@ -86,7 +86,7 @@ class HomeRemoteDataSourceImplTest {
     }
 
     @Test
-    fun `getPopularMovies returns ServiceUnavailable when http code is 503`() = runBlocking {
+    fun `getPopularMovies returns ServiceUnavailable when http code is 503`() = runTest {
         mockWebServer.enqueueResponse(POPULAR_MOVIES_JSON_RESPONSE, 503)
 
         val response = systemUnderTest.getPopularMovies()
@@ -95,7 +95,7 @@ class HomeRemoteDataSourceImplTest {
     }
 
     @Test
-    fun `getPopularMovies returns Unknown when http code is 418`() = runBlocking {
+    fun `getPopularMovies returns Unknown when http code is 418`() = runTest {
         mockWebServer.enqueueResponse(POPULAR_MOVIES_JSON_RESPONSE, 418)
 
         val response = systemUnderTest.getPopularMovies()
@@ -104,7 +104,7 @@ class HomeRemoteDataSourceImplTest {
     }
 
     @Test
-    fun `getPopularMovies returns success`() = runBlocking {
+    fun `getPopularMovies returns success`() = runTest {
         mockWebServer.enqueueResponse(POPULAR_MOVIES_JSON_RESPONSE, 200)
 
         val response = systemUnderTest.getPopularMovies()

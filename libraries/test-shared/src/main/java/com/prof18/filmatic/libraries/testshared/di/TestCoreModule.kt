@@ -13,6 +13,7 @@ import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockWebServer
@@ -48,7 +49,7 @@ abstract class TestCoreModule {
 
         @Provides
         fun provideCoroutineDispatcherProvider() = provideFakeCoroutinesDispatcherProvider(
-            TestCoroutineDispatcher()
+            StandardTestDispatcher()
         )
 
         @Provides

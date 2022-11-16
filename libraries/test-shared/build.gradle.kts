@@ -8,6 +8,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    kotlin.sourceSets.configureEach {
+        languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+    }
 }
 
 dependencies {

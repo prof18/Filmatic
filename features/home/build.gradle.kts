@@ -30,6 +30,7 @@ android {
 
     kotlin.sourceSets.configureEach {
         languageSettings.optIn("kotlin.time.ExperimentalTime")
+        languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
 }
 
