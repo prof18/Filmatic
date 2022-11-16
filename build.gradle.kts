@@ -1,35 +1,35 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:4.2.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAVIGATION}")
-        classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${Versions.ABOUT_LIB}")
-    }
-}
-
+@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
-    id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
-    id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN
+    //trick: for the same plugin versions in all sub-modules
+    alias(libs.plugins.android.application).apply(false)
+    alias(libs.plugins.android.library).apply(false)
+    alias(libs.plugins.kotlin.android).apply(false)
+    alias(libs.plugins.kotlin.kapt).apply(false)
+    alias(libs.plugins.hilt.gradle).apply(false)
+    alias(libs.plugins.ksp).apply(false)
+    alias(libs.plugins.androidx.navigation.safe.args).apply(false)
+    alias(libs.plugins.com.mikepenz.aboutlibraries).apply(false)
+    alias(libs.plugins.com.github.ben.manes.versions)
+    alias(libs.plugins.io.gitlab.arturbosch.detekt)
+    alias(libs.plugins.org.jlleitschuh.gradle.ktlint)
 }
 
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        // Required by detekt
-        jcenter {
-            content {
-                includeModule("org.jetbrains.kotlinx", "kotlinx-html-jvm")
-            }
+    apply {
+        plugin("io.gitlab.arturbosch.detekt")
+    }
+
+    dependencies {
+        detektPlugins(rootProject.libs.io.gitlab.arturbosch.detekt.formatting) {
+            exclude(group = "org.slf4j", module = "slf4j-nop")
         }
+    }
+
+    detekt {
+        config = files("$rootDir/config/detekt/detekt.yml")
+        source = files("src/main/java", "src/test/java", "src/androidTest/java")
+        parallel = true
     }
 }
 
@@ -41,35 +41,6 @@ subprojects {
                 ?: extensions.findByType(com.android.build.gradle.AppExtension::class)
             )?.apply {
             applyAndroidCommons()
-        }
-    }
-
-    apply {
-        plugin("io.gitlab.arturbosch.detekt")
-        plugin("org.jlleitschuh.gradle.ktlint")
-        plugin("com.github.ben-manes.versions")
-    }
-
-    ktlint {
-        debug.set(false)
-        version.set(Versions.KTLINT)
-        verbose.set(true)
-        android.set(false)
-        outputToConsole.set(true)
-        ignoreFailures.set(false)
-        filter {
-            exclude("**/generated/**")
-            include("**/kotlin/**")
-        }
-    }
-
-    detekt {
-        config = rootProject.files("config/detekt/detekt.yml")
-        reports {
-            html {
-                enabled = true
-                destination = file("build/reports/detekt.html")
-            }
         }
     }
 }
@@ -87,20 +58,18 @@ fun PluginContainer.configure(project: Project) {
 }
 
 fun com.android.build.gradle.BaseExtension.applyAndroidCommons() {
-    compileSdkVersion(SDKConfig.COMPILE_SDK_VERSION)
-    buildToolsVersion = SDKConfig.BUILD_TOOLS_VERSION
-
+    compileSdkVersion(libs.versions.android.compile.sdk.get().toInt())
     defaultConfig {
-        minSdk = SDKConfig.MIN_SDK_VERSION
-        targetSdk = SDKConfig.TARGET_SDK_VERSION
-        versionCode = Release.VERSION_CODE
-        versionName = Release.VERSION_NAME
+        minSdk = libs.versions.android.min.sdk.get().toInt()
+        targetSdk = libs.versions.android.target.sdk.get().toInt()
+        versionCode = 10000
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "com.prof18.filmatic.libraries.testshared.CustomTestRunner"
     }
 
     testOptions {
-        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        // execution = "ANDROIDX_TEST_ORCHESTRATOR"
     }
 
     buildTypes {
@@ -128,8 +97,8 @@ fun com.android.build.gradle.BaseExtension.applyAndroidCommons() {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     packagingOptions {

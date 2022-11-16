@@ -1,19 +1,20 @@
+@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     buildFeatures {
         viewBinding = true
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
@@ -22,8 +23,12 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":libraries:ui-components"))
 
-    applyCommonFeatureDeps()
-
-    implementation(Deps.ABOUT_LIB_CORE)
-    implementation(Deps.ABOUT_LIB)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.com.google.android.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.com.jakewharton.timber)
+    implementation(libs.com.mikepenz.aboutlibraries.core)
+    implementation(libs.com.mikepenz.aboutlibraries)
 }

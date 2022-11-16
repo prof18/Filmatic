@@ -13,7 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class HomeRepositoryImpl @Inject constructor(
     private val homeRemoteDataSource: HomeRemoteDataSource,
-    private val dispatcherProvider: CoroutineDispatcherProvider
+    private val dispatcherProvider: CoroutineDispatcherProvider,
 ) : HomeRepository {
 
     override suspend fun getPopularMovies(): DataResult<List<Movie>> =
@@ -27,7 +27,7 @@ class HomeRepositoryImpl @Inject constructor(
                     .movieResults
                     .map { movieDTO ->
                         movieDTO.toMovie()
-                    }
+                    },
             )
         }
 }

@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AuthInterceptor @Inject constructor(
-    private val userPreferences: UserPreferences
+    private val userPreferences: UserPreferences,
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {

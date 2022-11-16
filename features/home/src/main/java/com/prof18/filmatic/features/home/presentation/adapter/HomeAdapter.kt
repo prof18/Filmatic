@@ -22,7 +22,7 @@ import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBottomText
 
 class HomeAdapter(
     private val imageLoader: ImageLoader,
-    private val onClick: (MovieId) -> Unit
+    private val onClick: (MovieId) -> Unit,
 ) : ListAdapter<HomeListItem, RecyclerView.ViewHolder>(DiffCallback()) {
 
     // Useful when there will be multiple horizontal lists
@@ -40,7 +40,7 @@ class HomeAdapter(
         return when (viewType) {
             HEADER -> {
                 val itemBinding = ItemHeaderBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
+                    LayoutInflater.from(parent.context), parent, false,
                 )
                 HeaderViewHolder(itemBinding)
             }
@@ -48,13 +48,13 @@ class HomeAdapter(
                 val itemBinding = ItemTrendingCollectionBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
-                    false
+                    false,
                 )
                 TrendingCollectionViewHolder(itemBinding)
             }
             else -> {
                 val itemBinding = ItemMovieBigBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
+                    LayoutInflater.from(parent.context), parent, false,
                 )
                 MovieBigCardViewHolder(itemBinding)
             }
@@ -72,7 +72,7 @@ class HomeAdapter(
     }
 
     inner class HeaderViewHolder(
-        private val binding: ItemHeaderBinding
+        private val binding: ItemHeaderBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemHeader) {
             binding.itemHeaderTitle.text = itemView.context.getText(item.titleResId)
@@ -80,14 +80,14 @@ class HomeAdapter(
     }
 
     inner class TrendingCollectionViewHolder(
-        private val binding: ItemTrendingCollectionBinding
+        private val binding: ItemTrendingCollectionBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: List<ItemMovieBottomText>) {
 
             val childLayoutManager = LinearLayoutManager(
                 binding.homeTrendingList.context,
                 RecyclerView.HORIZONTAL,
-                false
+                false,
             )
             childLayoutManager.initialPrefetchItemCount = PREFETCHED_ITEM_COUNT
 

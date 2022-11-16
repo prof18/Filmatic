@@ -1,4 +1,4 @@
-package com.prof18.filmatic
+package com.prof18.filmatic.libraries.testshared.fakes
 
 // It's just a raw file
 @Suppress("MaxLineLength")

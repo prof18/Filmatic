@@ -1,23 +1,24 @@
+@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    kotlin("kapt")
-    id("dagger.hilt.android.plugin")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.gradle)
 }
 
 android {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
 dependencies {
-    implementation(Deps.CORE_KTX)
+    implementation(libs.androidx.core.ktx)
 
-    implementation(Deps.HILT)
-    kapt(Deps.HILT_COMPILER)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
-    testImplementation(TestingDeps.JUNIT)
-    testImplementation(TestingDeps.MOCKITO_CORE)
-    testImplementation(TestingDeps.MOCKITO_KOTLIN)
+    testImplementation(libs.junit)
+    testImplementation(libs.org.mockito.kotlin)
+    testImplementation(libs.org.mockito.core)
 }

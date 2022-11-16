@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
         val adapter = HomeAdapter(imageLoader) { movieId ->
             // Go to movie details
             val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(
-                movieId.value
+                movieId.value,
             )
             view.findNavController().navigate(action)
         }

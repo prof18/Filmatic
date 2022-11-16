@@ -20,11 +20,11 @@ import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.StyleRes
+import androidx.core.util.Preconditions
 import androidx.fragment.app.Fragment
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import com.prof18.filmatic.libraries.testshared.HiltTestActivity
-import com.prof18.filmatic.libraries.testshared.R
 
 /**
  * From: https://github.com/android/architecture-samples/blob/hilt/app/src/androidTest/java/com/example/android/architecture/blueprints/todoapp/HiltExt.kt
@@ -40,22 +40,22 @@ import com.prof18.filmatic.libraries.testshared.R
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,
     @StyleRes themeResId: Int,
-    crossinline action: Fragment.() -> Unit = {}
+    crossinline action: Fragment.() -> Unit = {},
 ) {
     val startActivityIntent = Intent.makeMainActivity(
         ComponentName(
             ApplicationProvider.getApplicationContext(),
-            HiltTestActivity::class.java
-        )
+            HiltTestActivity::class.java,
+        ),
     ).putExtra(
         "androidx.fragment.app.testing.FragmentScenario.EmptyFragmentActivity.THEME_EXTRAS_BUNDLE_KEY",
-        themeResId
+        themeResId,
     )
 
     ActivityScenario.launch<HiltTestActivity>(startActivityIntent).onActivity { activity ->
         val fragment: Fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
-            requireNotNull(T::class.java.classLoader),
-            T::class.java.name
+            Preconditions.checkNotNull(T::class.java.classLoader),
+            T::class.java.name,
         )
         fragment.arguments = fragmentArgs
         activity.supportFragmentManager

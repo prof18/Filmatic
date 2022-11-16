@@ -7,7 +7,7 @@ import javax.inject.Singleton
 
 @Singleton
 class UserPreferencesImpl @Inject constructor(
-    private val sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences,
 ) : UserPreferences {
 
     // Internal cache to avoid accessing every time to shared prefs
@@ -21,12 +21,12 @@ class UserPreferencesImpl @Inject constructor(
         } else {
             val savedValue = sharedPreferences.getString(
                 PrefsField.USER_LOCALE.name,
-                null
+                null,
             )
             if (savedValue != null) {
                 cacheValue(
                     key = PrefsField.USER_LOCALE.name,
-                    value = savedValue
+                    value = savedValue,
                 )
             }
             savedValue

@@ -1,34 +1,25 @@
+@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    kotlin("kapt")
-    id("dagger.hilt.android.plugin")
-    id("androidx.navigation.safeargs")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.gradle)
+    alias(libs.plugins.androidx.navigation.safe.args)
+    alias(libs.plugins.ksp)
 }
 
 android {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     buildFeatures {
         viewBinding = true
     }
 
-    // Shared folder for tests
-    sourceSets {
-        getByName("test") {
-            java.setSrcDirs(java.srcDirs + "$projectDir/src/testShared/java")
-        }
-
-        getByName("androidTest") {
-            java.setSrcDirs(java.srcDirs + "$projectDir/src/testShared/java")
-        }
-    }
-
     kotlin.sourceSets.configureEach {
-        languageSettings.useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
-        languageSettings.useExperimentalAnnotation("kotlin.time.ExperimentalTime")
+        languageSettings.optIn("kotlin.time.ExperimentalTime")
+        languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
 }
 
@@ -39,41 +30,42 @@ dependencies {
     implementation(project(":libraries:navigation"))
     implementation(project(":libraries:preferences"))
 
-    applyCommonFeatureDeps()
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.com.google.android.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.com.jakewharton.timber)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.com.squareup.retrofit)
+    implementation(libs.com.squareup.retrofit.converter.moshi)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.com.airbnb.android.lottie)
+    implementation(libs.io.coil)
 
-    implementation(Deps.RECYCLER_VIEW)
-    implementation(Deps.RETROFIT)
-    implementation(Deps.MOSHI)
-    implementation(Deps.MOSHI_CONVERTER)
-    implementation(Deps.MOSHI_CODE_GEN)
-    implementation(Deps.NAVIGATION_UI_KTX)
-    implementation(Deps.NAVIGATION_FRAGMENT_KTX)
-    implementation(Deps.LOTTIE)
-    implementation(Deps.COIL)
+    implementation(libs.com.squareup.moshi)
+    ksp(libs.com.squareup.moshi.kotlin.codegen)
 
-    implementation(Deps.HILT)
-    kapt(Deps.HILT_COMPILER)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     testImplementation(project(":libraries:test-shared"))
-    testImplementation(TestingDeps.JUNIT)
-    testImplementation(TestingDeps.COROUTINE_TEST) {
-        exclude("org.jetbrains.kotlinx", "kotlinx-coroutines-debug")
-    }
-    testImplementation(TestingDeps.MOCK_WEB_SERVER)
-    testImplementation(TestingDeps.TURBINE)
-    testImplementation(TestingDeps.FAKER)
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.com.squareup.okhttp3.mockwebserver)
+    testImplementation(libs.app.cash.turbine)
+    testImplementation(libs.com.github.javafaker)
 
     androidTestImplementation(project(":libraries:test-shared"))
-    androidTestImplementation(TestingDeps.MOCK_WEB_SERVER)
-    androidTestImplementation(TestingDeps.FAKER)
-    androidTestImplementation(AndroidTestingDeps.ANDROIDX_TEST_EXT_JUNIT)
-    androidTestImplementation(AndroidTestingDeps.ESPRESSO_CORE)
-    androidTestImplementation(AndroidTestingDeps.ESPRESSO_CONTRIB)
-    androidTestImplementation(AndroidTestingDeps.ANDROIDX_TEST_RULES)
-    androidTestImplementation(AndroidTestingDeps.HILT)
-    androidTestImplementation(TestingDeps.COROUTINE_TEST) {
-        exclude("org.jetbrains.kotlinx", "kotlinx-coroutines-debug")
-    }
-    androidTestImplementation(AndroidTestingDeps.OKHTTP_IDLING_RESOURCE)
-    kaptAndroidTest(Deps.HILT_COMPILER)
+    androidTestImplementation(libs.com.squareup.okhttp3.mockwebserver)
+    androidTestImplementation(libs.com.github.javafaker)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.androidx.test.espresso.contrib)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.hilt.android)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    kaptAndroidTest(libs.hilt.compiler)
 }

@@ -1,4 +1,4 @@
-package com.prof18.filmatic
+package com.prof18.filmatic.features.home
 
 import com.github.javafaker.Faker
 import com.prof18.filmatic.features.home.data.remote.dto.MovieDTO
@@ -22,7 +22,7 @@ object DataFactory {
         title = faker.lorem().sentence(),
         video = faker.random().nextBoolean(),
         voteAverage = faker.random().nextDouble(),
-        voteCount = faker.number().randomDigit()
+        voteCount = faker.number().randomDigit(),
     )
 
     val adventureMovie = MovieDTO(
@@ -39,7 +39,7 @@ object DataFactory {
         title = faker.lorem().sentence(),
         video = faker.random().nextBoolean(),
         voteAverage = faker.random().nextDouble(),
-        voteCount = faker.number().randomDigit()
+        voteCount = faker.number().randomDigit(),
     )
 
     val actionMovie = MovieDTO(
@@ -56,20 +56,20 @@ object DataFactory {
         title = faker.lorem().sentence(),
         video = faker.random().nextBoolean(),
         voteAverage = faker.random().nextDouble(),
-        voteCount = faker.number().randomDigit()
+        voteCount = faker.number().randomDigit(),
     )
 
     val popularMoviesDTO = PopularMoviesDTO(
         page = 1,
         movieResults = listOf(actionMovie, actionAdventureMovie, adventureMovie),
         totalPages = 1,
-        totalResults = 3
+        totalResults = 3,
     )
 
     val emptyPopularMovieDTO = PopularMoviesDTO(
         page = 1,
         movieResults = listOf(),
         totalPages = 1,
-        totalResults = 0
+        totalResults = 0,
     )
 }

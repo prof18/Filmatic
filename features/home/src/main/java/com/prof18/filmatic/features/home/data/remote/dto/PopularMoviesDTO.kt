@@ -8,5 +8,5 @@ data class PopularMoviesDTO(
     @Json(name = "page") val page: Int,
     @Json(name = "results") val movieResults: List<MovieDTO>,
     @Json(name = "total_pages") val totalPages: Int,
-    @Json(name = "total_results") val totalResults: Int
+    @Json(name = "total_results") val totalResults: Int,
 )

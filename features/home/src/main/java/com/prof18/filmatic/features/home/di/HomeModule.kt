@@ -29,7 +29,7 @@ abstract class HomeModule {
         @Provides
         @Singleton
         fun provideHomeService(
-            client: OkHttpClient
+            client: OkHttpClient,
         ): HomeApiService {
             return Retrofit.Builder()
                 .client(client)

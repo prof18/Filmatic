@@ -26,6 +26,6 @@ object DataModule {
     fun getUserSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
         context.applicationContext.getSharedPreferences(
             Preferences.USER_PREFERENCES,
-            Context.MODE_PRIVATE
+            Context.MODE_PRIVATE,
         )
 }

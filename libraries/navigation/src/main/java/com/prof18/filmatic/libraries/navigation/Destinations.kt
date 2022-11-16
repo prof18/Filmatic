@@ -7,7 +7,7 @@ object Destinations {
 
     fun openAboutActivity(context: Context): Intent = internalIntent(
         context,
-        action = "com.prof18.filmatic.features.about"
+        action = "com.prof18.filmatic.features.about",
     )
 
     // Makes the intent respond to actions only inside the app

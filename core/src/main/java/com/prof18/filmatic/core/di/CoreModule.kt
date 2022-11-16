@@ -30,7 +30,7 @@ abstract class CoreModule {
         @Singleton
         @Provides
         fun provideOkHttpClient(
-            interceptor: AuthInterceptor
+            interceptor: AuthInterceptor,
         ): OkHttpClient {
             val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
                 level = if (BuildConfig.DEBUG) {
@@ -49,7 +49,7 @@ abstract class CoreModule {
         @Provides
         @Singleton
         fun provideImageLoader(
-            @ApplicationContext context: Context
+            @ApplicationContext context: Context,
         ): ImageLoader {
             val imageLoaderBuilder = ImageLoader.Builder(context)
             return imageLoaderBuilder.build()
@@ -60,7 +60,7 @@ abstract class CoreModule {
         fun provideCoroutineDispatcherProvider() = CoroutineDispatcherProvider(
             main = Dispatchers.Main,
             computation = Dispatchers.Default,
-            io = Dispatchers.IO
+            io = Dispatchers.IO,
         )
     }
 }

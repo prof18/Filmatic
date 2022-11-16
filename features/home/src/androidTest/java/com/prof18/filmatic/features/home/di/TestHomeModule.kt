@@ -19,7 +19,7 @@ import javax.inject.Singleton
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],
-    replaces = [HomeModule::class]
+    replaces = [HomeModule::class],
 )
 abstract class TestHomeModule {
 
@@ -41,7 +41,7 @@ abstract class TestHomeModule {
         @Singleton
         fun provideHomeService(
             client: OkHttpClient,
-            mockWebServer: MockWebServer
+            mockWebServer: MockWebServer,
         ): HomeApiService {
             return Retrofit.Builder()
                 .client(client)

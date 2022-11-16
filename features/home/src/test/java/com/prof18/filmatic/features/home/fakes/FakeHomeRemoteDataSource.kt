@@ -5,7 +5,7 @@ import com.prof18.filmatic.features.home.data.datasource.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.data.remote.dto.PopularMoviesDTO
 
 class FakeHomeRemoteDataSource(
-    private val popularMovieResponse: DataResult<PopularMoviesDTO>
+    private val popularMovieResponse: DataResult<PopularMoviesDTO>,
 ) : HomeRemoteDataSource {
 
     override suspend fun getPopularMovies(): DataResult<PopularMoviesDTO> {

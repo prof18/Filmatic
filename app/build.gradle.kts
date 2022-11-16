@@ -1,18 +1,19 @@
+@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    kotlin("kapt")
-    id("dagger.hilt.android.plugin")
-    id("com.mikepenz.aboutlibraries.plugin")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.gradle)
+    alias(libs.plugins.com.mikepenz.aboutlibraries)
 }
 
 android {
     defaultConfig {
-        applicationId = SDKConfig.APP_ID
+        applicationId = "com.prof18.filmatic"
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     buildFeatures {
@@ -28,18 +29,20 @@ dependencies {
     implementation(project(":libraries:navigation"))
     implementation(project(":libraries:preferences"))
 
-    implementation(Deps.CORE_KTX)
-    implementation(Deps.APP_COMPAT)
-    implementation(Deps.MATERIAL)
-    implementation(Deps.CONSTRAINT_LAYOUT)
-    implementation(Deps.TIMBER)
-    implementation(Deps.COIL)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.com.google.android.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.com.jakewharton.timber)
+    implementation(libs.io.coil)
 
-    implementation(Deps.HILT)
-    kapt(Deps.HILT_COMPILER)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
-    debugImplementation(Deps.LEAK_CANARY)
+    debugImplementation(libs.com.squareup.leakcanary.android)
+}
 
-    // Add because of: Consider providing an explicit dependency on kotlin-reflect 1.5 to prevent strange errors
-    implementation(Deps.KOTLIN_REFLECT)
+
+aboutLibraries {
+    configPath = "$rootDir/license-config"
 }

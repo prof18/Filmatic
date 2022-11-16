@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 class ConnectivityCheckerImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
 ) : ConnectivityChecker {
     // The permission is present ¯\\_(ツ)_/¯
     @SuppressLint("MissingPermission")

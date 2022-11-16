@@ -20,7 +20,6 @@ import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.databinding.FragmentMovieDetailBinding
 import com.prof18.filmatic.features.home.presentation.state.MovieDetailState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -60,7 +59,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
     private fun setupDetailUI(
         binding: FragmentMovieDetailBinding,
-        state: UIState<MovieDetailState>
+        state: UIState<MovieDetailState>,
     ) {
         val errorAnimation = binding.movieDetailLayoutError.layoutErrorAnimation
         errorAnimation.setAnimation(R.raw.error)
@@ -94,7 +93,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
                 val lottieDrawable = LottieDrawable()
                 LottieCompositionFactory.fromRawRes(
                     requireContext(),
-                    R.raw.image_loader
+                    R.raw.image_loader,
                 ).addListener { lottieComposition ->
                     lottieDrawable.composition = lottieComposition
                     lottieDrawable.repeatCount = LottieDrawable.INFINITE

@@ -6,14 +6,14 @@ import com.prof18.filmatic.core.di.CoreModule
 import com.prof18.filmatic.core.net.ConnectivityChecker
 import com.prof18.filmatic.libraries.testshared.FakeCoilImageLoaderWrapper
 import com.prof18.filmatic.libraries.testshared.fakes.FakeConnectivityCheckReturnSuccess
-import com.prof18.filmatic.libraries.testshared.provideFakeCoroutinesDispatcherProvider
+import com.prof18.filmatic.libraries.testshared.fakes.provideFakeCoroutinesDispatcherProvider
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.StandardTestDispatcher
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockWebServer
 import javax.inject.Singleton
@@ -21,7 +21,7 @@ import javax.inject.Singleton
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],
-    replaces = [CoreModule::class]
+    replaces = [CoreModule::class],
 )
 abstract class TestCoreModule {
 
@@ -41,14 +41,14 @@ abstract class TestCoreModule {
         @Provides
         @Singleton
         fun provideImageLoader(
-            @ApplicationContext context: Context
+            @ApplicationContext context: Context,
         ): ImageLoader {
             return FakeCoilImageLoaderWrapper(context).fakeImageLoader
         }
 
         @Provides
         fun provideCoroutineDispatcherProvider() = provideFakeCoroutinesDispatcherProvider(
-            TestCoroutineDispatcher()
+            StandardTestDispatcher(),
         )
 
         @Provides
