@@ -7,7 +7,7 @@ import com.prof18.filmatic.features.home.domain.entities.Movie
 import javax.inject.Inject
 
 open class GetPopularMoviesUseCase @Inject constructor(
-    private val homeRepository: HomeRepository
+    private val homeRepository: HomeRepository,
 ) : UseCase<DataResult<List<Movie>>> {
 
     override suspend fun invoke(): DataResult<List<Movie>> {

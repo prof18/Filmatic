@@ -14,11 +14,9 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.launchFragmentInHiltContainer
-import com.prof18.filmatic.libraries.testshared.MainCoroutineRule
 import com.prof18.filmatic.libraries.testshared.enqueueResponse
 import com.prof18.filmatic.libraries.testshared.fakes.POPULAR_MOVIES_EMPTY_JSON_RESPONSE
 import com.prof18.filmatic.libraries.testshared.fakes.POPULAR_MOVIES_JSON_RESPONSE
-import com.prof18.filmatic.libraries.testshared.testCoroutineDispatcherProvider
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import okhttp3.OkHttpClient
@@ -50,7 +48,7 @@ class HomeFragmentTest {
     fun setup() {
         hiltRule.inject()
         IdlingRegistry.getInstance().register(
-            com.prof18.filmatic.libraries.testshared.OkHttp3IdlingResource.create("okhttp", okHttpClient)
+            com.prof18.filmatic.libraries.testshared.OkHttp3IdlingResource.create("okhttp", okHttpClient),
         )
     }
 
@@ -107,7 +105,7 @@ class HomeFragmentTest {
 
     private fun scrollRecyclerViewToPosition(position: Int) {
         onView(withId(R.id.home_recycler_view)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(position)
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(position),
         )
     }
 }

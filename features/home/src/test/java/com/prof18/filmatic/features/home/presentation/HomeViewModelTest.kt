@@ -1,10 +1,10 @@
 package com.prof18.filmatic.features.home.presentation
 
 import app.cash.turbine.test
-import com.prof18.filmatic.features.home.DataFactory
 import com.prof18.filmatic.core.architecture.DataResult
 import com.prof18.filmatic.core.architecture.UIState
 import com.prof18.filmatic.core.error.NetworkError
+import com.prof18.filmatic.features.home.DataFactory
 import com.prof18.filmatic.features.home.data.testutils.generateHomeRepositoryWithFakeRemoteDataSource
 import com.prof18.filmatic.features.home.domain.usecases.GetPopularMoviesUseCase
 import com.prof18.filmatic.features.home.presentation.state.HomeListItem
@@ -27,9 +27,9 @@ class HomeViewModelTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
-                    popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO)
-                )
-            )
+                    popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO),
+                ),
+            ),
         )
 
         sut.homeState.test {
@@ -46,9 +46,9 @@ class HomeViewModelTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
-                    popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO)
-                )
-            )
+                    popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO),
+                ),
+            ),
         )
 
         sut.homeState.test {
@@ -77,9 +77,9 @@ class HomeViewModelTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
-                    popularMovieResponse = DataResult.Success(DataFactory.emptyPopularMovieDTO)
-                )
-            )
+                    popularMovieResponse = DataResult.Success(DataFactory.emptyPopularMovieDTO),
+                ),
+            ),
         )
 
         sut.homeState.test {
@@ -96,9 +96,9 @@ class HomeViewModelTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
-                    popularMovieResponse = DataResult.Error(NetworkError.NotFound)
-                )
-            )
+                    popularMovieResponse = DataResult.Error(NetworkError.NotFound),
+                ),
+            ),
         )
 
         sut.homeState.test {
@@ -115,9 +115,9 @@ class HomeViewModelTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
-                    popularMovieResponse = DataResult.Success(DataFactory.emptyPopularMovieDTO)
-                )
-            )
+                    popularMovieResponse = DataResult.Success(DataFactory.emptyPopularMovieDTO),
+                ),
+            ),
         )
 
         sut.movieDetailState.test {
@@ -135,9 +135,9 @@ class HomeViewModelTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
-                    popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO)
-                )
-            )
+                    popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO),
+                ),
+            ),
         )
 
         sut.getHomeState()
@@ -159,9 +159,9 @@ class HomeViewModelTest {
         val sut = HomeViewModel(
             popularMoviesUseCase = GetPopularMoviesUseCase(
                 homeRepository = generateHomeRepositoryWithFakeRemoteDataSource(
-                    popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO)
-                )
-            )
+                    popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO),
+                ),
+            ),
         )
 
         sut.getHomeState()

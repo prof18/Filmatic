@@ -9,7 +9,7 @@ fun MockWebServer.enqueueResponse(response: String, code: Int) {
     enqueue(
         MockResponse()
             .setResponseCode(code)
-            .setBody(response)
+            .setBody(response),
     )
 }
 

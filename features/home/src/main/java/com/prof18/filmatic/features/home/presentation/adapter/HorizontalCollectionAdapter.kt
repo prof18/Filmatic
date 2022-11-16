@@ -16,15 +16,15 @@ import com.prof18.filmatic.libraries.uicomponents.listitem.ItemMovieBottomText
 
 class HorizontalCollectionAdapter(
     val imageLoader: ImageLoader,
-    val onClick: (MovieId) -> Unit
+    val onClick: (MovieId) -> Unit,
 ) : ListAdapter<ItemMovieBottomText, HorizontalCollectionAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): HorizontalCollectionAdapter.ViewHolder {
         val itemBinding = ItemMovieBottomTextBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
+            LayoutInflater.from(parent.context), parent, false,
         )
         return ViewHolder(itemBinding)
     }
@@ -35,7 +35,7 @@ class HorizontalCollectionAdapter(
         holder.bind(currentList[position])
 
     inner class ViewHolder(
-        private val binding: ItemMovieBottomTextBinding
+        private val binding: ItemMovieBottomTextBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemMovieBottomText) {
             binding.itemMovieBottomTextTitle.text = item.title

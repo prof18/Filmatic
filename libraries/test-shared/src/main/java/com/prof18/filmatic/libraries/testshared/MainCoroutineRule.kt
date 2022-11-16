@@ -9,7 +9,7 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
 class MainCoroutineRule(
-    private val dispatcher: CoroutineDispatcher = StandardTestDispatcher()
+    private val dispatcher: CoroutineDispatcher = StandardTestDispatcher(),
 ) : TestWatcher() {
     override fun starting(description: Description) {
         super.starting(description)

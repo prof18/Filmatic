@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class HomeRemoteDataSourceImpl @Inject constructor(
     private val homeService: HomeApiService,
     private val connectivityChecker: ConnectivityChecker,
-    private val errorMapper: ErrorMapper
+    private val errorMapper: ErrorMapper,
 ) : HomeRemoteDataSource {
 
     override suspend fun getPopularMovies(): DataResult<PopularMoviesDTO> {

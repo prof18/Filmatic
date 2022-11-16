@@ -7,7 +7,6 @@ import coil.ComponentRegistry
 import coil.ImageLoader
 import coil.decode.DataSource
 import coil.disk.DiskCache
-import coil.memory.MemoryCache
 import coil.request.DefaultRequestOptions
 import coil.request.Disposable
 import coil.request.ImageRequest
@@ -53,7 +52,7 @@ class FakeCoilImageLoaderWrapper(private val context: Context) {
                 memoryCacheKey = null,
                 diskCacheKey = null,
                 isSampled = false,
-                isPlaceholderCached = false
+                isPlaceholderCached = false,
             )
         }
 

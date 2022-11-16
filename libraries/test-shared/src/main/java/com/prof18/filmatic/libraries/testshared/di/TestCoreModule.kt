@@ -21,7 +21,7 @@ import javax.inject.Singleton
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],
-    replaces = [CoreModule::class]
+    replaces = [CoreModule::class],
 )
 abstract class TestCoreModule {
 
@@ -41,14 +41,14 @@ abstract class TestCoreModule {
         @Provides
         @Singleton
         fun provideImageLoader(
-            @ApplicationContext context: Context
+            @ApplicationContext context: Context,
         ): ImageLoader {
             return FakeCoilImageLoaderWrapper(context).fakeImageLoader
         }
 
         @Provides
         fun provideCoroutineDispatcherProvider() = provideFakeCoroutinesDispatcherProvider(
-            StandardTestDispatcher()
+            StandardTestDispatcher(),
         )
 
         @Provides

@@ -73,8 +73,8 @@ class HomeViewModel @Inject constructor(
             // Trending Header
             items.add(
                 HomeListItem.Header(
-                    ItemHeader(titleResId = R.string.popular_title)
-                )
+                    ItemHeader(titleResId = R.string.popular_title),
+                ),
             )
 
             // Trending collection
@@ -84,17 +84,17 @@ class HomeViewModel @Inject constructor(
                         ItemMovieBottomText(
                             id = movie.id,
                             title = movie.title,
-                            imageUrl = movie.posterPath
+                            imageUrl = movie.posterPath,
                         )
-                    }
-                )
+                    },
+                ),
             )
 
             movies.random().let { nextMovie ->
                 val itemMovieBig = ItemMovieBig(
                     id = nextMovie.id,
                     title = nextMovie.title,
-                    imageUrl = nextMovie.posterPath
+                    imageUrl = nextMovie.posterPath,
                 )
                 // Header
                 items.add(HomeListItem.Header(ItemHeader(titleResId = R.string.next_movie_title)))

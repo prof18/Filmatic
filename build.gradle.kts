@@ -15,6 +15,25 @@ plugins {
     alias(libs.plugins.org.jlleitschuh.gradle.ktlint)
 }
 
+allprojects {
+    apply {
+        plugin("io.gitlab.arturbosch.detekt")
+    }
+
+    dependencies {
+        detektPlugins(rootProject.libs.io.gitlab.arturbosch.detekt.formatting) {
+            exclude(group = "org.slf4j", module = "slf4j-nop")
+        }
+    }
+
+    detekt {
+        config = files("$rootDir/config/detekt/detekt.yml")
+        source = files("src/main/java", "src/test/java", "src/androidTest/java")
+        parallel = true
+        autoCorrect = true
+    }
+}
+
 subprojects {
     // Apply common configurations to every android app or android library module
     afterEvaluate {
@@ -24,28 +43,6 @@ subprojects {
             )?.apply {
             applyAndroidCommons()
         }
-    }
-
-    apply {
-        plugin("io.gitlab.arturbosch.detekt")
-        plugin("org.jlleitschuh.gradle.ktlint")
-    }
-
-    ktlint {
-        debug.set(false)
-        version.set("0.47.1")
-        verbose.set(true)
-        android.set(false)
-        outputToConsole.set(true)
-        ignoreFailures.set(false)
-        filter {
-            exclude("**/generated/**")
-            include("**/kotlin/**")
-        }
-    }
-
-    detekt {
-        config = rootProject.files("config/detekt/detekt.yml")
     }
 }
 

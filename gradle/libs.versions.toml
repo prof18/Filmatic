@@ -84,6 +84,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 org-mockito-core = { module = "org.mockito:mockito-core", version.ref = "org-mockito-core" }
 org-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "org-mockito-kotlin" }
 androidx-test-espresso-idling-resource = { module = "androidx.test.espresso:espresso-idling-resource", version.ref = "androidx-test-espresso-idling-resource" }
+io-gitlab-arturbosch-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "io-gitlab-arturbosch-detekt" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }

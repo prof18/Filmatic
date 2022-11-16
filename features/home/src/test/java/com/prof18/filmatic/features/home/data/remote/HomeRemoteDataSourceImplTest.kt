@@ -1,6 +1,5 @@
 package com.prof18.filmatic.features.home.data.remote
 
-import com.prof18.filmatic.libraries.testshared.fakes.POPULAR_MOVIES_JSON_RESPONSE
 import com.prof18.filmatic.core.architecture.DataResult
 import com.prof18.filmatic.core.error.ErrorMapper
 import com.prof18.filmatic.core.error.NetworkError
@@ -8,6 +7,7 @@ import com.prof18.filmatic.features.home.data.datasource.HomeRemoteDataSource
 import com.prof18.filmatic.libraries.testshared.enqueueResponse
 import com.prof18.filmatic.libraries.testshared.fakes.FakeConnectivityCheckReturnNotSuccess
 import com.prof18.filmatic.libraries.testshared.fakes.FakeConnectivityCheckReturnSuccess
+import com.prof18.filmatic.libraries.testshared.fakes.POPULAR_MOVIES_JSON_RESPONSE
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -35,7 +35,7 @@ class HomeRemoteDataSourceImplTest {
         systemUnderTest = HomeRemoteDataSourceImpl(
             homeService = apiService,
             connectivityChecker = FakeConnectivityCheckReturnSuccess(),
-            errorMapper = ErrorMapper()
+            errorMapper = ErrorMapper(),
         )
     }
 
@@ -49,7 +49,7 @@ class HomeRemoteDataSourceImplTest {
         systemUnderTest = HomeRemoteDataSourceImpl(
             homeService = apiService,
             connectivityChecker = FakeConnectivityCheckReturnNotSuccess(),
-            errorMapper = ErrorMapper()
+            errorMapper = ErrorMapper(),
         )
         mockWebServer.enqueueResponse(POPULAR_MOVIES_JSON_RESPONSE, 200)
 
@@ -111,7 +111,7 @@ class HomeRemoteDataSourceImplTest {
 
         assertEquals(
             337404,
-            (response as DataResult.Success).data.movieResults.first().id
+            (response as DataResult.Success).data.movieResults.first().id,
         )
     }
 }

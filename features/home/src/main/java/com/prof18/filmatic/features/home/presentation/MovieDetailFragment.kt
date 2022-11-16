@@ -59,7 +59,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
     private fun setupDetailUI(
         binding: FragmentMovieDetailBinding,
-        state: UIState<MovieDetailState>
+        state: UIState<MovieDetailState>,
     ) {
         val errorAnimation = binding.movieDetailLayoutError.layoutErrorAnimation
         errorAnimation.setAnimation(R.raw.error)
@@ -93,7 +93,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
                 val lottieDrawable = LottieDrawable()
                 LottieCompositionFactory.fromRawRes(
                     requireContext(),
-                    R.raw.image_loader
+                    R.raw.image_loader,
                 ).addListener { lottieComposition ->
                     lottieDrawable.composition = lottieComposition
                     lottieDrawable.repeatCount = LottieDrawable.INFINITE

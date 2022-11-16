@@ -8,12 +8,12 @@ import com.prof18.filmatic.features.home.fakes.FakeHomeRemoteDataSource
 import com.prof18.filmatic.libraries.testshared.testCoroutineDispatcherProvider
 
 fun generateHomeRepositoryWithFakeRemoteDataSource(
-    popularMovieResponse: DataResult<PopularMoviesDTO>
+    popularMovieResponse: DataResult<PopularMoviesDTO>,
 ): HomeRepository {
     return HomeRepositoryImpl(
         homeRemoteDataSource = FakeHomeRemoteDataSource(
-            popularMovieResponse = popularMovieResponse
+            popularMovieResponse = popularMovieResponse,
         ),
-        dispatcherProvider = testCoroutineDispatcherProvider
+        dispatcherProvider = testCoroutineDispatcherProvider,
     )
 }

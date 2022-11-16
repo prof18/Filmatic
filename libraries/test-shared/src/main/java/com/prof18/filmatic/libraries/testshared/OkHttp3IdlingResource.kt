@@ -24,7 +24,7 @@ import okhttp3.OkHttpClient
 /** An [) for ][IdlingResource] */
 class OkHttp3IdlingResource private constructor(
     private val name: String,
-    private val dispatcher: Dispatcher
+    private val dispatcher: Dispatcher,
 ) : IdlingResource {
 
     @Volatile

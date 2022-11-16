@@ -1,8 +1,8 @@
 package com.prof18.filmatic.features.home.data
 
-import com.prof18.filmatic.features.home.DataFactory
 import com.prof18.filmatic.core.architecture.DataResult
 import com.prof18.filmatic.core.error.NetworkError
+import com.prof18.filmatic.features.home.DataFactory
 import com.prof18.filmatic.features.home.fakes.FakeHomeRemoteDataSource
 import com.prof18.filmatic.libraries.testshared.testCoroutineDispatcherProvider
 import kotlinx.coroutines.test.runTest
@@ -19,9 +19,9 @@ class HomeRepositoryImplTest {
         runTest(dispatcher) {
             val sut = HomeRepositoryImpl(
                 homeRemoteDataSource = FakeHomeRemoteDataSource(
-                    popularMovieResponse = DataResult.Error(NetworkError.NotFound)
+                    popularMovieResponse = DataResult.Error(NetworkError.NotFound),
                 ),
-                dispatcherProvider = testCoroutineDispatcherProvider
+                dispatcherProvider = testCoroutineDispatcherProvider,
             )
 
             val result = sut.getPopularMovies()
@@ -34,9 +34,9 @@ class HomeRepositoryImplTest {
 
         val sut = HomeRepositoryImpl(
             homeRemoteDataSource = FakeHomeRemoteDataSource(
-                popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO)
+                popularMovieResponse = DataResult.Success(DataFactory.popularMoviesDTO),
             ),
-            dispatcherProvider = testCoroutineDispatcherProvider
+            dispatcherProvider = testCoroutineDispatcherProvider,
         )
 
         val result = sut.getPopularMovies()

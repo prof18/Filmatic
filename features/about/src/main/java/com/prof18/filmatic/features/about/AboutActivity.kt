@@ -10,7 +10,6 @@ import android.text.style.ClickableSpan
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.prof18.filmatic.features.about.databinding.ActivityAboutBinding
 
@@ -39,7 +38,7 @@ class AboutActivity : AppCompatActivity() {
         binding.contentAbout.aboutScreenShowGithubBtn.setOnClickListener {
             val browserIntent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://github.com/prof18/Filmatic")
+                Uri.parse("https://github.com/prof18/Filmatic"),
             )
             startActivity(browserIntent)
         }
@@ -56,14 +55,14 @@ class AboutActivity : AppCompatActivity() {
                 override fun onClick(view: View) {
                     val browserIntent = Intent(
                         Intent.ACTION_VIEW,
-                        Uri.parse("https://www.marcogomiero.com")
+                        Uri.parse("https://www.marcogomiero.com"),
                     )
                     startActivity(browserIntent)
                 }
             },
             completeText.indexOf(link),
             completeText.indexOf(link) + link.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE,
         )
         authorTextView.movementMethod = LinkMovementMethod.getInstance()
         authorTextView.text = spannableStringBuilder
