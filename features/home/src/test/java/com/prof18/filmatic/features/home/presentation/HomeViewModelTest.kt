@@ -33,11 +33,11 @@ class HomeViewModelTest {
         )
 
         sut.homeState.test {
-            assertTrue(expectItem() is UIState.Loading)
+            assertTrue(awaitItem() is UIState.Loading)
 
             sut.getHomeState()
 
-            assertTrue(expectItem() is UIState.Success)
+            assertTrue(awaitItem() is UIState.Success)
         }
     }
 
@@ -52,11 +52,11 @@ class HomeViewModelTest {
         )
 
         sut.homeState.test {
-            assertTrue(expectItem() is UIState.Loading)
+            assertTrue(awaitItem() is UIState.Loading)
 
             sut.getHomeState()
 
-            val state = expectItem() as UIState.Success
+            val state = awaitItem() as UIState.Success
             val homeItems = state.data
 
             // Header
@@ -83,11 +83,11 @@ class HomeViewModelTest {
         )
 
         sut.homeState.test {
-            assertTrue(expectItem() is UIState.Loading)
+            assertTrue(awaitItem() is UIState.Loading)
 
             sut.getHomeState()
 
-            assertTrue(expectItem() is UIState.NoData)
+            assertTrue(awaitItem() is UIState.NoData)
         }
     }
 
@@ -102,11 +102,11 @@ class HomeViewModelTest {
         )
 
         sut.homeState.test {
-            assertTrue(expectItem() is UIState.Loading)
+            assertTrue(awaitItem() is UIState.Loading)
 
             sut.getHomeState()
 
-            assertTrue(expectItem() is UIState.Error)
+            assertTrue(awaitItem() is UIState.Error)
         }
     }
 
@@ -121,12 +121,12 @@ class HomeViewModelTest {
         )
 
         sut.movieDetailState.test {
-            assertTrue(expectItem() is UIState.Loading)
+            assertTrue(awaitItem() is UIState.Loading)
 
             sut.getHomeState()
             sut.getMovie(movieId = -1)
 
-            assertTrue(expectItem() is UIState.NoData)
+            assertTrue(awaitItem() is UIState.NoData)
         }
     }
 
@@ -145,12 +145,12 @@ class HomeViewModelTest {
         advanceUntilIdle()
 
         sut.movieDetailState.test {
-            assertTrue(expectItem() is UIState.Loading)
+            assertTrue(awaitItem() is UIState.Loading)
 
             // sut.getHomeState()
             sut.getMovie(movieId = DataFactory.adventureMovie.id)
 
-            assertTrue(expectItem() is UIState.Success)
+            assertTrue(awaitItem() is UIState.Success)
         }
     }
 
@@ -168,11 +168,11 @@ class HomeViewModelTest {
         advanceUntilIdle()
 
         sut.movieDetailState.test {
-            assertTrue(expectItem() is UIState.Loading)
+            assertTrue(awaitItem() is UIState.Loading)
 
             sut.getMovie(movieId = DataFactory.adventureMovie.id)
 
-            val movieState = (expectItem() as UIState.Success).data
+            val movieState = (awaitItem() as UIState.Success).data
 
             assertEquals(DataFactory.adventureMovie.title, movieState.title)
         }
