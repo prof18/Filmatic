@@ -41,3 +41,8 @@ dependencies {
 
     debugImplementation(libs.com.squareup.leakcanary.android)
 }
+
+
+aboutLibraries {
+    configPath = "$rootDir/license-config"
+}

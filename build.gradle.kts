@@ -33,7 +33,7 @@ subprojects {
 
     ktlint {
         debug.set(false)
-        version.set("0.41.0")
+        version.set("0.47.1")
         verbose.set(true)
         android.set(false)
         outputToConsole.set(true)
@@ -46,12 +46,6 @@ subprojects {
 
     detekt {
         config = rootProject.files("config/detekt/detekt.yml")
-        reports {
-            html {
-                enabled = true
-                destination = file("build/reports/detekt.html")
-            }
-        }
     }
 }
 

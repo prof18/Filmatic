@@ -32,11 +32,6 @@ class AboutActivity : AppCompatActivity() {
                 .withLicenseShown(true)
                 .withAboutAppName(getString(R.string.app_name))
                 .withActivityTitle(getString(R.string.open_source_licenses))
-                .withLibraryModification(
-                    "lottie",
-                    Libs.LibraryFields.LIBRARY_DESCRIPTION,
-                    LOTTIE_FILES_LICENSE
-                )
                 .withEdgeToEdge(true)
                 .start(this)
         }
@@ -79,17 +74,5 @@ class AboutActivity : AppCompatActivity() {
             finish()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    companion object {
-        private const val LOTTIE_FILES_LICENSE = """
-             Lottie is a mobile library for Android and iOS that parses Adobe After Effects 
-             animations exported as json with Bodymovin and renders them natively on mobile.
-             
-             The app uses animations from:
-             
-             Bryan Vogel @LottieFiles
-             Sin Xiang Yi @LottieFiles
-        """
     }
 }

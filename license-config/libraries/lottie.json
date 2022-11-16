@@ -1,0 +1,4 @@
+{
+  "uniqueId": "com.airbnb.android:lottie",
+  "description": "Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile.\n\nThe app uses animations from:\n\nBryan Vogel @LottieFiles\nSin Xiang Yi @LottieFiles"
+}
