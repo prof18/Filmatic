@@ -20,11 +20,11 @@ import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.StyleRes
+import androidx.core.util.Preconditions
 import androidx.fragment.app.Fragment
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import com.prof18.filmatic.libraries.testshared.HiltTestActivity
-import com.prof18.filmatic.libraries.testshared.R
 
 /**
  * From: https://github.com/android/architecture-samples/blob/hilt/app/src/androidTest/java/com/example/android/architecture/blueprints/todoapp/HiltExt.kt
@@ -54,7 +54,7 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
 
     ActivityScenario.launch<HiltTestActivity>(startActivityIntent).onActivity { activity ->
         val fragment: Fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
-            requireNotNull(T::class.java.classLoader),
+            Preconditions.checkNotNull(T::class.java.classLoader),
             T::class.java.name
         )
         fragment.arguments = fragmentArgs

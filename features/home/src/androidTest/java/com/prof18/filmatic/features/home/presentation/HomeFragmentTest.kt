@@ -12,16 +12,15 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.jakewharton.espresso.OkHttp3IdlingResource
-import com.prof18.filmatic.POPULAR_MOVIES_EMPTY_JSON_RESPONSE
-import com.prof18.filmatic.POPULAR_MOVIES_JSON_RESPONSE
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.launchFragmentInHiltContainer
 import com.prof18.filmatic.libraries.testshared.MainCoroutineRule
 import com.prof18.filmatic.libraries.testshared.enqueueResponse
+import com.prof18.filmatic.libraries.testshared.fakes.POPULAR_MOVIES_EMPTY_JSON_RESPONSE
+import com.prof18.filmatic.libraries.testshared.fakes.POPULAR_MOVIES_JSON_RESPONSE
 import com.prof18.filmatic.libraries.testshared.testCoroutineDispatcherProvider
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.test.TestCoroutineDispatcher
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -35,17 +34,11 @@ import javax.inject.Inject
 @RunWith(AndroidJUnit4::class)
 class HomeFragmentTest {
 
-    private val testCoroutineDispatcher =
-        testCoroutineDispatcherProvider.main as TestCoroutineDispatcher
-
     private var resources: Resources =
         InstrumentationRegistry.getInstrumentation().targetContext.resources
 
     @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
-
-    @get:Rule(order = 1)
-    var coroutinesTestRule = MainCoroutineRule(testCoroutineDispatcher)
 
     @Inject
     lateinit var okHttpClient: OkHttpClient
@@ -57,7 +50,7 @@ class HomeFragmentTest {
     fun setup() {
         hiltRule.inject()
         IdlingRegistry.getInstance().register(
-            OkHttp3IdlingResource.create("okhttp", okHttpClient)
+            com.prof18.filmatic.libraries.testshared.OkHttp3IdlingResource.create("okhttp", okHttpClient)
         )
     }
 

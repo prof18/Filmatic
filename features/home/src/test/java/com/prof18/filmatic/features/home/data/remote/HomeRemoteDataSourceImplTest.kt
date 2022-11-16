@@ -1,6 +1,6 @@
 package com.prof18.filmatic.features.home.data.remote
 
-import com.prof18.filmatic.POPULAR_MOVIES_JSON_RESPONSE
+import com.prof18.filmatic.libraries.testshared.fakes.POPULAR_MOVIES_JSON_RESPONSE
 import com.prof18.filmatic.core.architecture.DataResult
 import com.prof18.filmatic.core.error.ErrorMapper
 import com.prof18.filmatic.core.error.NetworkError

@@ -1,4 +1,4 @@
-package com.prof18.filmatic
+package com.prof18.filmatic.features.home
 
 import com.github.javafaker.Faker
 import com.prof18.filmatic.features.home.data.remote.dto.MovieDTO

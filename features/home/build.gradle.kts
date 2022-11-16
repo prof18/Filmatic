@@ -17,17 +17,6 @@ android {
         viewBinding = true
     }
 
-    // Shared folder for
-    sourceSets {
-        getByName("test") {
-            java.srcDir("$projectDir/src/testShared/java")
-        }
-
-        getByName("androidTest") {
-            java.srcDir("$projectDir/src/testShared/java")
-        }
-    }
-
     kotlin.sourceSets.configureEach {
         languageSettings.optIn("kotlin.time.ExperimentalTime")
         languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
@@ -71,7 +60,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.espresso.contrib)
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.hilt.android)
+    androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.kotlinx.coroutines.test)
-    androidTestImplementation(libs.com.jakewharton.espresso.okhttp3.idling.resource)
     kaptAndroidTest(libs.hilt.compiler)
 }

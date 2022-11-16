@@ -20,7 +20,6 @@ import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.databinding.FragmentMovieDetailBinding
 import com.prof18.filmatic.features.home.presentation.state.MovieDetailState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject

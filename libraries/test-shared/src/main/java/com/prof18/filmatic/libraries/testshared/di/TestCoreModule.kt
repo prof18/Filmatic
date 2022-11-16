@@ -6,7 +6,7 @@ import com.prof18.filmatic.core.di.CoreModule
 import com.prof18.filmatic.core.net.ConnectivityChecker
 import com.prof18.filmatic.libraries.testshared.FakeCoilImageLoaderWrapper
 import com.prof18.filmatic.libraries.testshared.fakes.FakeConnectivityCheckReturnSuccess
-import com.prof18.filmatic.libraries.testshared.provideFakeCoroutinesDispatcherProvider
+import com.prof18.filmatic.libraries.testshared.fakes.provideFakeCoroutinesDispatcherProvider
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -14,7 +14,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestCoroutineDispatcher
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockWebServer
 import javax.inject.Singleton

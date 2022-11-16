@@ -1,11 +1,10 @@
 package com.prof18.filmatic.features.home.data
 
-import com.prof18.filmatic.DataFactory
+import com.prof18.filmatic.features.home.DataFactory
 import com.prof18.filmatic.core.architecture.DataResult
 import com.prof18.filmatic.core.error.NetworkError
 import com.prof18.filmatic.features.home.fakes.FakeHomeRemoteDataSource
 import com.prof18.filmatic.libraries.testshared.testCoroutineDispatcherProvider
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull

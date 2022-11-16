@@ -75,11 +75,11 @@ fun com.android.build.gradle.BaseExtension.applyAndroidCommons() {
         versionCode = 10000
         versionName = "1.0.0"
 
-        testInstrumentationRunner = "com.prof18.filmatic.libraries.hared.CustomTestRunner"
+        testInstrumentationRunner = "com.prof18.filmatic.libraries.testshared.CustomTestRunner"
     }
 
     testOptions {
-        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        // execution = "ANDROIDX_TEST_ORCHESTRATOR"
     }
 
     buildTypes {

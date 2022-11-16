@@ -10,6 +10,7 @@ androidx-navigation = "2.5.2"
 androidx-recyclerview = "1.2.1"
 androidx-test-espresso-contrib = "3.1.0"
 androidx-test-espresso-core = "3.3.0"
+androidx-test-espresso-idling-resource = "3.5.0"
 androidx-test-rules = "1.3.0"
 androidxActivity = "1.6.0"
 androidxHilt = "1.0.0"
@@ -23,7 +24,6 @@ com-airbnb-android-lottie = "3.7.0"
 com-github-ben-manes-versions = "0.42.0"
 com-github-javafaker = "1.0.2"
 com-google-android-material = "1.4.0"
-com-jakewharton-espresso-okhttp3-idling-resource = "1.0.0"
 com-jakewharton-timber = "5.0.1"
 com-mikepenz-aboutlibraries = "8.9.0"
 com-squareup-leakcanary-android = "2.9.1"
@@ -59,7 +59,6 @@ app-cash-turbine = { module = "app.cash.turbine:turbine", version.ref = "app-cas
 com-airbnb-android-lottie = { module = "com.airbnb.android:lottie", version.ref = "com-airbnb-android-lottie" }
 com-github-javafaker = { module = "com.github.javafaker:javafaker", version.ref = "com-github-javafaker" }
 com-google-android-material = { module = "com.google.android.material:material", version.ref = "com-google-android-material" }
-com-jakewharton-espresso-okhttp3-idling-resource = { module = "com.jakewharton.espresso:okhttp3-idling-resource", version.ref="com-jakewharton-espresso-okhttp3-idling-resource"}
 com-jakewharton-timber = { module = "com.jakewharton.timber:timber", version.ref = "com-jakewharton-timber" }
 com-mikepenz-aboutlibraries = { module = "com.mikepenz:aboutlibraries", version.ref = "com-mikepenz-aboutlibraries"}
 com-mikepenz-aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "com-mikepenz-aboutlibraries"}
@@ -84,7 +83,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 org-mockito-core = { module = "org.mockito:mockito-core", version.ref = "org-mockito-core" }
 org-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "org-mockito-kotlin" }
-
+androidx-test-espresso-idling-resource = { module = "androidx.test.espresso:espresso-idling-resource", version.ref = "androidx-test-espresso-idling-resource" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }

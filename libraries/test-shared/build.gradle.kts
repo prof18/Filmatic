@@ -23,4 +23,5 @@ dependencies {
     implementation(libs.androidx.test.rules)
     implementation(libs.com.squareup.okhttp3.mockwebserver)
     implementation(libs.kotlinx.coroutines.test)
+    implementation(libs.androidx.test.espresso.idling.resource)
 }

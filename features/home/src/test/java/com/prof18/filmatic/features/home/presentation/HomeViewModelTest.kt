@@ -1,7 +1,7 @@
 package com.prof18.filmatic.features.home.presentation
 
 import app.cash.turbine.test
-import com.prof18.filmatic.DataFactory
+import com.prof18.filmatic.features.home.DataFactory
 import com.prof18.filmatic.core.architecture.DataResult
 import com.prof18.filmatic.core.architecture.UIState
 import com.prof18.filmatic.core.error.NetworkError
@@ -12,13 +12,8 @@ import com.prof18.filmatic.libraries.testshared.MainCoroutineRule
 import com.prof18.filmatic.libraries.testshared.testCoroutineDispatcherProvider
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.advanceUntilIdle
-import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 

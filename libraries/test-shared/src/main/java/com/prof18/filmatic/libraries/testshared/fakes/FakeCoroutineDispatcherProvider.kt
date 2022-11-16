@@ -1,4 +1,4 @@
-package com.prof18.filmatic.libraries.testshared
+package com.prof18.filmatic.libraries.testshared.fakes
 
 import com.prof18.filmatic.core.architecture.CoroutineDispatcherProvider
 import kotlinx.coroutines.test.StandardTestDispatcher
