@@ -23,8 +23,12 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":libraries:ui-components"))
 
-    applyCommonFeatureDeps()
-
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.com.google.android.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.com.jakewharton.timber)
     implementation(libs.com.mikepenz.aboutlibraries.core)
     implementation(libs.com.mikepenz.aboutlibraries)
 }

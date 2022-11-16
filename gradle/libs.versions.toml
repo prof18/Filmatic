@@ -40,6 +40,7 @@ ksp = "1.7.10-1.0.6"
 org-mockito-core = "3.11.0"
 org-mockito-kotlin = "3.2.0"
 org-jlleitschuh-gradle-ktlint = "10.1.0"
+klint = "0.41.0"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }

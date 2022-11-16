@@ -33,7 +33,7 @@ subprojects {
 
     ktlint {
         debug.set(false)
-        version.set(Versions.KTLINT)
+        version.set("0.41.0")
         verbose.set(true)
         android.set(false)
         outputToConsole.set(true)
