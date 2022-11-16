@@ -30,7 +30,6 @@ allprojects {
         config = files("$rootDir/config/detekt/detekt.yml")
         source = files("src/main/java", "src/test/java", "src/androidTest/java")
         parallel = true
-        autoCorrect = true
     }
 }
 

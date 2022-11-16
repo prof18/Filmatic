@@ -11,7 +11,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.launchFragmentInHiltContainer
 import com.prof18.filmatic.libraries.testshared.enqueueResponse
