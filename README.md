@@ -60,8 +60,7 @@ Dependency Injection is managed with [Hilt](https://dagger.dev/hilt/).
 
 ## Automations 🤖
 
-The projects is using [**ktlint**](https://github.com/pinterest/ktlint) with the [ktlint-gradle](https://github.com/jlleitschuh/ktlint-gradle) 
-plugin to format the code and [**detekt**](https://github.com/detekt/detekt) to analyze it.
+The projects is using [**detekt**](https://github.com/detekt/detekt) for formatting and static analysis.
 
 There is also a GitHub Action, named [Code Checks](https://github.com/prof18/Filmatic/blob/master/.github/workflows/checks.yaml) that builds and runs the `check` gradle task. 
 
