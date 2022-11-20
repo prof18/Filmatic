@@ -12,7 +12,6 @@ plugins {
     alias(libs.plugins.com.mikepenz.aboutlibraries).apply(false)
     alias(libs.plugins.com.github.ben.manes.versions)
     alias(libs.plugins.io.gitlab.arturbosch.detekt)
-    alias(libs.plugins.org.jlleitschuh.gradle.ktlint)
 }
 
 allprojects {
