@@ -13,6 +13,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.prof18.filmatic.features.home.R
 import com.prof18.filmatic.features.home.launchFragmentInHiltContainer
+import com.prof18.filmatic.libraries.testshared.OkHttp3IdlingResource
 import com.prof18.filmatic.libraries.testshared.enqueueResponse
 import com.prof18.filmatic.libraries.testshared.fakes.POPULAR_MOVIES_EMPTY_JSON_RESPONSE
 import com.prof18.filmatic.libraries.testshared.fakes.POPULAR_MOVIES_JSON_RESPONSE
@@ -47,7 +48,7 @@ class HomeFragmentTest {
     fun setup() {
         hiltRule.inject()
         IdlingRegistry.getInstance().register(
-            com.prof18.filmatic.libraries.testshared.OkHttp3IdlingResource.create("okhttp", okHttpClient),
+            OkHttp3IdlingResource.create("okhttp", okHttpClient),
         )
     }
 
@@ -62,8 +63,7 @@ class HomeFragmentTest {
 
         launchFragmentInHiltContainer<HomeFragment>(themeResId = R.style.FilmaticTheme)
 
-        val errorText = resources.getString(R.string.error_message_not_allowed)
-        onView(withId(R.id.layout_error_message)).check(matches(withText(errorText)))
+        onView(withId(R.id.layout_error_message)).check(matches(isDisplayed()))
 
         val buttonText = resources.getString(R.string.retry_button)
         onView(withId(R.id.layout_error_button)).check(matches(withText(buttonText)))
@@ -95,8 +95,7 @@ class HomeFragmentTest {
 
         launchFragmentInHiltContainer<HomeFragment>(themeResId = R.style.FilmaticTheme)
 
-        val errorText = resources.getString(R.string.data_not_found)
-        onView(withId(R.id.layout_error_message)).check(matches(withText(errorText)))
+        onView(withId(R.id.layout_error_message)).check(matches(isDisplayed()))
 
         val buttonText = resources.getString(R.string.retry_button)
         onView(withId(R.id.layout_error_button)).check(matches(withText(buttonText)))
