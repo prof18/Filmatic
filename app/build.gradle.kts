@@ -44,5 +44,5 @@ dependencies {
 
 
 aboutLibraries {
-    configPath = "$rootDir/license-config"
+    // configPath = "$rootDir/license-config"
 }
