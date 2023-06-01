@@ -21,6 +21,7 @@ android {
         languageSettings.optIn("kotlin.time.ExperimentalTime")
         languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
+    namespace = "com.prof18.filmatic.features.home"
 }
 
 dependencies {

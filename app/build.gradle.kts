@@ -19,6 +19,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    namespace = "com.prof18.filmatic"
 }
 
 dependencies {

@@ -10,6 +10,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    namespace = "com.prof18.filmatic.libraries.preferences"
 }
 
 dependencies {

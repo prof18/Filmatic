@@ -12,6 +12,7 @@ android {
     kotlin.sourceSets.configureEach {
         languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
+    namespace = "com.prof18.filmatic.libraries.testshared"
 }
 
 dependencies {
