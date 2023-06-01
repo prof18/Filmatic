@@ -1,5 +1,4 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     //trick: for the same plugin versions in all sub-modules
     alias(libs.plugins.android.application).apply(false)
@@ -101,7 +100,7 @@ fun com.android.build.gradle.BaseExtension.applyAndroidCommons() {
     }
 
     packagingOptions {
-        exclude("META-INF/*.kotlin_module")
+        resources.excludes.add("META-INF/*.kotlin_module")
     }
 }
 
@@ -130,6 +129,6 @@ tasks {
 
 fun String.isStableVersion(): Boolean {
     val stableKeyword =
-        listOf("RELEASE", "FINAL", "GA").any { toUpperCase(java.util.Locale.ROOT).contains(it) }
+        listOf("RELEASE", "FINAL", "GA").any { uppercase(java.util.Locale.ROOT).contains(it) }
     return stableKeyword || Regex("^[0-9,.v-]+(-r)?$").matches(this)
 }

@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.android.application)
@@ -8,6 +11,8 @@ plugins {
 }
 
 android {
+    namespace = "com.prof18.filmatic"
+
     defaultConfig {
         applicationId = "com.prof18.filmatic"
     }
@@ -19,7 +24,21 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace = "com.prof18.filmatic"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JvmTarget.JVM_11.target
+    }
+
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = JvmTarget.JVM_11.target
+        }
+    }
 }
 
 dependencies {
