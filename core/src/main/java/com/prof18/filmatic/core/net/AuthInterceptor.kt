@@ -1,7 +1,7 @@
 package com.prof18.filmatic.core.net
 
 import com.prof18.filmatic.core.BuildConfig
-import com.prof18.filmatic.libraries.preferences.UserPreferences
+import com.prof18.filmatic.core.userprefs.UserPreferences
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.util.Locale

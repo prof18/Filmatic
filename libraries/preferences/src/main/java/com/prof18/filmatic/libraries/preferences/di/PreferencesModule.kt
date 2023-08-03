@@ -1,9 +1,9 @@
-package com.prof18.filmatic.core.di
+package com.prof18.filmatic.libraries.preferences.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.prof18.filmatic.core.userprefs.UserPreferences
 import com.prof18.filmatic.libraries.preferences.Preferences
-import com.prof18.filmatic.libraries.preferences.UserPreferences
 import com.prof18.filmatic.libraries.preferences.UserPreferencesImpl
 import dagger.Module
 import dagger.Provides
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object DataModule {
+object PreferencesModule {
 
     @Provides
     @Singleton

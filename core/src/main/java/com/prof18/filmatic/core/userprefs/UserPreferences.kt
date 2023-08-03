@@ -1,4 +1,4 @@
-package com.prof18.filmatic.libraries.preferences
+package com.prof18.filmatic.core.userprefs
 
 interface UserPreferences {
     fun getUserPreferredLocale(): String?

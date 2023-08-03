@@ -1,27 +1,13 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    id("com.prof18.filmatic.android.feature")
 }
 
 android {
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
     namespace = "com.prof18.filmatic.features.about"
 }
 
 dependencies {
-
-    implementation(project(":core"))
     implementation(project(":libraries:ui-components"))
 
     implementation(libs.androidx.appcompat)

@@ -1,12 +1,7 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.hilt.gradle)
+    id("com.prof18.filmatic.android.application")
+    id("com.prof18.filmatic.android.hilt")
     alias(libs.plugins.com.mikepenz.aboutlibraries)
 }
 
@@ -15,29 +10,12 @@ android {
 
     defaultConfig {
         applicationId = "com.prof18.filmatic"
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
+        versionCode = 10000
+        versionName = "1.0.0"
     }
 
     buildFeatures {
-        viewBinding = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = JvmTarget.JVM_11.target
-    }
-
-    tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = JvmTarget.JVM_11.target
-        }
+        buildConfig = true
     }
 }
 
@@ -55,9 +33,6 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.com.jakewharton.timber)
     implementation(libs.io.coil)
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
 
     debugImplementation(libs.com.squareup.leakcanary.android)
 }

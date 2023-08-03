@@ -2,6 +2,7 @@ package com.prof18.filmatic.libraries.preferences
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.prof18.filmatic.core.userprefs.UserPreferences
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -1,36 +1,39 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.util.Properties
 
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.hilt.gradle)
+    id("com.prof18.filmatic.android.base.library")
+    id("com.prof18.filmatic.android.hilt")
 }
 
 android {
     namespace = "com.prof18.filmatic.core"
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    buildFeatures {
+        buildConfig = true
     }
 
-    kotlinOptions {
-        jvmTarget = JvmTarget.JVM_11.target
-    }
-
-    tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = JvmTarget.JVM_11.target
+    buildTypes {
+        getByName("release") {
+            // Network API key
+            buildConfigField(
+                "String",
+                "TMDB_KEY",
+                "\"${"tmdbKey".byProperty ?: System.getenv("TMDB_KEY")}\""
+            )
+        }
+        getByName("debug") {
+            // Network API key
+            buildConfigField(
+                "String",
+                "TMDB_KEY",
+                "\"${"tmdbKey".byProperty ?: System.getenv("TMDB_KEY")}\""
+            )
         }
     }
 }
 
 dependencies {
-    implementation(project(":libraries:preferences"))
-
     implementation(libs.com.squareup.retrofit)
     implementation(libs.com.squareup.retrofit.converter.moshi)
     implementation(libs.com.squareup.moshi)
@@ -41,7 +44,15 @@ dependencies {
     implementation(libs.androidx.core.ktx)
 
     implementation(libs.io.coil)
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
 }
+
+val String.byProperty: String?
+    get() {
+        val local = Properties()
+        val localProperties: File = rootProject.file("local.properties")
+        if (localProperties.exists()) {
+            localProperties.inputStream().use { local.load(it) }
+            return local.getProperty(this)
+        }
+        return null
+    }

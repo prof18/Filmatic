@@ -1,14 +1,9 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    id("com.prof18.filmatic.android.library")
 }
 
 android {
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-
     kotlin.sourceSets.configureEach {
         languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
@@ -16,7 +11,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
     implementation(libs.com.airbnb.android.lottie)
     implementation(libs.io.coil)
     implementation(libs.hilt.android)
