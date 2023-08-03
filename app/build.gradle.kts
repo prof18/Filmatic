@@ -21,10 +21,11 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":features:home"))
-    implementation(project(":features:about"))
+    implementation(project(":features:home:contract"))
+    implementation(project(":features:home:implementation"))
+    implementation(project(":features:about:contract"))
+    implementation(project(":features:about:implementation"))
     implementation(project(":libraries:ui-components"))
-    implementation(project(":libraries:navigation"))
     implementation(project(":libraries:preferences"))
 
     implementation(libs.androidx.core.ktx)

@@ -32,15 +32,6 @@
             android:theme="@style/FilmaticTheme.NoActionBar">
         </activity>
 
-        <activity
-            android:name=".features.about.AboutActivity"
-            android:exported="false"
-            android:theme="@style/FilmaticTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="com.prof18.filmatic.features.about" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
     </application>
 

@@ -19,11 +19,12 @@ rootProject.name = "filmatic"
 include(":app")
 include(":core")
 
-include(":features:home")
-include(":features:about")
+include(":features:home:implementation")
+include(":features:home:contract")
+include(":features:about:implementation")
+include(":features:about:contract")
 
 include(":libraries:preferences")
 include(":libraries:ui-components")
 include(":libraries:test-shared")
 include(":libraries:error")
-include(":libraries:navigation")
