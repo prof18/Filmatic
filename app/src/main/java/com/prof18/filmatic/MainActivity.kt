@@ -1,10 +1,8 @@
 package com.prof18.filmatic
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.prof18.filmatic.features.home.contract.HomeContract
-import com.prof18.filmatic.features.home.presentation.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

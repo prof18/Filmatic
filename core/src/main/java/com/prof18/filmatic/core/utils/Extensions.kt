@@ -15,6 +15,6 @@ fun View.gone() {
 fun <T : Activity> Activity.launchActivity(clazz: Class<T>) {
     startActivity(
         Intent(this, clazz)
-            .setAction(Intent.ACTION_VIEW)
+            .setAction(Intent.ACTION_VIEW),
     )
 }

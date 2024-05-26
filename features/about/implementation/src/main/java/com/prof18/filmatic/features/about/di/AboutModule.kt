@@ -9,9 +9,9 @@ import dagger.hilt.android.components.ActivityComponent
 
 @Module
 @InstallIn(ActivityComponent::class)
-internal abstract class AnalyticsModule {
+internal abstract class AboutModule {
     @Binds
     abstract fun bindAboutContract(
-        aboutContractImpl: AboutContractImpl
+        aboutContractImpl: AboutContractImpl,
     ): AboutContract
 }
