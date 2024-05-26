@@ -1,11 +1,10 @@
 package com.prof18.filmatic.features.home.di
 
-import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
-import com.prof18.filmatic.features.home.data.datasource.HomeRemoteDataSource
+import com.m2f.archer.crud.GetRepository
+import com.prof18.filmatic.core.net.ConnectivityChecker
 import com.prof18.filmatic.features.home.data.remote.HomeApiService
-import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSourceImpl
-import com.prof18.filmatic.features.home.domain.HomeRepository
-import dagger.Binds
+import com.prof18.filmatic.features.home.data.remote.getHomeRepository
+import com.prof18.filmatic.features.home.domain.entities.Movie
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,26 +16,26 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class HomeModule {
+internal class HomeModule {
 
-    @Binds
-    abstract fun provideRemoteDataSource(impl: HomeRemoteDataSourceImpl): HomeRemoteDataSource
+    @Provides
+    @Singleton
+    fun providesHomeDataSource(
+        homeService: HomeApiService,
+        connectivityChecker: ConnectivityChecker,
+    ): @JvmSuppressWildcards GetRepository<Unit, List<Movie>> =
+        getHomeRepository(homeService, connectivityChecker)
 
-    @Binds
-    abstract fun provideHomeRepository(impl: HomeRepositoryImpl): HomeRepository
-
-    companion object {
-        @Provides
-        @Singleton
-        fun provideHomeService(
-            client: OkHttpClient,
-        ): HomeApiService {
-            return Retrofit.Builder()
-                .client(client)
-                .baseUrl("https://api.themoviedb.org/3/")
-                .addConverterFactory(MoshiConverterFactory.create())
-                .build()
-                .create(HomeApiService::class.java)
-        }
+    @Provides
+    @Singleton
+    fun provideHomeService(
+        client: OkHttpClient,
+    ): HomeApiService {
+        return Retrofit.Builder()
+            .client(client)
+            .baseUrl("https://api.themoviedb.org/3/")
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+            .create(HomeApiService::class.java)
     }
 }

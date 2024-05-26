@@ -39,6 +39,8 @@ kotlin = "2.0.0"
 ksp = "2.0.0-1.0.21"
 org-mockito-core = "5.12.0"
 org-mockito-kotlin = "5.3.1"
+archer = "0.3.1-dev03"
+arrow = "1.1.5"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
@@ -49,11 +51,11 @@ androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fr
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recyclerview" }
 androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTest" }
-androidx-test-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref="androidx-test-espresso-contrib"}
-androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref="androidx-test-espresso-core"}
+androidx-test-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "androidx-test-espresso-contrib" }
+androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso-core" }
 androidx-test-espresso-idling-resource = { module = "androidx.test.espresso:espresso-idling-resource", version.ref = "androidx-test-espresso-idling-resource" }
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExt" }
-androidx-test-rules = { module = "androidx.test:rules", version.ref="androidx-test-rules"}
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test-rules" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxTestRunner" }
 app-cash-turbine = { module = "app.cash.turbine:turbine", version.ref = "app-cash-turbine" }
 com-airbnb-android-lottie = { module = "com.airbnb.android:lottie", version.ref = "com-airbnb-android-lottie" }
@@ -61,8 +63,8 @@ com-android-tools-build-gradle = { module = "com.android.tools.build:gradle", ve
 com-github-javafaker = { module = "com.github.javafaker:javafaker", version.ref = "com-github-javafaker" }
 com-google-android-material = { module = "com.google.android.material:material", version.ref = "com-google-android-material" }
 com-jakewharton-timber = { module = "com.jakewharton.timber:timber", version.ref = "com-jakewharton-timber" }
-com-mikepenz-aboutlibraries = { module = "com.mikepenz:aboutlibraries", version.ref = "com-mikepenz-aboutlibraries"}
-com-mikepenz-aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "com-mikepenz-aboutlibraries"}
+com-mikepenz-aboutlibraries = { module = "com.mikepenz:aboutlibraries", version.ref = "com-mikepenz-aboutlibraries" }
+com-mikepenz-aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "com-mikepenz-aboutlibraries" }
 com-squareup-leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "com-squareup-leakcanary-android" }
 com-squareup-moshi = { module = "com.squareup.moshi:moshi", version.ref = "com-squareup-moshi" }
 com-squareup-moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "com-squareup-moshi" }
@@ -86,13 +88,15 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 org-jetbrains-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 org-mockito-core = { module = "org.mockito:mockito-core", version.ref = "org-mockito-core" }
 org-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "org-mockito-kotlin" }
+archer = { module = "com.m2f-kt:archer-core", version.ref = "archer" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
-androidx-navigation-safe-args = {id="androidx.navigation.safeargs", version.ref = "androidx-navigation"}
-com-mikepenz-aboutlibraries = {id="com.mikepenz.aboutlibraries.plugin", version.ref="com-mikepenz-aboutlibraries"}
+androidx-navigation-safe-args = { id = "androidx.navigation.safeargs", version.ref = "androidx-navigation" }
+com-mikepenz-aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "com-mikepenz-aboutlibraries" }
 hilt-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 io-gitlab-arturbosch-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "io-gitlab-arturbosch-detekt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

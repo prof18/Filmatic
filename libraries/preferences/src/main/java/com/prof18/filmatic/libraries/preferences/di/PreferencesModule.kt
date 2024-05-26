@@ -2,9 +2,14 @@ package com.prof18.filmatic.libraries.preferences.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.prof18.filmatic.core.userprefs.UserPreferences
+import com.m2f.archer.crud.GetRepository
+import com.m2f.archer.crud.PutRepository
+import com.m2f.archer.crud.cache.cache
+import com.m2f.archer.crud.operation.StoreSyncOperation
+import com.m2f.archer.datasource.extensions.toDataSource
+import com.m2f.archer.repository.toRepository
 import com.prof18.filmatic.libraries.preferences.Preferences
-import com.prof18.filmatic.libraries.preferences.UserPreferencesImpl
+import com.prof18.filmatic.core.architecture.PrefsField
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +23,23 @@ object PreferencesModule {
 
     @Provides
     @Singleton
-    fun getUserPreferencesManager(sharedPreferences: SharedPreferences): UserPreferences =
-        UserPreferencesImpl(sharedPreferences)
+    fun providesGetUserRepositories(
+        sharedPreferences: SharedPreferences,
+    ): @JvmSuppressWildcards GetRepository<PrefsField, String> =
+        sharedPreferences
+            .toDataSource<PrefsField, String>()
+            .cache()
+            .create(StoreSyncOperation)
+
+    @Provides
+    @Singleton
+    fun providesSetUserRepositories(
+        sharedPreferences: SharedPreferences,
+    ): @JvmSuppressWildcards PutRepository<PrefsField, String> =
+        sharedPreferences
+            .toDataSource<PrefsField, String>()
+            .toRepository()
+
 
     @Provides
     @Singleton

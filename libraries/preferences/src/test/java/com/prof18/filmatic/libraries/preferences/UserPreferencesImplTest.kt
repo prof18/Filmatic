@@ -1,6 +1,7 @@
 package com.prof18.filmatic.libraries.preferences
 
 import android.content.SharedPreferences
+import com.prof18.filmatic.core.architecture.PrefsField
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNull
 import org.junit.Before

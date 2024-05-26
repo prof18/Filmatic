@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+    implementation(libs.archer)
 
     testImplementation(libs.junit)
     testImplementation(libs.org.mockito.kotlin)

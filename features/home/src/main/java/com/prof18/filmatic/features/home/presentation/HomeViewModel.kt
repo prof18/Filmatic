@@ -37,21 +37,21 @@ class HomeViewModel @Inject constructor(
 
     fun getHomeState() {
         viewModelScope.launch {
-            when (val result = popularMoviesUseCase()) {
-                is DataResult.Success -> {
-                    // Cache the movies
-                    movies = result.data
-                    val homeData = generateHomeData()
-                    if (result.data.isNotEmpty()) {
-                        _homeState.value = UIState.Success(homeData)
-                    } else {
-                        _homeState.value = UIState.NoData
+            val result = popularMoviesUseCase()
+                .fold(
+                    ifLeft = { error ->
+                        _homeState.value = UIState.Error(error.getStringResId())
+                    },
+                    ifRight = { movieList ->
+                        movies = movieList
+                        val homeData = generateHomeData()
+                        if (movieList.isNotEmpty()) {
+                            _homeState.value = UIState.Success(homeData)
+                        } else {
+                            _homeState.value = UIState.NoData
+                        }
                     }
-                }
-                is DataResult.Error -> {
-                    _homeState.value = UIState.Error(result.error.getStringResId())
-                }
-            }
+                )
         }
     }
 

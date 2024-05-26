@@ -1,10 +1,8 @@
 package com.prof18.filmatic.features.home.di
 
-import com.prof18.filmatic.features.home.data.HomeRepositoryImpl
 import com.prof18.filmatic.features.home.data.datasource.HomeRemoteDataSource
 import com.prof18.filmatic.features.home.data.remote.HomeApiService
 import com.prof18.filmatic.features.home.data.remote.HomeRemoteDataSourceImpl
-import com.prof18.filmatic.features.home.domain.HomeRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

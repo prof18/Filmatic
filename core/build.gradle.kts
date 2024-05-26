@@ -42,6 +42,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.archer)
+    implementation(libs.arrow.core)
 
     implementation(libs.io.coil)
 }

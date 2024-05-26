@@ -1,7 +1,12 @@
 package com.prof18.filmatic.core.net
 
+import com.m2f.archer.crud.GetRepository
+import com.m2f.archer.crud.PutRepository
+import com.m2f.archer.crud.get
+import com.m2f.archer.crud.put
 import com.prof18.filmatic.core.BuildConfig
-import com.prof18.filmatic.core.userprefs.UserPreferences
+import com.prof18.filmatic.core.architecture.PrefsField
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.util.Locale
@@ -10,16 +15,21 @@ import javax.inject.Singleton
 
 @Singleton
 class AuthInterceptor @Inject constructor(
-    private val userPreferences: UserPreferences,
+    private val getUserRepository: @JvmSuppressWildcards GetRepository<PrefsField, String>,
+    private val putUserRepository: @JvmSuppressWildcards PutRepository<PrefsField, String>,
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
 
-        var userPrefLocale = userPreferences.getUserPreferredLocale()
+        var userPrefLocale = runBlocking {
+            getUserRepository.get(PrefsField.USER_LOCALE).getOrNull()
+        }
         // Move this saving into the onboarding flow
         if (userPrefLocale == null) {
             userPrefLocale = Locale.getDefault().toString().replace("_", "-")
-            userPreferences.saveUserPreferredLocale(userPrefLocale)
+            runBlocking {
+                putUserRepository.put(PrefsField.USER_LOCALE, userPrefLocale)
+            }
         }
 
         val newUrl = chain.request().url

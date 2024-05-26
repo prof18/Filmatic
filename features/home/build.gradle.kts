@@ -34,6 +34,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.com.airbnb.android.lottie)
+    implementation(libs.archer)
+    implementation(libs.arrow.core)
     implementation(libs.io.coil)
 
     implementation(libs.com.squareup.moshi)
