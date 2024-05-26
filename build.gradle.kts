@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.ksp).apply(false)
     alias(libs.plugins.androidx.navigation.safe.args).apply(false)
     alias(libs.plugins.com.mikepenz.aboutlibraries).apply(false)
-    alias(libs.plugins.com.github.ben.manes.versions)
     alias(libs.plugins.io.gitlab.arturbosch.detekt)
 }
 
