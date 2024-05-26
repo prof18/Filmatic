@@ -1,4 +1,3 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 plugins {
     alias(libs.plugins.android.application).apply(false)
     alias(libs.plugins.android.library).apply(false)
@@ -26,22 +25,4 @@ allprojects {
         source.setFrom(files("src/main/java", "src/test/java", "src/androidTest/java"))
         parallel = true
     }
-}
-
-tasks {
-    register("clean", Delete::class) {
-        delete(rootProject.buildDir)
-    }
-
-    withType<DependencyUpdatesTask> {
-        rejectVersionIf {
-            candidate.version.isStableVersion().not()
-        }
-    }
-}
-
-fun String.isStableVersion(): Boolean {
-    val stableKeyword =
-        listOf("RELEASE", "FINAL", "GA").any { uppercase(java.util.Locale.ROOT).contains(it) }
-    return stableKeyword || Regex("^[0-9,.v-]+(-r)?$").matches(this)
 }
