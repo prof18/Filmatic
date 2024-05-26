@@ -1,25 +1,21 @@
 [versions]
-android-compile-sdk = "33"
+android-compile-sdk = "34"
 android-min-sdk = "24"
-android-target-sdk = "33"
+android-target-sdk = "34"
 jvm-target = "11"
-android-gradle-plugin = "8.0.2"
-androidx-activity-compose = "1.7.2"
+android-gradle-plugin = "8.4.1"
 androidx-appcompat = "1.6.1"
-androidx-compose-bom = "2023.06.01"
-androidx-compose-compiler = "1.5.0"
 androidx-constraintlayout = "2.1.4"
-androidx-core = "1.10.1"
-androidx-lifecycle-compose = "2.6.1"
-androidx-navigation = "2.5.3"
-androidx-recyclerview = "1.3.0"
+androidx-core = "1.13.1"
+androidx-navigation = "2.7.7"
+androidx-recyclerview = "1.3.2"
 androidx-test-espresso-contrib = "3.5.1"
 androidx-test-espresso-core = "3.5.1"
 androidx-test-espresso-idling-resource = "3.5.1"
 androidx-test-rules = "1.5.0"
 androidxActivity = "1.6.0"
 androidxHilt = "1.0.0"
-androidxLifecycle = "2.6.1"
+androidxLifecycle = "2.8.0"
 androidxRoom = "2.4.3"
 androidxTest = "1.5.0" # https://github.com/android/android-test/issues/1412
 androidxTestExt = "1.1.5"
@@ -28,38 +24,27 @@ app-cash-turbine = "0.13.0"
 com-airbnb-android-lottie = "6.0.0"
 com-github-ben-manes-versions = "0.46.0"
 com-github-javafaker = "1.0.2"
-com-google-android-material = "1.9.0"
+com-google-android-material = "1.12.0"
 com-jakewharton-timber = "5.0.1"
 com-mikepenz-aboutlibraries = "10.7.0"
-com-squareup-leakcanary-android = "2.11"
-com-squareup-moshi = "1.15.0"
-com-squareup-okhttp3 = "4.11.0"
-com-squareup-retrofit = "2.9.0"
-coroutines = "1.7.1"
-hilt = "2.46.1"
-io-coil = "2.4.0"
+com-squareup-leakcanary-android = "2.14"
+com-squareup-moshi = "1.15.1"
+com-squareup-okhttp3 = "4.12.0"
+com-squareup-retrofit = "2.11.0"
+coroutines = "1.8.1"
+hilt = "2.50"
+io-coil = "2.6.0"
 io-gitlab-arturbosch-detekt = "1.23.0"
 junit = "4.13.2"
-kotlin = "1.8.21"
-ksp = "1.8.21-1.0.11"
+kotlin = "2.0.0"
+ksp = "2.0.0-1.0.21"
 org-mockito-core = "5.3.1"
 org-mockito-kotlin = "5.0.0"
 
 [libraries]
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom" }
-androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
-androidx-compose-material = { module = "androidx.compose.material:material" }
-androidx-compose-runtime-rxjava2 = { module = "androidx.compose.runtime:runtime-rxjava2" }
-androidx-compose-ui = { module = "androidx.compose.ui:ui" }
-androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
-androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
-androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
-androidx-compose-ui-util = { module = "androidx.compose.ui:ui-util" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
-androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle-compose" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
@@ -112,10 +97,4 @@ com-mikepenz-aboutlibraries = {id="com.mikepenz.aboutlibraries.plugin", version.
 hilt-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 io-gitlab-arturbosch-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "io-gitlab-arturbosch-detekt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
-
-[bundles]
-compose = ["androidx-compose-foundation", "androidx-compose-material", "androidx-compose-runtime-rxjava2",
-    "androidx-compose-ui", "androidx-compose-ui-tooling", "androidx-lifecycle-runtime-compose"]
-compose-testing = ["androidx-compose-ui-test-junit4"]
